@@ -23,10 +23,6 @@ public class DriverFactory {
 		return driver;
 	}
 
-//	public static WebDriver getDriver() {
-//		return driver;
-//	}
-
 	public static DriverFactory getInstance() {
 		if (driverFactory == null)
 			driverFactory = new DriverFactory();
