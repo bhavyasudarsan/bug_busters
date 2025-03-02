@@ -17,20 +17,22 @@ public class LinkedList {
 
 	@FindBy(xpath = "//h5[text()='Linked List']/../a\"")
 	WebElement linkedList;
-    @FindBy(name="username") WebElement userName;
-    @FindBy(name="password") WebElement passWord;
-	@FindBy(xpath = "//input[@type=\"submit\"]") WebElement login;
-	@FindBy(xpath = "//div[@class='alert alert-primary']") WebElement status;
-	@FindBy(xpath = "//h5[text()='Linked List']/../a") WebElement getStarted;
-	@FindBy(xpath = "//div[@class='nav-item dropdown']") WebElement linked;
-	@FindBy(xpath = "//h4[@class='bg-secondary text-white']") WebElement title;
+	@FindBy(name = "username")
+	WebElement userName;
+	@FindBy(name = "password")
+	WebElement passWord;
+	@FindBy(xpath = "//input[@type=\"submit\"]")
+	WebElement login;
+	@FindBy(xpath = "//div[@class='alert alert-primary']")
+	WebElement status;
+	@FindBy(xpath = "//h5[text()='Linked List']/../a")
+	WebElement getStarted;
+	@FindBy(xpath = "//div[@class='nav-item dropdown']")
+	WebElement linked;
+	@FindBy(xpath = "//h4[@class='bg-secondary text-white']")
+	WebElement title;
 
-	
-//		  WebElement dropDown=  driver.findElement(By.xpath("//a[text()='Linked List']"));
-//		  
-//		  dropDown.click();
-
-    	public LinkedList(WebDriver webDriver) {
+	public LinkedList(WebDriver webDriver) {
 		PageFactory.initElements(webDriver, this);
 	}
 
@@ -42,41 +44,47 @@ public class LinkedList {
 		signIn.click();
 	}
 
-	public  void Login() {
+	public void Login() {
 		signIn.click();
 	}
 
-	public  void openURL(String url) {
+	public void openURL(String url) {
 		signIn.click();
 	}
 
 	public void ClickBtnLInkedList() {
 		linkedList.click();
 	}
-	public  void Username() {
+
+	public void Username() {
 		userName.sendKeys("bugbusters");
-		}
-	public  void Password() {
+	}
+
+	public void Password() {
 		passWord.sendKeys("Team@bug");
-		}
-	
-	public  void Loginbtn() {
+	}
+
+	public void Loginbtn() {
 		login.click();
-		}
-	
-	public  String  statusMessage() {
+	}
+
+	public String statusMessage() {
 		return status.getText();
-		}
-	public   boolean isStatusMessage() {
+	}
+
+	public boolean isStatusMessage() {
 		return status.isDisplayed();
 	}
-	public  void getStartedBtn() {
+
+	public void getStartedBtn() {
 		getStarted.click();
-		}
-	public  void  linkList() {
-		 linked.click();
-		}
-	public  String  titleLinkedList() {
-	return	title.getText();
-		}
+	}
+
+	public void linkList() {
+		linked.click();
+	}
+
+	public String titleLinkedList() {
+		return title.getText();
+	}
 }

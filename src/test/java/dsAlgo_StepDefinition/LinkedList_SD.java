@@ -3,8 +3,6 @@ package dsAlgo_StepDefinition;
 
 import org.testng.Assert;
 
-//import com.graphbuilder.struc.LinkedList;
-
 import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.LinkedList;
 import io.cucumber.java.en.Given;
@@ -20,7 +18,6 @@ public class LinkedList_SD {
 		DriverFactory driverFactory  = DriverFactory.getInstance();
 		 linkedList= new LinkedList(driverFactory.getDriver());
 		 driverFactory.getDriver().get(string);
-//		 DriverFactory.openPage(string);
 	}
 
 	@When("User clicks {string} Button")

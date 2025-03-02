@@ -5,8 +5,6 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import io.github.bonigarcia.wdm.WebDriverManager;
-
 
 public class DriverFactory {
 	static DriverFactory driverFactory;
@@ -14,7 +12,6 @@ public class DriverFactory {
 	public final static int TIMEOUT = 2;
 
 	private DriverFactory() {
-//        WebDriverManager.chromedriver().setup();
 
 		driver = new ChromeDriver();
 		new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
@@ -22,7 +19,7 @@ public class DriverFactory {
 		driver.manage().window().maximize();
 	}
 
-	public  WebDriver getDriver() {
+	public WebDriver getDriver() {
 		return driver;
 	}
 
@@ -36,17 +33,17 @@ public class DriverFactory {
 		return driverFactory;
 
 	}
+
 	public static void openPage(String url) {
-        driver.get(url);
-    }
+		driver.get(url);
+	}
+
 	public static String getTitle() {
-        return driver.getTitle();
-    }
-	
+		return driver.getTitle();
+	}
+
 	public static String getCurrentURL() {
-        return driver.getCurrentUrl();
-    }
-//	public static void openPage() {
-//		driver.get("https://dsportalapp.herokuapp.com/");
-//	}
+		return driver.getCurrentUrl();
+	}
+
 }
