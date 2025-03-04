@@ -1,4 +1,4 @@
-@LinkedTest
+@linkedTest
 Feature: Testing the Linked List Module in dsAlgo portal
 
   Background: user launches the dsAlgo application
@@ -16,7 +16,7 @@ Feature: Testing the Linked List Module in dsAlgo portal
     Then the user should be directed to the "Linked List" data structure page
 
   Scenario: Verify that user is able to navigate to "Linked List" by using start button
-    Given the user is redirct the Home page
+    Given the Linked List user is redirct the Home page
     When the user clicks the "Linked List" button in the Linked List panel
     Then the user should be directed to the "Linked List" data structure page
 

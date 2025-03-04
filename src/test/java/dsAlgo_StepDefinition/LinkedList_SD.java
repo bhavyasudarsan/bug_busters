@@ -65,7 +65,7 @@ public class LinkedList_SD {
 		driver.getCurrentUrl();
 	}
 	
-	@Given("the user is redirct the Home page")
+	@Given("the Linked List user is redirct the Home page")
 	public void the_user_is_on_the_home_page() {
 		driver.get("https://dsportalapp.herokuapp.com/home");
 	}
