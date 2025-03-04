@@ -23,10 +23,15 @@ public class DriverFactory {
 		return driver;
 	}
 
+	public static void wait(int time) {
+		new WebDriverWait(driver, Duration.ofSeconds(time));
+	}
+
 	public static DriverFactory getInstance() {
-		if (driverFactory == null)
-			driverFactory = new DriverFactory();
-		return driverFactory;
+//		if (driverFactory == null)
+//			driverFactory = new DriverFactory();
+//		return driverFactory;
+		return new DriverFactory();
 
 	}
 
