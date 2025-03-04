@@ -5,9 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-
 public class DriverFactory {
 
 	public static WebDriver driver;
@@ -15,7 +12,7 @@ public class DriverFactory {
 
 	public static WebDriver initiateDriver() {
 
-//			        WebDriverManager.chromedriver().setup();
+// WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
@@ -38,7 +35,6 @@ public class DriverFactory {
 	public static String getTitle() {
 		return driver.getTitle();
 	}
-
 
 	public static void tearDown() {
 		if (driver != null) {

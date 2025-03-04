@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
 		@CucumberOptions(
 				plugin = {"pretty", "html:target/sonu.html"}, //reporting purpose
 				monochrome=false,  //console output color
-				tags = "@treeTest", //tags from feature file
+				tags = "@treeTest or @arrayTest", //tags from feature file
 				features = {"src/test/resources/dsAlgo_FeatureFiles"}, //location of feature files
 				glue= "dsAlgo_StepDefinition") //location of step definition files
 
