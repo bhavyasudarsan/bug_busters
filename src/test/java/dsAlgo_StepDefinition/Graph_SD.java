@@ -1,15 +1,19 @@
 package dsAlgo_StepDefinition;
 
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.core.cli.Main;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Graph_SD {
@@ -36,7 +40,9 @@ WebDriver driver = new ChromeDriver();
 	public void the_user_be_directed_to_page(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 		String msg = driver.getTitle();
-		Assert.assertEquals(string, msg);
+		Assert.assertEquals(string, msg);		
+		driver.quit();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 	
 	@When("The user select Graph item from the drop down menu")
@@ -74,6 +80,8 @@ WebDriver driver = new ChromeDriver();
 	    // Write code here that turns the phrase above into concrete actions
 		String msg = driver.getTitle();
 		Assert.assertEquals(string, msg);
+		driver.quit();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 
 	@Given("The user is on the {string} page")
@@ -101,6 +109,8 @@ WebDriver driver = new ChromeDriver();
 	    // Write code here that turns the phrase above into concrete actions
 		String msg = driver.getTitle();
 		Assert.assertEquals("Assessment", msg);
+		driver.quit();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 
 	@Given("The user is in the tryEditor page")
@@ -127,6 +137,8 @@ WebDriver driver = new ChromeDriver();
 	    // Write code here that turns the phrase above into concrete actions
 		String alertMsg = driver.switchTo().alert().getText();
 		Assert.assertTrue(alertMsg.contains("NameError:"));		
+		driver.quit();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 
 	@When("The user write the valid code in Editor and click the Run Button")
@@ -145,6 +157,8 @@ WebDriver driver = new ChromeDriver();
 	    // Write code here that turns the phrase above into concrete actions
 		WebElement msg = driver.findElement(By.xpath("//pre[@id='output']"));
 		Assert.assertEquals("Hello", msg.getText());
+		driver.quit();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 	}
 
 }
