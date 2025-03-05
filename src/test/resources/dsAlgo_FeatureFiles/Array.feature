@@ -15,4 +15,5 @@ Then The user should be redirected to Arrays in Python page
 Scenario: Verify that user is able to navigate to try Editor page for Arrays in Python page
 Given The user is on the Arrays in Python page
 When The user clicks Try Here button in Arrays in Python page
-Then The user should be redirected to a page having an try Editor with a Run button to test
+Then The Array user should be redirected to a page having an try Editor with a Run button to test
+
