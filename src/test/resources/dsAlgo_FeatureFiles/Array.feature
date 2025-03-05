@@ -1,25 +1,19 @@
+@arrayTest
+Feature: Testing the Array Module in dsAlgo portal
 
-@tag
-Feature: Verify that user is able to navigate to "Array" data structure page
-  I want to use this template for my feature file
+Background: Array user launches the dsAlgo application
+Given Array user is in login page 
+When Array User enters Username as "bugbusters" and Password as "Team@bug" 
+And Array User clicks on Login button
+Then Array User should see the Home page on successful login status "You are logged in"
+    
+Scenario: Verify that user is able to navigate to Arrays in Python page
+Given The user is in the Array page after Sign in
+When The user clicks Arrays in Python button
+Then The user should be redirected to Arrays in Python page
 
-  @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
+Scenario: Verify that user is able to navigate to try Editor page for Arrays in Python page
+Given The user is on the Arrays in Python page
+When The user clicks Try Here button in Arrays in Python page
+Then The Array user should be redirected to a page having an try Editor with a Run button to test
 
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |

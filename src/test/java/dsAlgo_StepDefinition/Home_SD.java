@@ -5,6 +5,7 @@ import org.testng.Assert;
 
 import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.HomePage;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
 public class Home_SD {
@@ -14,19 +15,21 @@ public class Home_SD {
 
 	public Home_SD() {
 		System.out.println("******Home_SD ");
-		DriverFactory driverFactory = DriverFactory.getInstance();
-		driver = driverFactory.getDriver();
+		driver = DriverFactory.initiateDriver();
 		homePage = new HomePage(driver);
 	}
 
 	@Given("Browser is open")
 	public void browser_is_open() {
+		if(driver==null)
+			driver=  DriverFactory.initiateDriver();
 		driver.get("https://dsportalapp.herokuapp.com/");
 	}
 
 	@When("Home user enter  the correct URL for Heroku app")
 	public void the_user_enter_the_correct_url_for_heroku_app() {
 		driver.getCurrentUrl();
+		
 	}
 
 	@Then("Home User is at dsAlgo  app with {string} btn.")
@@ -53,5 +56,7 @@ public class Home_SD {
 		Assert.assertEquals(string2, homePage.signInBtn());
 
 	}
+	
+	
 
 }

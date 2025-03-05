@@ -2,7 +2,7 @@
 Feature: Testing the Linked List Module in dsAlgo portal
 
   Background: user launches the dsAlgo application
-    Given User launches DsAlgo app url "https://dsportalapp.herokuapp.com/"
+    Given LinkedList User launches DsAlgo app url "https://dsportalapp.herokuapp.com/"
     When User clicks "Get Started" Button
     And User clicks "Sign In" Button
     Then User is on the "Login" page

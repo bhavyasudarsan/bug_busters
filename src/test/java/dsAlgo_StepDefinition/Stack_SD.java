@@ -5,6 +5,7 @@ import org.testng.Assert;
 
 import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.Stack;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,9 +16,7 @@ public class Stack_SD {
 	WebDriver driver;
 
 	public Stack_SD() {
-		System.out.println("********************Stack_SD");
-		DriverFactory driverFactory = DriverFactory.getInstance();
-		driver = driverFactory.getDriver();
+		driver = DriverFactory.initiateDriver();
 		stack = new Stack(driver);
 	}
 
@@ -90,5 +89,6 @@ public class Stack_SD {
 		stack.clickGetStartedStackBtn();
 
 	}
+	
 
 }

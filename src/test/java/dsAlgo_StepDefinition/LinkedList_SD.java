@@ -6,6 +6,7 @@ import org.testng.Assert;
 
 import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.LinkedList;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,12 +17,12 @@ public class LinkedList_SD {
 	WebDriver driver;
 
 	public LinkedList_SD() {
-		DriverFactory driverFactory = DriverFactory.getInstance();
-		driver = driverFactory.getDriver();
+		System.out.println("LinkedList_SD**********************");
+		driver = DriverFactory.initiateDriver();
 		linkedList = new LinkedList(driver);
 	}
 
-	@Given("User launches DsAlgo app url {string}")
+	@Given("LinkedList User launches DsAlgo app url {string}")
 	public void user_launches_ds_algo_app_url(String string) {
 		driver.get(string);
 	}
@@ -348,5 +349,5 @@ public class LinkedList_SD {
 ////
 ////
 ////
-
+	
 }
