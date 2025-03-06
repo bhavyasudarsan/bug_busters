@@ -25,6 +25,10 @@ public class DriverFactory {
 		
 		driver.get("https://dsportalapp.herokuapp.com/");
 	}
+//public static void openApp() {
+		
+//		driver.get("https://dsportalapp.herokuapp.com/");
+//	}
 	public static void openHomeScreen() {
 		
 		driver.get("https://dsportalapp.herokuapp.com/home");

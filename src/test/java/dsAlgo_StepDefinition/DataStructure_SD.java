@@ -79,6 +79,7 @@ public class DataStructure_SD {
 	public void the_user_should_be_redirected_to_page(String string) {
 		
 		Assert.assertEquals(driver.getTitle(), string);
+		System.out.println("you are on time complexity page");
 	}
 	
 	@Given("The user is in the Time Complexity page")

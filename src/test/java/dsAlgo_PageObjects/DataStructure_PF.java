@@ -24,6 +24,7 @@ public class DataStructure_PF {
 	@FindBy(id = "id_username")WebElement userName;
 	@FindBy(id = "id_password")WebElement password;
 	@FindBy(xpath = "//*[@value='Login']")WebElement login;
+	//@FindBy(xpath = "//*[@value='Login']")WebElement login;
 	
 	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement loginStatus;
 	@FindBy(xpath = "//a[@href='data-structures-introduction']")WebElement data_structureGetSatrted;
