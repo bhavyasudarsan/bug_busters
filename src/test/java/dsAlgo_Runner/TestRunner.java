@@ -5,13 +5,13 @@ import org.testng.annotations.DataProvider;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-
+		
 		@CucumberOptions(
 				plugin = {"pretty", "html:target/pushpa.html"}, //reporting purpose
 				monochrome=false,  //console output color
-				tags = "@linkedTest",  //tags from feature file
+				tags = "@Graph and @Login and @Queue",  //tags from feature file
 				features = {"src/test/resources/dsAlgo_FeatureFiles"}, //location of feature files
-				glue= "dsAlgo_StepDefinition") //location of step definition files
+				glue = "com.bug_busters.dsAlgo_StepDefinition") //location of step definition files
 
 public class TestRunner extends AbstractTestNGCucumberTests{
 			

@@ -8,9 +8,9 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Graph {
+public class Queue {
 	
-	public Graph (WebDriver webDriver)
+	public Queue(WebDriver webDriver)
 	 {
 	  PageFactory.initElements(webDriver, this);
 	 }
@@ -27,22 +27,14 @@ public class Graph {
 	 @CacheLookup
 	 WebElement btnLogin; 
 	  
-	 @FindBy(xpath ="//a[@href='graph']")
+	 @FindBy(xpath ="//a[@href='queue']")
 	 @CacheLookup
-	 WebElement Graph1;
+	 WebElement Queue;
 	 
-	 @FindBy(xpath ="//a[@href='graph']")
+	 @FindBy(xpath ="//a[@href='QueueOp']")
 	 @CacheLookup
-	 WebElement Graph2;
-	 
-	 @FindBy(xpath ="//div[@class='nav-item dropdown']")
-	 @CacheLookup
-	 WebElement DropDown;
-	 
-	 @FindBy(xpath ="//div[@class='dropdown-menu show']/a[@href='/graph']")
-	 @CacheLookup
-	 WebElement DropDownGraph;
-	  
+	 WebElement QueueOP;
+	 	 
 	 @FindBy(xpath ="//a[@href='/tryEditor']")
 	 @CacheLookup
 	 WebElement TryEditor;
@@ -58,7 +50,7 @@ public class Graph {
 	 @FindBy(xpath ="//pre[@id='output']")
 	 @CacheLookup
 	 WebElement consoleOP;
-	  
+	 
 	   
 	 public void SetUserName(String uName) {
 	  inputUsername.clear();
@@ -75,19 +67,6 @@ public class Graph {
 	  btnLogin.click();
 	 }
 	 
-	 public void ClickGraph() {
-		 Graph1.click();
-	 }
-	 
-	 public void ClickSubGraph() {
-		 Graph2.click();
-	 }
-	 
-	 public void ClickDropDownGraph() {
-		 DropDown.click();
-		 DropDownGraph.click();
-	 }
-	 
 	 public void ClickTryEditor() {
 		 TryEditor.click();
 	 }
@@ -96,14 +75,18 @@ public class Graph {
 		 btnRun.click();
 	 }
 	 
+	 public void ClickQueue() {
+		 Queue.click();
+	 }
+	 
+	 public void ClickQueueOP() {
+		 QueueOP.click();
+	 }
+	 
 	 public void ClickText(WebDriver driver, String string) {
 		 driver.findElement(By.xpath("//a[text()='" + string + "']")).click();
 	 }
-	 
-	 public void ClickGraph2(WebDriver driver, String string) {
-		 driver.findElement(By.xpath("(//a[text()='" + string + "'])[2]")).click();
-	 }
-	 
+	  
 	 public void PythonCode(WebDriver driver, String string) {
 		 Actions actions = new Actions(driver);
 	     actions.moveToElement(CodeMirror).click().sendKeys(string).build().perform();

@@ -1,38 +1,49 @@
 package dsAlgo_PageObjects;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
 
+	 WebDriverWait wait;
+	
 	 public Login (WebDriver webDriver)
 	 {
 	  PageFactory.initElements(webDriver, this);
+	  wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 	 }
 	 
 	 @FindBy(xpath="//input[@name='username']")
 	 @CacheLookup
 	 WebElement inputUsername;
 	 
-	 
-	 
 	 @FindBy(xpath ="//input[@name='password']")
 	 @CacheLookup
 	 WebElement inputPassword;
-	 
-	 
 	 
 	 @FindBy(xpath="//input[@type='submit']")
 	 @CacheLookup
 	 WebElement btnLogin; 
 	 
-	  
-	 @FindBy(xpath="//div[contains(text(),'The email')]")
+	 @FindBy(xpath="//*[text()='Sign in']")
 	 @CacheLookup
-	 WebElement divErrorMsgUN;
+	 WebElement SignIn;	
+	 
+	 @FindBy(xpath="//*[text()='Sign out']")
+	 @CacheLookup
+	 WebElement SignOut;
+	
+	 @FindBy(xpath="//div[@class='alert alert-primary']")
+	 @CacheLookup
+	 WebElement Alertmsg;
 	 
 	   
 	 public void SetUserName(String uName) {
@@ -51,7 +62,15 @@ public class Login {
 	 }
 	 
 
-	 public String getErrMsgUN() {
-	   return divErrorMsgUN.getText();  
+	 public String getErrMsg() {
+	   return Alertmsg.getText();  
 	 }
+	 	 
+	 public void ClickSignIn() {
+		  SignIn.click();
+		 }
+	 
+	 public void ClickSignOut() {
+		 wait.until(ExpectedConditions.elementToBeClickable(SignOut)).click(); 
+		 }
 }
