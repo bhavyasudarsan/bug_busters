@@ -3,6 +3,7 @@ package dsAlgo_StepDefinition;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import dsAlgo_PageObjects.Login;
+import Utilities.ExcelReader;
 
 public class Login_SD {
 	
@@ -150,6 +152,27 @@ public class Login_SD {
  public void the_user_should_be_redirected_to_home_page_with_message(String string) {
      // Write code here that turns the phrase above into concrete actions	
 	 Assert.assertEquals(string, login_PF.getErrMsg());
+ }
+ 
+ @When("Login User logs in with data from Excel {string} sheet {string}")
+ public void login_user_logs_in_with_data_from_excel(String filePath, String sheetName) throws IOException {
+     List<Object[]> loginData = ExcelReader.readExcelData(filePath, sheetName);
+     for (Object[] row : loginData) {
+         String username = (String) row[0];
+         String password = (String) row[1];
+         String expectedResult = (String) row[2];
+         // Perform login with username and password, then assert expectedResult
+         performLogin(username, password, expectedResult);
+     }
+ }
+
+ @Then("Login User should see the {string}")
+ public void login_user_should_see_the(String expectedResult) {
+     // Assert the expected result
+ }
+
+ private void performLogin(String username, String password, String expectedResult){
+     //Implementation of the Login functionality.
  }
  
  @After

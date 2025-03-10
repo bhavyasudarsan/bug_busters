@@ -51,7 +51,9 @@ public class Queue {
 	 @CacheLookup
 	 WebElement consoleOP;
 	 
-	   
+	 @FindBy(xpath = "//a[text()='%s']")
+	 WebElement dynamicLink;
+	 	   
 	 public void SetUserName(String uName) {
 	  inputUsername.clear();
 	  inputUsername.sendKeys(uName);
@@ -84,7 +86,9 @@ public class Queue {
 	 }
 	 
 	 public void ClickText(WebDriver driver, String string) {
-		 driver.findElement(By.xpath("//a[text()='" + string + "']")).click();
+		 String dynamicPath = String.format("//a[text()='%s']", string);
+		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
+		 dynamicLink.click();
 	 }
 	  
 	 public void PythonCode(WebDriver driver, String string) {

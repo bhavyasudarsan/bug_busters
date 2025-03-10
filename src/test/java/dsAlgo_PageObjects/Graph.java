@@ -58,7 +58,9 @@ public class Graph {
 	 @FindBy(xpath ="//pre[@id='output']")
 	 @CacheLookup
 	 WebElement consoleOP;
-	  
+	 
+	 @FindBy(xpath = "//a[text()='%s']")
+	 WebElement dynamicLink;	  
 	   
 	 public void SetUserName(String uName) {
 	  inputUsername.clear();
@@ -96,12 +98,16 @@ public class Graph {
 		 btnRun.click();
 	 }
 	 
-	 public void ClickText(WebDriver driver, String string) {
-		 driver.findElement(By.xpath("//a[text()='" + string + "']")).click();
+	 public void ClickText(WebDriver driver, String string) {		 
+		 String dynamicPath = String.format("//a[text()='%s']", string);
+		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
+		 dynamicLink.click();
 	 }
 	 
-	 public void ClickGraph2(WebDriver driver, String string) {
-		 driver.findElement(By.xpath("(//a[text()='" + string + "'])[2]")).click();
+	 public void ClickGraph2(WebDriver driver, String string) {		 
+		 String dynamicPath = String.format("(//a[text()='%s'])[2]", string);
+		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
+		 dynamicLink.click();
 	 }
 	 
 	 public void PythonCode(WebDriver driver, String string) {
