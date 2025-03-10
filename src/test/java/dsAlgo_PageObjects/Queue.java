@@ -75,7 +75,7 @@ public class Queue {
 		 btnRun.click();
 	 }
 	 
-	 public void ClickQueue() {
+	 public void ClickQueue() {		 
 		 Queue.click();
 	 }
 	 

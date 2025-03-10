@@ -91,6 +91,7 @@ public class Queue_SD{
 	@Given("The Queue user is in the tryEditor page in {string} page")
 	public void the_queue_user_is_in_the_try_editor_page(String string) {
 	    // Write code here that turns the phrase above into concrete actions
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 		queue_PF.ClickQueue();		
 		queue_PF.ClickText(driver, string);
 		queue_PF.ClickTryEditor();		
