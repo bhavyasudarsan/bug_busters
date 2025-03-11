@@ -1,13 +1,9 @@
 package dsAlgo_StepDefinition;
-
 import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
-
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
 import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.HomePage;
 import io.cucumber.java.After;
@@ -19,33 +15,28 @@ public class Home_SD {
 	WebDriver driver;
 
 	public Home_SD() {
-		System.out.println("******Home_SD ");
 		driver = DriverFactory.initiateDriver();
 		homePage = new HomePage(driver);
 	}
 
 	@Given("Browser is open")
 	public void browser_is_open() {
-		if (driver == null)
-			driver = DriverFactory.initiateDriver();
-		driver.get("https://dsportalapp.herokuapp.com");
+		homePage.getUrl();
 	}
 
 	@When("Home user enter  the correct URL for Heroku app")
 	public void the_user_enter_the_correct_url_for_heroku_app() {
-		driver.getCurrentUrl();
-
+		homePage.currentURL();
 	}
 
 	@Then("Home User is at dsAlgo  app with {string} btn.")
 	public void user_is_at_ds_algo_app_with_get_start_button(String string) {
 		Assert.assertEquals(string, homePage.clickStBtnString());
-
 	}
 
 	@Given("The Homepage user is on the DS Algo Portal")
 	public void the_user_is_on_the_ds_algo_portal() {
-		driver.getCurrentUrl();
+		homePage.currentURL();
 	}
 
 	@When("The Homepage user clicks the {string} button")
@@ -54,17 +45,14 @@ public class Home_SD {
 	}
 
 	@Then("The Homepage user should be navigated to the Data Structure Introduction page, which displays the {string} and {string} links.")
-	public void the_user_should_be_navigated_to_the_data_structure_introduction_page_which_displays_the_and_links(
-			String string, String string2) {
+	public void the_user_should_be_navigated_to_the_data_structure_introduction_page_which_displays_the_and_links(String string, String string2) {
 		Assert.assertEquals(string, homePage.registerBtn());
 		Assert.assertEquals(string2, homePage.signInBtn());
-		System.out.println("User is in the data structure Introduction page");
 	}
 
 	@Given("The Homepage user is on the Homepage")
 	public void the_user_is_on_the_homepage() {
-		driver.get("https://dsportalapp.herokuapp.com/home");
-
+          homePage.home();
 	}
 
 	@When("The Homepage user clicks the Data Structures dropdown")
@@ -136,13 +124,10 @@ public class Home_SD {
 		switch (dataStructureType) {
 		case "Array":
 			homePage.clickArrayBtn();
-
 			break;
 		case "Data Structures-Introduction":
 			homePage.clickDataSttructureBtn();
-
 			break;
-
 		case "Stack":
 			homePage.clickStackBtn();
 			break;
