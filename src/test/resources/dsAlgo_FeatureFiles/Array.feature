@@ -106,7 +106,7 @@ Scenario: Verify that user receives error on submitting invalid python code for 
 Given The user is on the practice question editor from FindNumbers with Even Number of Digits
 When The user write the invalid code for Find Numbers with Even Number of Digits in Editor and Click the Submit
 Then The user see an error message "Error occurred during submission" for Find Numbers with Even Number of Digits
-@runThisScenario
+
 Scenario: Verify that user receives error on submitting valid python code for Find Numbers with Even Number of Digits question
 Given The user is on the practice question editor from FindNumbers with Even Number of Digits
 When The user write the valid code for Find Numbers with Even Number of Digits in Editor and Click the Submit
@@ -211,3 +211,4 @@ Scenario: Verify that user is able to see Output for the valid python code for A
 Given The user is in the tryEditor page from Applications of Array
 When The Array user write the valid code in Editor and click the Run
 Then The Array user should able to see output in the console
+

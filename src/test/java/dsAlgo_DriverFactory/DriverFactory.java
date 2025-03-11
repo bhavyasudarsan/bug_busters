@@ -7,39 +7,61 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverFactory {
 
-	public static WebDriver driver;
+	static DriverFactory driverFactory;
+	public static WebDriver DFdriver;
 	public final static int TIMEOUT = 2;
 
-	public static WebDriver initiateDriver() {
-
-// WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
-		driver.manage().window().maximize();
+	public static WebDriver initiateDriver(WebDriver driver) {
+		
+		driver = new ChromeDriver();			
+		driver.manage().window().maximize();	
+		DFdriver = driver;
 		return driver;
+
 	}
 
-	public WebDriver getDriver() {
-		return driver;
+	public static WebDriver getDriver() {		
+		return DFdriver;
+		
 	}
 
-	public static void openApp() {
-		driver.get("https://dsportalapp.herokuapp.com/");
+	public void wait(int time) {
+		new WebDriverWait(DFdriver, Duration.ofSeconds(time));
 	}
 
-	public static void openHomeScreen() {
-		driver.get("https://dsportalapp.herokuapp.com/home");
+	public DriverFactory getInstance() {
+//		if (driverFactory == null)
+//			driverFactory = new DriverFactory();
+//		return driverFactory;
+		return this;
+
 	}
 
-	public static String getTitle() {
-		return driver.getTitle();
+	public void openPage(String url) {
+		DFdriver.get(url);
 	}
 
-	public static void tearDown() {
+	public void openApp() {
+		DFdriver.get("https://dsportalapp.herokuapp.com/");
+	}
+
+	public void openHomeScreen() {
+		DFdriver.get("https://dsportalapp.herokuapp.com/home");
+
+	}
+
+	public String getTitle() {
+		return DFdriver.getTitle();
+	}
+
+	public String getCurrentURL() {
+		return DFdriver.getCurrentUrl();
+	}
+	public static void tearDown(WebDriver driver) {
 		if (driver != null) {
 			driver.quit();
 		}
+
 	}
 
 }
