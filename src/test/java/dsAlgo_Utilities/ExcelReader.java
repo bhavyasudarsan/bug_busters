@@ -55,4 +55,33 @@ public class ExcelReader {
         fis.close();
         return data;
     }
+
+    /**
+	 * Method used to read data from excel document for array.feature
+	 */
+    public static String readExcelSheet(String sheetName) throws IOException {
+
+		File Excelfile = new File("src/test/resources/testData.xlsx");
+
+		FileInputStream Fis = new FileInputStream(Excelfile);
+		XSSFWorkbook workbook = new XSSFWorkbook(Fis);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+		String code = null;
+		Iterator<Row> row = sheet.rowIterator();
+
+		while (row.hasNext()) {
+			Row currRow = row.next();
+			Iterator<Cell> cell = currRow.cellIterator();
+
+			while (cell.hasNext()) {
+				Cell currCell = cell.next();
+				code = currCell.getStringCellValue();
+				System.out.print(code + " ~ ");
+			}
+			System.out.println();
+			workbook.close();
+		}
+		return code;
+	}
+
 }
