@@ -165,14 +165,11 @@ public class Array_PF {
 	}
 
 	public void validCodeSearchtheArray(WebDriver driver) {
-		// Call method to get the code from excel
-		// call util class to add int run page
 		String codeFromExcel;
 		try {
 			codeFromExcel = ExcelReader.readExcelSheet("SearchTheArray");
 			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
