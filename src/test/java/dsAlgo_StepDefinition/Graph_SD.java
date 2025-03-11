@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,12 +19,17 @@ import io.cucumber.core.cli.Main;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import dsAlgo_PageObjects.Graph;
+import dsAlgo_PageObjects.Queue;
 
 public class Graph_SD {
 	
-	WebDriver driver = new ChromeDriver();
-	public Graph graph_PF = new Graph(driver);
+	WebDriver driver;
+	public Graph graph_PF;
 	
+	public Graph_SD() {        
+        this.driver = DriverFactory.getDriver();   
+        graph_PF = new Graph(driver);
+    }
 	
 	@Given("Graph User Launches DsAlgo portal")
 	public void graph_user_launches_ds_algo_portal() {

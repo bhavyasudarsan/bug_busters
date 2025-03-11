@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,15 +23,19 @@ import dsAlgo_PageObjects.Queue;
 
 public class Queue_SD{
 	
-	WebDriver driver = new ChromeDriver();
-	public Queue queue_PF = new Queue(driver);
+	WebDriver driver;	
+	public Queue queue_PF;
+		
+	public Queue_SD() {        
+        this.driver = DriverFactory.getDriver();   
+        queue_PF = new Queue(driver);
+    }
 	
 	@Given("Queue User Launches DsAlgo portal")
 	public void queue_user_launches_ds_algo_portal() {
 	    // Write code here that turns the phrase above into concrete actions
-		WebDriverManager.chromedriver().setup();
-		driver.get("https://dsportalapp.herokuapp.com/login");
-		driver.manage().window().maximize();
+		//WebDriverManager.chromedriver().setup();
+		driver.get("https://dsportalapp.herokuapp.com/login");		
 		queue_PF.SetUserName("bugbusters");
 		queue_PF.SetPassword("Team@bug");
 		queue_PF.ClickBtnLogin();		 
@@ -151,12 +156,6 @@ public class Queue_SD{
 		Thread.sleep(500);
 		queue_PF.ClickBtnRun();
 		Thread.sleep(500);
-	}
-	
-	@After
-	public void closeDriver()
-	{	
-		driver.quit();			
 	}
 	
 }
