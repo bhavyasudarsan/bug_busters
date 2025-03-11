@@ -23,7 +23,7 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import dsAlgo_PageObjects.Graph;
 import dsAlgo_PageObjects.Login;
-import Utilities.ExcelReader;
+import dsAlgo_Utilities.ExcelReader;
 import dsAlgo_DriverFactory.DriverFactory;
 
 public class Login_SD {
