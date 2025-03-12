@@ -23,6 +23,7 @@ public class LinkedList {
 	@FindBy(xpath = "//div[@class='bs-example']")
 	WebElement loginPage;
 
+
 	@FindBy(name = "username")
 	WebElement userName;
 	@FindBy(name = "password")
@@ -163,7 +164,7 @@ public class LinkedList {
 	public void runBtnClick() {
 
 		runBtn.click();
-		;
+		
 	}
 
 	public void inputEditor() {
@@ -248,5 +249,14 @@ public class LinkedList {
 
 	public String getTitleDeletionLink() {
 		return titleDeletion.getText();
+	}
+	public void currentURL() {
+		driver.getCurrentUrl();
+	}
+	public void getUrl() {
+		driver.get("https://dsportalapp.herokuapp.com/");
+	}
+	public void tryEditorPage() {
+		driver.get("https://dsportalapp.herokuapp.com/tryEditor");
 	}
 }
