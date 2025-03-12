@@ -11,7 +11,6 @@ public class Array_SD {
 	
 	Array_PF array ;
 	
-	
 	@Given("Array user is in login page")
 	public void array_user_launches_the_ds_algo_application() {
 		   array =  new Array_PF(); 
