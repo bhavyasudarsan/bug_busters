@@ -20,7 +20,6 @@ public class Hooks {
 		url=configReader.getUrl();
 		driver.get(url);
 	}
-
 	@After
 	public void closeDriver() {
 			if (driver != null) {
