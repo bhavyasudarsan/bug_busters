@@ -1,6 +1,8 @@
 package dsAlgo_StepDefinition;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,11 +22,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import dsAlgo_PageObjects.Graph;
 import dsAlgo_PageObjects.Queue;
+import dsAlgo_Utilities.ExcelReader;
 
 public class Graph_SD {
 	
 	WebDriver driver;
 	public Graph graph_PF;
+	String inputText;
+	String expectedOutput;
 	
 	public Graph_SD() {        
         this.driver = DriverFactory.getDriver();   
@@ -180,10 +185,42 @@ public class Graph_SD {
 		Thread.sleep(500);
 	}
 	
-	@After
-	public void closeDriver()
-	{	
-		driver.quit();			
-	}
+
+    @When("Graph User enters data from Excel {string} for Row {string}")
+    public void user_enters_data_from_excel(String filePath, String RowNo) throws IOException, InterruptedException {      
+        List<Object[]> editorData = ExcelReader.readExcelData(filePath, "Sheet1");
+        int index = 1;
+        for (Object[] row : editorData) { 
+       	 if (index == Integer.parseInt(RowNo))
+       	 {
+       		inputText = (String) row[0];
+       	    expectedOutput = (String) row[1];         
+       	    performEditorTest(inputText);
+       	 }
+       	 index++;
+        }
+    }
+
+    @Then("The Graph editor should display Expected Text")
+    public void the_editor_should_display() {
+        // Assert the expected output
+    	if (expectedOutput.equals("AlertMessage"))
+	   	{
+	    	String alertMsg = driver.switchTo().alert().getText();
+			Assert.assertTrue(alertMsg.contains("NameError:"));	    	
+	   	}
+    	else
+    	{
+	    	Assert.assertEquals(expectedOutput, graph_PF.getOPMsg());
+	   	}
+    }
+
+    private void performEditorTest(String inputText) throws InterruptedException{
+        //Implementation of the textbox editor test.
+    	graph_PF.PythonCode(driver, inputText);        
+		Thread.sleep(500);
+		graph_PF.ClickBtnRun();
+		Thread.sleep(500);
+    }	
 
 }
