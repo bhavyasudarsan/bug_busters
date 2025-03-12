@@ -21,15 +21,21 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
+import dsAlgo_PageObjects.Graph;
 import dsAlgo_PageObjects.Login;
-import Utilities.ExcelReader;
+import dsAlgo_Utilities.ExcelReader;
+import dsAlgo_DriverFactory.DriverFactory;
 
 public class Login_SD {
 	
-	WebDriver driver = new ChromeDriver();
-	public Login login_PF = new Login(driver);
+	WebDriver driver;
+	public Login login_PF;
 		
+	public Login_SD() {        
+        this.driver = DriverFactory.getDriver();   
+        login_PF = new Login(driver);
+    }
+	
  @Given("The Login user is on the DS Algo Home Page")
  public void the_user_is_on_the_ds_algo_home_page() {
      // Write code here that turns the phrase above into concrete actions	 
@@ -176,10 +182,5 @@ public class Login_SD {
      //Implementation of the Login functionality.
  }
  
- @After
-	public void closeDriver()
-	{	
-		driver.quit();			
-	}
 
 }
