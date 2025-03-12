@@ -27,6 +27,7 @@ public class DriverFactory {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
 		driver.manage().window().maximize();
 		return driver;
+
 	}
 	
 	public static WebDriver getDriverInstance() {
