@@ -53,7 +53,6 @@ public class Array_PF {
 	@FindBy(linkText = "Applications of Array")WebElement applicationsofArray;
 
 	public void getStart() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		getStart.click();
 	}
 

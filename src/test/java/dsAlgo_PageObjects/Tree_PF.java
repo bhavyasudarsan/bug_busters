@@ -15,6 +15,7 @@ import dsAlgo_DriverFactory.DriverFactory;
 
 public class Tree_PF {
 	WebDriver driver;
+	
 	public Tree_PF() {
 		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
@@ -54,7 +55,7 @@ public class Tree_PF {
 
 	public void getStart() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		getStart.click();
+		wait.until(ExpectedConditions.visibilityOf(getStart)).click();
 	}
 
 	public void signIn() {

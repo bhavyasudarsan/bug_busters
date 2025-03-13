@@ -1,9 +1,5 @@
 package dsAlgo_hooks;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -30,22 +26,16 @@ public class Hooks {
 	}
 	
 	@AfterStep
-	public void takeScreenshotIfFailed(Scenario scenario) {
-        if (scenario.isFailed()) { 
-            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-               
-                String screenshotPath = "C:\\Users\\sanja\\Pictures\\Screenshots\\DsAlgo\\" + System.currentTimeMillis() + ".png";
-                FileUtils.copyFile(screenshot, new File(screenshotPath));
-                System.out.println("Screenshot saved: " + screenshotPath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public void takeScreenshot(Scenario scenario) {
+    	
+        if(scenario.isFailed()) {
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", scenario.getName());
+        }     
     }
 	
 	@After
-	public void closeDriver() {
+	public void tearDown() {
 			if (driver != null) {
 				driver.quit();
 			}

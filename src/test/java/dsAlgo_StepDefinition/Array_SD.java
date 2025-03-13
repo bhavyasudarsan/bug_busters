@@ -9,11 +9,10 @@ import io.cucumber.java.en.When;
 
 public class Array_SD {
 	
-	Array_PF array ;
+	Array_PF array = new Array_PF();
 	
 	@Given("Array user is in login page")
 	public void array_user_launches_the_ds_algo_application() {
-		   array =  new Array_PF(); 
 		   array.getStart();
 		   array.signIn();
 	}
