@@ -17,7 +17,7 @@ public class Array_SD {
 	
 	@Given("Array user is in login page")
 	public void array_user_launches_the_ds_algo_application() {
-		   driver=DriverFactory.initiateDriver();
+		   driver=DriverFactory.getDriver();
 		   DriverFactory.openApp();
 		   array =  new Array_PF(driver); 
 		   array.getStart(driver);

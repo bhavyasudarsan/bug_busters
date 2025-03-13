@@ -13,10 +13,11 @@ import io.cucumber.java.en.When;
 public class Stack_SD {
 
 	Stack stack;
+	WebDriver driver;
 
 	public Stack_SD() {
 
-		WebDriver driver = DriverFactory.initiateDriver();
+		 driver = DriverFactory.getDriver();
 		stack = new Stack(driver);
 	}
 
@@ -46,7 +47,7 @@ public class Stack_SD {
 
 	@Then("Stack user is on the {string} page")
 	public void user_is_on_the_page(String string) {
-		String loginPageTitle = DriverFactory.getTitle();
+		String loginPageTitle = driver.getTitle();
 		Assert.assertEquals(string, loginPageTitle);
 	}
 

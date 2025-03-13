@@ -41,7 +41,7 @@ public class DriverFactory {
 		DFdriver.get(url);
 	}
 
-	public void openApp() {
+	static public void openApp() {
 		DFdriver.get("https://dsportalapp.herokuapp.com/");
 	}
 

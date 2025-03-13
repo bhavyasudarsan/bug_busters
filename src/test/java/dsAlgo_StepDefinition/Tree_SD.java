@@ -16,7 +16,7 @@ public class Tree_SD {
 	
 	@Given("Tree user is in login page")
 	public void tree_user_is_in_login_page() {
-		driver=DriverFactory.initiateDriver();
+		driver=DriverFactory.getDriver();
 		DriverFactory.openApp();
 		tree =  new Tree_PF(driver); 
 		tree.getStart(driver);

@@ -24,7 +24,7 @@ public class LinkedList_SD {
 	WebDriverWait wait;
 
 	public LinkedList_SD() {
-		driver = DriverFactory.initiateDriver();
+		driver = DriverFactory.getDriver();
 		linkedList = new LinkedList(driver);
 	}
 
@@ -53,7 +53,7 @@ public class LinkedList_SD {
 
 	@Then("LinkedUser is on  {string} page")
 	public void user_is_on_the_page(String string) {
-		String loginPageTitle = DriverFactory.getTitle();
+		String loginPageTitle = driver.getTitle();
 		Assert.assertEquals(string, loginPageTitle);
 	}
 

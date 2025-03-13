@@ -15,7 +15,7 @@ public class Home_SD {
 	WebDriver driver;
 
 	public Home_SD() {
-		driver = DriverFactory.initiateDriver();
+		driver = DriverFactory.getDriver();
 		homePage = new HomePage(driver);
 	}
 
