@@ -13,9 +13,9 @@ import java.util.List;
 
 public class ExcelReader {
 
-    public static List<Object[]> readExcelData(String filePath, String sheetName) throws IOException {
+    public static List<Object[]> readExcelData(String sheetName) throws IOException {
         List<Object[]> data = new ArrayList<>();
-        FileInputStream fis = new FileInputStream(filePath);
+        FileInputStream fis = new FileInputStream("src/test/resources/test_data.xlsx");
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheet(sheetName);
 
@@ -28,28 +28,12 @@ public class ExcelReader {
                 Object[] rowData = new Object[cellCount];
                 for (int j = 0; j < cellCount; j++) {
                     Cell cell = row.getCell(j);
-                    if (cell != null) {
-                        switch (cell.getCellType()) {
-                            case STRING:
-                                rowData[j] = cell.getStringCellValue();
-                                break;
-                            case NUMERIC:
-                                if (DateUtil.isCellDateFormatted(cell)) {
-                                    rowData[j] = cell.getDateCellValue();
-                                } else {
-                                    rowData[j] = String.valueOf((long) cell.getNumericCellValue());
-                                }
-                                break;
-                            case BOOLEAN:
-                                rowData[j] = cell.getBooleanCellValue();
-                                break;
-                            case BLANK:
-                                rowData[j] = "";
-                                break;
-                            default:
-                                rowData[j] = "";
-                        }
-                    } else {
+                    if (cell != null) 
+                    {
+                         rowData[j] = cell.toString();
+                    } 
+                    else 
+                    {
                         rowData[j] = "";
                     }
                 }
