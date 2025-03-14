@@ -169,7 +169,6 @@ public class Graph_SD {
         for (Object[] row : editorData) { 
        	 	inputText = (String) row[0];
        	    expectedOutput = (String) row[1];         
-       	    System.out.printf("%s %s", inputText, expectedOutput);
        	    performEditorTest(inputText, expectedOutput, Page);
        	 }
     }
@@ -187,8 +186,7 @@ public class Graph_SD {
 		
 		if (expectedOutput.equals("AlertMessage"))
 	   	{			
-	    	String alertMsg = graph_PF.AlertMsg();
-	    	System.out.print(alertMsg);
+	    	String alertMsg = graph_PF.AlertMsg();	    	
 			Assert.assertTrue(alertMsg.contains("NameError:"));	 
 			graph_PF.Alertaccept();
 	   	}
