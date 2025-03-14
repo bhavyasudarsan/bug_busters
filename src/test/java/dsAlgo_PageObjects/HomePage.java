@@ -13,12 +13,20 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
 import junit.framework.Assert;
 
 public class HomePage {
 	public static final String optionList = null;
 
 	WebDriverWait wait;
+//	WebDriver driver;
+
+	
+	public HomePage() {
+	    driver=  DriverFactory.getDriverInstance();
+		PageFactory.initElements(driver, this);
+	}
 
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);

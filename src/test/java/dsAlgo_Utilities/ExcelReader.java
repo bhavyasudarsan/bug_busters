@@ -12,10 +12,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ExcelReader {
-
-    public static List<Object[]> readExcelData(String filePath, String sheetName) throws IOException {
+	
+	public static List<Object[]> readExcelData(String sheetName) throws IOException {
         List<Object[]> data = new ArrayList<>();
-        FileInputStream fis = new FileInputStream(filePath);
+        FileInputStream fis = new FileInputStream("src/test/resources/test_data.xlsx");
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheet(sheetName);
 
@@ -24,32 +24,17 @@ public class ExcelReader {
             Row row = sheet.getRow(i);
             if (row != null) {
                 int cellCount = row.getLastCellNum();
+                if (cellCount == -1) break;
                 Object[] rowData = new Object[cellCount];
                 for (int j = 0; j < cellCount; j++) {
                     Cell cell = row.getCell(j);
-                    if (cell != null) {
-                        switch (cell.getCellType()) {
-                            case STRING:
-                                rowData[j] = cell.getStringCellValue();
-                                break;
-                            case NUMERIC:
-                                if (DateUtil.isCellDateFormatted(cell)) {
-                                    rowData[j] = cell.getDateCellValue();
-                                } else {
-                                    rowData[j] = String.valueOf((long) cell.getNumericCellValue());
-                                }
-                                break;
-                            case BOOLEAN:
-                                rowData[j] = cell.getBooleanCellValue();
-                                break;
-                            case BLANK:
-                                rowData[j] = "";
-                                break;
-                            default:
-                                rowData[j] = null;
-                        }
-                    } else {
-                        rowData[j] = null;
+                    if (cell != null) 
+                    {
+                         rowData[j] = cell.toString();
+                    } 
+                    else 
+                    {
+                        rowData[j] = "";
                     }
                 }
                 data.add(rowData);
@@ -59,6 +44,54 @@ public class ExcelReader {
         fis.close();
         return data;
     }
+
+
+//    public static List<Object[]> readExcelData(String filePath, String sheetName) throws IOException {
+//        List<Object[]> data = new ArrayList<>();
+//        FileInputStream fis = new FileInputStream(filePath);
+//        Workbook workbook = new XSSFWorkbook(fis);
+//        Sheet sheet = workbook.getSheet(sheetName);
+//
+//        int rowCount = sheet.getLastRowNum();
+//        for (int i = 1; i <= rowCount; i++) { // Start from row 1 (skip header)
+//            Row row = sheet.getRow(i);
+//            if (row != null) {
+//                int cellCount = row.getLastCellNum();
+//                Object[] rowData = new Object[cellCount];
+//                for (int j = 0; j < cellCount; j++) {
+//                    Cell cell = row.getCell(j);
+//                    if (cell != null) {
+//                        switch (cell.getCellType()) {
+//                            case STRING:
+//                                rowData[j] = cell.getStringCellValue();
+//                                break;
+//                            case NUMERIC:
+//                                if (DateUtil.isCellDateFormatted(cell)) {
+//                                    rowData[j] = cell.getDateCellValue();
+//                                } else {
+//                                    rowData[j] = String.valueOf((long) cell.getNumericCellValue());
+//                                }
+//                                break;
+//                            case BOOLEAN:
+//                                rowData[j] = cell.getBooleanCellValue();
+//                                break;
+//                            case BLANK:
+//                                rowData[j] = "";
+//                                break;
+//                            default:
+//                                rowData[j] = null;
+//                        }
+//                    } else {
+//                        rowData[j] = null;
+//                    }
+//                }
+//                data.add(rowData);
+//            }
+//        }
+//        workbook.close();
+//        fis.close();
+//        return data;
+//    }
 
     /**
 	 * Method used to read data from excel document for array.feature

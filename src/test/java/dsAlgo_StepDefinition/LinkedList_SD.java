@@ -1,91 +1,59 @@
 package dsAlgo_StepDefinition;
 
-import java.time.Duration;
+import java.io.IOException;
+import java.util.List;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.LinkedList;
-import io.cucumber.java.After;
+import dsAlgo_Utilities.ExcelReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LinkedList_SD {
-	LinkedList linkedList;
-	WebDriver driver;
-	WebDriverWait wait;
+	LinkedList linkedList = new LinkedList();
 
-	public LinkedList_SD() {
-		driver = DriverFactory.getDriver();
-		linkedList = new LinkedList(driver);
+	@Given("User is in login page")
+	public void user_is_in_login_page() {
+		linkedList.ClickGetStBtn();
+		linkedList.SignBtn();
 	}
 
-	@Given("LinkedUser  launches DsAlgo app url {string}")
-	public void user_launches_ds_algo_app_url(String string) {
-		linkedList.getUrl();
+	@When("User enter username and password from Excel test_data.xlsx sheet {string}")
+	public void user_enter_username_and_password_from_excel_test_data_xlsx_sheet(String Background) throws IOException {
+		List<Object[]> loginData = ExcelReader.readExcelData(Background);
+		Object[] objArray = loginData.get(0);
+		String username = (String) objArray[0];
+		String password = (String) objArray[1];
+		linkedList.username(username);
+		linkedList.password(password);
 	}
 
-	@When("LinkedUser clicks {string} Button")
-	public void user_clicks_button(String string) {
-		switch (string) {
-		case "Get Started":
-			linkedList.ClickGetStBtn();
-			break;
-		case "Sign In":
-			linkedList.SignBtn();
-		}
-	}
-
-	@When("LinkedUser clicks on {string} button")
-	public void user_clicks_on_button(String string) {
-		if (string.equalsIgnoreCase("Login")) {
-			linkedList.Loginbtn();
-		}
-	}
-
-	@Then("LinkedUser is on  {string} page")
-	public void user_is_on_the_page(String string) {
-		String loginPageTitle = driver.getTitle();
-		Assert.assertEquals(string, loginPageTitle);
-	}
-
-	@When("LinkedUser enters Username as {string} and Password as {string}")
-	public void user_enters_username_as_and_password_as(String string, String string2) {
-		linkedList.Username();
-		linkedList.Password();
-	}
-
-	@Then("LinkedUser should see the Home page on successful login status {string}")
-	public void user_should_see_the_home_page_on_successful_login_status(String string) {
-		Assert.assertEquals(string, linkedList.statusMessage());
+	@When("User clicks on Login button")
+	public void user_clicks_on_login_button() {
+		linkedList.Loginbtn();
 	}
 
 	@Given("LinkedUser is on the Home page after signing in")
 	public void the_user_is_on_the_home_page_after_signing_in() {
-		linkedList.currentURL();
+		linkedList.openHomeScreen();
 	}
 
 	@Given("LinkedUser is redirct the Home page")
 	public void the_user_is_on_the_home_page() {
-		linkedList.currentURL();
-
+		linkedList.openHomeScreen();
 	}
 
 	@When("LinkedUser clicks the {string} button in the Linked List panel")
 	public void the_user_clicks_the_button_in_the_linked_list_panel(String string) {
 		linkedList.clcikGetStartedLinkedListBtn();
+		System.out.println("User is in the Linked List page");
 	}
 
 	@When("LinkedUser selects {string} from the dropdown menu")
 	public void the_user_selects_from_the_dropdown_menu(String string) {
+
 		linkedList.dropdownMenuClick();
 		linkedList.clickLinkedListFromDropdown();
 	}
@@ -97,7 +65,7 @@ public class LinkedList_SD {
 
 	@Given("LinkedUser is on the Linked List page after signing in")
 	public void the_user_is_on_the_linked_list_page_after_signing_in() {
-		linkedList.currentURL();
+		linkedList.clcikGetStartedLinkedListBtn();
 	}
 
 	@When("LinkedUser clicks the {string} button")
@@ -128,6 +96,9 @@ public class LinkedList_SD {
 
 	@Given("LinkedUser is on the {string} page")
 	public void linked_user_is_on_the_page(String string) {
+		linkedList.clcikGetStartedLinkedListBtn();
+		linkedList.clickIntrodcution();
+		linkedList.tryHereBtnClick();
 		linkedList.tryEditorPage();
 	}
 
@@ -137,31 +108,49 @@ public class LinkedList_SD {
 		linkedList.runBtnClick();
 	}
 
+	@When("LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void linked_user_clicks_the_run_button_by_entering_invalid_python_code_in_the_editor_from_excel_sheet(
+			String Linkedlist) throws IOException {
+		List<Object[]> input = ExcelReader.readExcelData(Linkedlist);
+		Object[] code = input.get(0);
+		String invalidCode = (String) code[0];
+		System.out.println("hhh" + invalidCode);
+		linkedList.inputEditorInvalid(invalidCode);
+		linkedList.runBtnClick();
+	}
 	@Then("LinkedUser should  able to see {string} in alert window")
 	public void linked_user_should_able_to_see_in_alert_window(String string) {
 		Assert.assertEquals(string, linkedList.alertMessage());
 	}
 
-	@When("LinkedUser clicks the Run Button by entering invalid python code in the Editor")
-	public void linked_user_clicks_the_run_button_by_entering_invalid_python_code_in_the_editor() {
-		linkedList.inputEditorInvalid();
+	@Then("LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void linked_user_should_able_to_see_an_error_message_in_alert_window_by_entering_invalid_python_code_in_the_editor_from_excel_test_data_xlsx_sheet(
+			String Linkedlist) throws IOException {
+		List<Object[]> input = ExcelReader.readExcelData(Linkedlist);
+		Object[] code = input.get(0);
+		String expectedAlertMessage = (String) code[1];
+		Assert.assertEquals(expectedAlertMessage, linkedList.alertMessage());
+	}
+
+	@When("LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void linked_user_clicks_the_run_button_by_entering_valid_python_code_in_the_editor_from_excel_sheet(
+			String Linkedlist) throws IOException {
+		List<Object[]> code = ExcelReader.readExcelData(Linkedlist);
+		Object[] validInputRow = code.get(1);
+		String validCode = (String) validInputRow[0];
+		System.out.println("validCode" + validCode);
+		linkedList.inputEditorValid(validCode);
 		linkedList.runBtnClick();
 	}
 
-	@Then("LinkedUser should able to see an {string} message in alert window")
-	public void linked_user_should_able_to_see_an_message_in_alert_window(String string) {
-		Assert.assertEquals(string, linkedList.alertMessage());
-	}
-
-	@When("LinkedUser clicks the Run Button by entering valid python code in the Editor")
-	public void linked_user_clicks_the_run_button_by_entering_valid_python_code_in_the_editor() {
-		linkedList.inputEditorValid();
-		linkedList.runBtnClick();
-	}
-
-	@Then("LinkedUser should able to see {string} in the console")
-	public void linked_user_should_able_to_see_in_the_console(String string) {
-		Assert.assertEquals(string, linkedList.console());
+	@Then("LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void linked_user_should_able_to_see_hello_in_the_console_by_entering_valid_python_code_in_the_editor_from_excel_sheet(
+			String string) throws IOException {
+		List<Object[]> console = ExcelReader.readExcelData(string);
+		Object[] consoleOutput = console.get(1);
+		String expectedOutput = (String) consoleOutput[1];
+		System.out.println("expectedOutput" + expectedOutput);
+		Assert.assertEquals(expectedOutput, linkedList.console());
 	}
 
 	@Given("LinkedUser is in the Linked List page")
@@ -274,7 +263,7 @@ public class LinkedList_SD {
 	public void linked_user_is_on_the_linked_list_page() {
 		linkedList.clcikGetStartedLinkedListBtn();
 	}
-	
+
 	@When("LinkedUser clicks {string}  button in  Insertion page")
 	public void linked_user_clicks_button_in_insertion_page(String string) {
 		linkedList.tryHereBtnClick();

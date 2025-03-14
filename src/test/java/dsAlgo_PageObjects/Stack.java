@@ -10,13 +10,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
+
 public class Stack {
 	WebDriverWait wait;
 	WebDriver driver;
-
-	public Stack(WebDriver driver) {
+	
+	public Stack() {
+		driver=  DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
-		this.driver = driver;
+		
 	}
 
 	@FindBy(xpath = "//div[@class='nav-item dropdown']")
@@ -230,6 +233,10 @@ public class Stack {
 	}	
 	public void getUrl() {
 		driver.get("https://dsportalapp.herokuapp.com/");
-	}	
+	}
+
+	public String getTitle() {
+		return driver.getTitle();
+	}
 
 }
