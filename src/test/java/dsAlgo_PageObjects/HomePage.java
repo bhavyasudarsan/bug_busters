@@ -186,4 +186,10 @@ public class HomePage {
 	public void clickGraphBtn() {
 		graphBtn.click();
 	}
+	public void getUrl() {
+		driver.get("https://dsportalapp.herokuapp.com/");
+	}
+	public void currentURL() {
+		driver.getCurrentUrl();
+	}
 }
