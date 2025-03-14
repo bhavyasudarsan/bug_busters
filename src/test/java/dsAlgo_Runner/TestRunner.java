@@ -1,25 +1,22 @@
 package dsAlgo_Runner;
 
 
-import org.testng.annotations.DataProvider;
+import org.junit.runner.RunWith;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberOptions;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
+		@RunWith(Cucumber.class)
 		@CucumberOptions(
-				plugin = {"pretty", "html:target/dsAlgo.html"}, 
-				monochrome=false,  
-				tags = "@linkedTest or @stackTest or @homeTest or @treeTest or @arrayTest",  
-				features = {"src/test/resources/dsAlgo_FeatureFiles"}, 
-				glue= {"dsAlgo_StepDefinition","dsAlgo_hooks"}) 
 
-public class TestRunner extends AbstractTestNGCucumberTests{
-			
-			@Override
-		    @DataProvider(parallel = false)
-		    public Object[][] scenarios() {
-						
-				return super.scenarios();
-		    }
-	
+				plugin = {"pretty", "html:target/dsAlgo.html", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+				         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}, //reporting purpose
+				monochrome=false,  //console output color
+				//tags = "@Login and @Graph and @Queue",  //tags from feature file
+				features = "src/test/resources/dsAlgo_FeatureFiles", //location of feature files
+				glue= "dsAlgo_StepDefinition") //location of step definition files
+
+
+public class TestRunner {
+				
 }

@@ -3,6 +3,7 @@ package dsAlgo_PageObjects;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -23,11 +24,11 @@ public class Login {
 	 
 	 @FindBy(xpath="//input[@name='username']")
 	 @CacheLookup
-	 WebElement inputUsername;
+	 public WebElement inputUsername;
 	 
 	 @FindBy(xpath ="//input[@name='password']")
 	 @CacheLookup
-	 WebElement inputPassword;
+	 public WebElement inputPassword;
 	 
 	 @FindBy(xpath="//input[@type='submit']")
 	 @CacheLookup
@@ -73,4 +74,9 @@ public class Login {
 	 public void ClickSignOut() {
 		 wait.until(ExpectedConditions.elementToBeClickable(SignOut)).click(); 
 		 }
+	 
+	 public String getValidationMessage(WebDriver driver, WebElement element) {
+	        return (String) ((JavascriptExecutor) driver).executeScript(
+	                "return arguments[0].validationMessage;", element);
+	    }
 }

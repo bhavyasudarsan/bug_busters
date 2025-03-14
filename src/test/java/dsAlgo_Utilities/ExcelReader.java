@@ -1,17 +1,70 @@
 package dsAlgo_Utilities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Iterator;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class ExcelReader {
-	public static String readExcelSheet(String sheetName) throws IOException {
+
+    public static List<Object[]> readExcelData(String filePath, String sheetName) throws IOException {
+        List<Object[]> data = new ArrayList<>();
+        FileInputStream fis = new FileInputStream(filePath);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheet(sheetName);
+
+        int rowCount = sheet.getLastRowNum();
+        for (int i = 1; i <= rowCount; i++) { // Start from row 1 (skip header)
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                int cellCount = row.getLastCellNum();
+                if (cellCount == -1) break;
+                Object[] rowData = new Object[cellCount];
+                for (int j = 0; j < cellCount; j++) {
+                    Cell cell = row.getCell(j);
+                    if (cell != null) {
+                        switch (cell.getCellType()) {
+                            case STRING:
+                                rowData[j] = cell.getStringCellValue();
+                                break;
+                            case NUMERIC:
+                                if (DateUtil.isCellDateFormatted(cell)) {
+                                    rowData[j] = cell.getDateCellValue();
+                                } else {
+                                    rowData[j] = String.valueOf((long) cell.getNumericCellValue());
+                                }
+                                break;
+                            case BOOLEAN:
+                                rowData[j] = cell.getBooleanCellValue();
+                                break;
+                            case BLANK:
+                                rowData[j] = "";
+                                break;
+                            default:
+                                rowData[j] = "";
+                        }
+                    } else {
+                        rowData[j] = "";
+                    }
+                }
+                data.add(rowData);
+            }
+        }
+        workbook.close();
+        fis.close();
+        return data;
+    }
+
+    /**
+	 * Method used to read data from excel document for array.feature
+	 */
+    public static String readExcelSheet(String sheetName) throws IOException {
 
 		File Excelfile = new File("src/test/resources/testData.xlsx");
 
@@ -35,5 +88,4 @@ public class ExcelReader {
 		}
 		return code;
 	}
-
 }

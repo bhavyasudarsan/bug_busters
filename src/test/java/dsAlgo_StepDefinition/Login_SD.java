@@ -23,13 +23,16 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import dsAlgo_PageObjects.Graph;
 import dsAlgo_PageObjects.Login;
-import Utilities.ExcelReader;
+import dsAlgo_Utilities.ExcelReader;
 import dsAlgo_DriverFactory.DriverFactory;
 
 public class Login_SD {
 	
 	WebDriver driver;
 	public Login login_PF;
+	String expectedResult;
+	String username;
+	String password;
 		
 	public Login_SD() {        
         this.driver = DriverFactory.getDriver();   
@@ -74,9 +77,9 @@ public class Login_SD {
 
  @Then("The error message {string} appears below Username textbox in Login page")
  public void the_error_message_appears_below_username_textbox(String string) {
-	// Write code here that turns the phrase above into concrete actions 
-		String ErrMsg = "Please fill out this field.";
-		Assert.assertEquals(string, ErrMsg);
+	// Write code here that turns the phrase above into concrete actions 		
+		String ValidationMsg = login_PF.getValidationMessage(driver, login_PF.inputUsername);
+		Assert.assertEquals(string, ValidationMsg);
  }
  
 @When("The Login user clicks login button after entering the {string} and leaves {string} textbox empty")
@@ -90,8 +93,8 @@ public class Login_SD {
  @Then("The error message {string} appears below Password textbox in Login page")
  public void the_error_message_appears_below_password_textbox(String string) {
      // Write code here that turns the phrase above into concrete actions
-	 String ErrMsg = "Please fill out this field.";
-	 Assert.assertEquals(string, ErrMsg); 
+	 String ValidationMsg = login_PF.getValidationMessage(driver, login_PF.inputPassword);
+	 Assert.assertEquals(string, ValidationMsg); 
  }
  
  @When("The Login user clicks login button after entering the Password only")
@@ -161,25 +164,47 @@ public class Login_SD {
 	 Assert.assertEquals(string, login_PF.getErrMsg());
  }
  
- @When("Login User logs in with data from Excel {string} sheet {string}")
- public void login_user_logs_in_with_data_from_excel(String filePath, String sheetName) throws IOException {
-     List<Object[]> loginData = ExcelReader.readExcelData(filePath, sheetName);
-     for (Object[] row : loginData) {
-         String username = (String) row[0];
-         String password = (String) row[1];
-         String expectedResult = (String) row[2];
-         // Perform login with username and password, then assert expectedResult
-         performLogin(username, password, expectedResult);
+ @When("Login User logs in with data from Excel {string} for row {string}")
+ public void login_user_logs_in_with_data_from_excel_for_row(String filePath, String RowNo) throws IOException {
+     List<Object[]> loginData = ExcelReader.readExcelData(filePath, "Sheet1");
+     int index = 1;
+     for (Object[] row : loginData) { 
+    	 if (index == Integer.parseInt(RowNo))
+    	 {
+	         username = (String) row[0];
+	         password = (String) row[1];
+	         expectedResult = (String) row[2];	         
+	         performLogin(username, password);
+    	 }
+    	 index++;
      }
  }
 
- @Then("Login User should see the {string}")
- public void login_user_should_see_the(String expectedResult) {
+ @Then("Login User should see the either Log in Success or Failure")
+ public void login_user_should_see_the_either_log_in_sucess_or_failure() {
      // Assert the expected result
+	 if (expectedResult.equals("Please fill out this field."))
+	 {
+		 if (username.equals(""))
+		 {
+			 Assert.assertEquals(expectedResult, login_PF.getValidationMessage(driver, login_PF.inputUsername));
+		 }
+		 else
+		 {
+			 Assert.assertEquals(expectedResult, login_PF.getValidationMessage(driver, login_PF.inputPassword));
+		 }			 
+	 }
+	 else
+	 {
+		 Assert.assertEquals(expectedResult, login_PF.getErrMsg());
+	 }
  }
 
- private void performLogin(String username, String password, String expectedResult){
+ private void performLogin(String username, String password){
      //Implementation of the Login functionality.
+	 login_PF.SetUserName(username);
+	 login_PF.SetPassword(password);
+	 login_PF.ClickBtnLogin();			 
  }
  
 
