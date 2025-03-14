@@ -1,14 +1,10 @@
 @linkedTest
 Feature: Testing the Linked List Module in dsAlgo portal
 
-  Background: user launches the dsAlgo application
-    Given LinkedUser  launches DsAlgo app url "https://dsportalapp.herokuapp.com/"
-    When LinkedUser clicks "Get Started" Button
-    And LinkedUser clicks "Sign In" Button
-    Then LinkedUser is on  "Login" page
-    When LinkedUser enters Username as "bugbusters" and Password as "Team@bug"
-    And LinkedUser clicks on "Login" button
-    Then LinkedUser should see the Home page on successful login status "You are logged in"
+  Background: User launches the dsAlgo application
+    Given User is in login page
+    When User enter username and password from Excel test_data.xlsx sheet "Background"
+    And User clicks on Login button
 
   Scenario: Verify that user is able to navigate to "Linked List" from dropdown
     Given LinkedUser is on the Home page after signing in
@@ -38,13 +34,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user is able to navigate to "Try Editor" page for "Introduction" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Creating Linked LIst"  page
     Given LinkedUser is in the Linked List page
@@ -63,13 +59,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for "Creating Linked LIst" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Types of Linked List" page
     Given LinkedUser is in the Linked List page
@@ -88,13 +84,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for "Types of Linked List" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Implement Linked List in Python" page
     Given LinkedUser is in the Linked List page
@@ -113,13 +109,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Traversal" page
     Given LinkedUser is in the Linked List page
@@ -138,13 +134,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Insertion" page
     Given LinkedUser is in the Linked List page
@@ -163,13 +159,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to navigate to "Deletion" page
     Given LinkedUser is in the Linked List page
@@ -188,10 +184,10 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error for invalid python code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor
-    Then LinkedUser should able to see an "NameError: name 'hii' is not defined on line 1" message in alert window
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor
-    Then LinkedUser should able to see "hello" in the console
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
