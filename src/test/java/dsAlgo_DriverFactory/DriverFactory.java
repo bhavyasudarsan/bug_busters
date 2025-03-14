@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DriverFactory {
 
 	public static WebDriver driver;
+	
 	public final static int TIMEOUT = 2;
 
 	public WebDriver driverSetup(String browser) {
@@ -22,20 +23,13 @@ public class DriverFactory {
 		else if(browser.equalsIgnoreCase("Edge")) {
 			driver = new EdgeDriver();
 		}
-		new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));		
+		new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
 		driver.manage().window().maximize();
 		return driver;
 
 	}
 	
-	public static WebDriver initiateDriver(WebDriver driver) {
-		
-		driver = new ChromeDriver();			
-		driver.manage().window().maximize();	
-		return driver;
-
-	}
-
 	public static WebDriver getDriverInstance() {
 		return driver;
 		
@@ -43,13 +37,6 @@ public class DriverFactory {
 
 	public String getTitle() {
 		return driver.getTitle();
-	}
-
-	public static void tearDown(WebDriver driver) {
-		if (driver != null) {
-			driver.quit();
-		}
-
 	}
 
 }

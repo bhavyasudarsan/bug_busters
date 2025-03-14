@@ -20,7 +20,6 @@ public class Hooks {
 	
 	@Before
 	public void setup() {
-		System.out.println("Entered Hook");
 		driver=driverFactory.driverSetup(configReader.getBrowser());
 		url=configReader.getUrl();
 		driver.get(url);
@@ -41,5 +40,4 @@ public class Hooks {
 				driver.quit();
 			}
 	}
-	
 	}
