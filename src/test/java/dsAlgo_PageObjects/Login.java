@@ -3,6 +3,7 @@ package dsAlgo_PageObjects;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -11,23 +12,25 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Login {
+import dsAlgo_DriverFactory.DriverFactory;
 
-	 WebDriverWait wait;
+public class Login {
+	WebDriver driver;
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
-	 public Login (WebDriver webDriver)
+	 public Login ()
 	 {
-	  PageFactory.initElements(webDriver, this);
-	  wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		 driver = DriverFactory.getDriverInstance();
+		 PageFactory.initElements(driver, this);		 
 	 }
 	 
 	 @FindBy(xpath="//input[@name='username']")
 	 @CacheLookup
-	 WebElement inputUsername;
+	 public WebElement inputUsername;
 	 
 	 @FindBy(xpath ="//input[@name='password']")
 	 @CacheLookup
-	 WebElement inputPassword;
+	 public WebElement inputPassword;
 	 
 	 @FindBy(xpath="//input[@type='submit']")
 	 @CacheLookup
@@ -46,12 +49,23 @@ public class Login {
 	 WebElement Alertmsg;
 	 
 	   
-	 public void SetUserName(String uName) {
-	  inputUsername.clear();
-	  inputUsername.sendKeys(uName);
+	 public void openHome() {
+		 driver.get("https://dsportalapp.herokuapp.com/home");
 	 }
 	 
-	  
+	 public void openLogin() {
+		 driver.get("https://dsportalapp.herokuapp.com/login");
+	 }
+	 
+	 public String getTitle() {
+			return driver.getTitle();
+	 }
+	 
+	 public void SetUserName(String uName) {
+		 wait.until(ExpectedConditions.visibilityOf(inputUsername)).clear();		 
+		 inputUsername.sendKeys(uName);
+	 }
+	   
 	 public void SetPassword(String pwd) {
 	  inputPassword.clear();
 	  inputPassword.sendKeys(pwd);
@@ -61,9 +75,8 @@ public class Login {
 	  btnLogin.click();
 	 }
 	 
-
-	 public String getErrMsg() {		 
-	   return Alertmsg.getText();  
+	 public String getErrMsg() {			 
+	   return wait.until(ExpectedConditions.visibilityOf(Alertmsg)).getText();  
 	 }
 	 	 
 	 public void ClickSignIn() {
@@ -73,4 +86,9 @@ public class Login {
 	 public void ClickSignOut() {
 		 wait.until(ExpectedConditions.elementToBeClickable(SignOut)).click(); 
 		 }
+	 
+	 public String getValidationMessage(WebElement element) {
+	        return (String) ((JavascriptExecutor) driver).executeScript(
+	                "return arguments[0].validationMessage;", element);
+	    }
 }

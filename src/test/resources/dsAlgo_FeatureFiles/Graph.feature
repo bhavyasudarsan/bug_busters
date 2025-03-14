@@ -72,5 +72,13 @@ Given Graph User Launches DsAlgo portal
 		Given The Graph user is in the tryEditor page in "Graph Representations" page
     When The Graph user write the valid code in Editor and click the Run Button
     Then The Graph user should able to see output in the console
-
-  
+    
+    Scenario: Data-Driven Editor Test cases for Graph
+      Given The Graph user is in the tryEditor page in "Graph" page
+      When Graph User enters data from Excel "Editor" in "Graph"
+      Then The Graph editor should display Expected Text
+      
+    Scenario: Data-Driven Editor Test cases for Graph Representation
+      Given The Graph user is in the tryEditor page in "Graph Representations" page
+      When Graph User enters data from Excel "Editor" in "Graph Representations"
+      Then The Graph editor should display Expected Text

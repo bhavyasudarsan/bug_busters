@@ -2,7 +2,6 @@ package dsAlgo_PageObjects;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +11,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Tree_PF {
+import dsAlgo_DriverFactory.DriverFactory;
 
-	public Tree_PF(WebDriver driver) {
+public class Tree_PF {
+	WebDriver driver;
+	
+	public Tree_PF() {
+		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
 
@@ -50,9 +53,9 @@ public class Tree_PF {
 	@FindBy(linkText="Implementation Of BST")WebElement implementationOfBST;
 	@FindBy(linkText="Practice Questions")WebElement practiceQuestions;
 
-	public void getStart(WebDriver driver) {
+	public void getStart() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		getStart.click();
+		wait.until(ExpectedConditions.visibilityOf(getStart)).click();
 	}
 
 	public void signIn() {
@@ -76,7 +79,7 @@ public class Tree_PF {
 
 	}
 
-	public void treeGetStarted(WebDriver driver) {
+	public void treeGetStarted() {
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", treeGetStarted);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -84,13 +87,13 @@ public class Tree_PF {
 
 	}
 
-	public void overviewOfTrees(WebDriver driver) {
+	public void overviewOfTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", overviewOfTrees);
 		wait.until(ExpectedConditions.visibilityOf(overviewOfTrees)).click();
 	}
 	
-	public void tryHere(WebDriver driver) {
+	public void tryHere() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tryHere);
 		wait.until(ExpectedConditions.elementToBeClickable(tryHere)).click();
@@ -100,97 +103,101 @@ public class Tree_PF {
 		run.click();
 	}
 	
-	public void invalidPythonCode(WebDriver driver) {
+	public void invalidPythonCode() {
 		Actions actions = new Actions(driver);
         actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
         run();
 	}
 	
-	public String alertMessage(WebDriver driver) {
+	public String alertMessage() {
 		String alertMessage=driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return alertMessage;
 	}
 	
-	public void validPythonCode(WebDriver driver) {
+	public void validPythonCode() {
 		Actions actions = new Actions(driver);
         actions.moveToElement(tryEditor).click().sendKeys("print(\"VALID CODE\")").build().perform();
         run();
 	}
 	
-	public String output(WebDriver driver) {
+	public String output() {
     	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", output);
     	return(output.getText());
     }
 	
-	public void terminologies(WebDriver driver) {
+	public void terminologies() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", terminologies);
 		wait.until(ExpectedConditions.visibilityOf(terminologies)).click();    
 	}
-	public void typesOfTrees(WebDriver driver) {
+	public void typesOfTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", typesOfTrees);
 		wait.until(ExpectedConditions.visibilityOf(typesOfTrees)).click();  
 	}
-	public void treeTraversals(WebDriver driver) {
+	public void treeTraversals() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", treeTraversals);
 		wait.until(ExpectedConditions.visibilityOf(treeTraversals)).click();
 	}
 	
-	public void traversalsIllustration(WebDriver driver) {
+	public void traversalsIllustration() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", traversalsIllustration);
 		wait.until(ExpectedConditions.visibilityOf(traversalsIllustration)).click();
 	}
 	
-	public void binaryTrees(WebDriver driver) {
+	public void binaryTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", binaryTrees);
 		wait.until(ExpectedConditions.visibilityOf(binaryTrees)).click();
 	}
 	
-	public void typesOfBinaryTrees(WebDriver driver) {
+	public void typesOfBinaryTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", typesOfBinaryTrees);
 		wait.until(ExpectedConditions.visibilityOf(typesOfBinaryTrees)).click();
 	}
 	
-	public void implementationInPython(WebDriver driver) {
+	public void implementationInPython() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", implementationInPython);
 		wait.until(ExpectedConditions.visibilityOf(implementationInPython)).click();
 	}
-	public void binaryTreeTraversals(WebDriver driver) {
+	public void binaryTreeTraversals() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", binaryTreeTraversals);
 		wait.until(ExpectedConditions.visibilityOf(binaryTreeTraversals)).click();
 	}
-	public void implementationOfBinaryTrees(WebDriver driver) {
+	public void implementationOfBinaryTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", implementationOfBinaryTrees);
 		wait.until(ExpectedConditions.visibilityOf(implementationOfBinaryTrees)).click();
 	}
-	public void applicationsOfBinarytrees(WebDriver driver) {
+	public void applicationsOfBinarytrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applicationsOfBinarytrees);
 		wait.until(ExpectedConditions.visibilityOf(applicationsOfBinarytrees)).click();
 	}
-	public void binarySearchTrees(WebDriver driver) {
+	public void binarySearchTrees() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", binarySearchTrees);
 		wait.until(ExpectedConditions.visibilityOf(binarySearchTrees)).click();
 	}
-	public void implementationOfBST(WebDriver driver) {
+	public void implementationOfBST() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", implementationOfBST);
 		wait.until(ExpectedConditions.visibilityOf(implementationOfBST)).click();
 	}
-	public void practiceQuestions(WebDriver driver) {
+	public void practiceQuestions() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", practiceQuestions);
 		wait.until(ExpectedConditions.visibilityOf(practiceQuestions)).click();
+	}
+	public String getTitle() {	
+		return driver.getTitle();
+		
 	}
 	
 }

@@ -11,12 +11,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_Utilities.CommonUtils;
 import dsAlgo_Utilities.ExcelReader;
 
 public class Array_PF {
-
-	public Array_PF(WebDriver driver) {
+	
+ WebDriver driver ;
+  
+	public Array_PF() {
+		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
 
@@ -48,8 +52,7 @@ public class Array_PF {
 	@FindBy(linkText = "Basic Operations in Lists")WebElement basicOperationsinLists;
 	@FindBy(linkText = "Applications of Array")WebElement applicationsofArray;
 
-	public void getStart(WebDriver driver) {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	public void getStart() {
 		getStart.click();
 	}
 
@@ -74,14 +77,14 @@ public class Array_PF {
 
 	}
 
-	public void arrayGetStarted(WebDriver driver) {
+	public void arrayGetStarted() {
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(arrayGetStarted)).click();
 
 	}
 
-	public void arraysInPython(WebDriver driver) {
+	public void arraysInPython() {
 
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", arraysInPython);
@@ -89,7 +92,7 @@ public class Array_PF {
 
 	}
 
-	public void tryHere(WebDriver driver) {
+	public void tryHere() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tryHere);
 		wait.until(ExpectedConditions.elementToBeClickable(tryHere)).click();
@@ -99,32 +102,32 @@ public class Array_PF {
 		run.click();
 	}
 
-	public String alertMessage(WebDriver driver) {
+	public String alertMessage() {
 		String alertMessage = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return alertMessage;
 	}
 
-	public void invalidPythonCode(WebDriver driver) {
+	public void invalidPythonCode() {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
 		run();
 	}
 
-	public void validPythonCode(WebDriver driver) {
+	public void validPythonCode() {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditor).click().sendKeys("print(\"VALID CODE\")").build().perform();
 		run();
 	}
 
-	public String output(WebDriver driver) {
+	public String output() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", output);
 		wait.until(ExpectedConditions.visibilityOf(output));
 		return (output.getText());
 	}
 
-	public void practiceQuestions(WebDriver driver) {
+	public void practiceQuestions() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", practiceQuestions);
 		wait.until(ExpectedConditions.visibilityOf(practiceQuestions)).click();
@@ -146,25 +149,25 @@ public class Array_PF {
 		squaresOfaSortedArray.click();
 	}
 
-	public void arraysUsingList(WebDriver driver) {
+	public void arraysUsingList() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", arraysUsingList);
 		wait.until(ExpectedConditions.visibilityOf(arraysUsingList)).click();
 	}
 
-	public void basicOperationsinLists(WebDriver driver) {
+	public void basicOperationsinLists() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", basicOperationsinLists);
 		wait.until(ExpectedConditions.visibilityOf(basicOperationsinLists)).click();
 	}
 
-	public void applicationsofArray(WebDriver driver) {
+	public void applicationsofArray() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applicationsofArray);
 		wait.until(ExpectedConditions.visibilityOf(applicationsofArray)).click();
 	}
 
-	public void validCodeSearchtheArray(WebDriver driver) {
+	public void validCodeSearchtheArray() {
 		String codeFromExcel;
 		try {
 			codeFromExcel = ExcelReader.readExcelSheet("SearchTheArray");
@@ -175,7 +178,7 @@ public class Array_PF {
 
 	}
 	
-	public void validCodeMaxConsecutiveOnes(WebDriver driver) {
+	public void validCodeMaxConsecutiveOnes() {
 		String codeFromExcel;
 		try {
 			codeFromExcel = ExcelReader.readExcelSheet("MaxConsecutiveOnes");
@@ -185,7 +188,7 @@ public class Array_PF {
 		}
 
 	}
-	public void validCodeEvenNumberofDigits(WebDriver driver) {
+	public void validCodeEvenNumberofDigits() {
 		String codeFromExcel;
 		try {
 			codeFromExcel = ExcelReader.readExcelSheet("EvenNumberDigits");
@@ -195,7 +198,7 @@ public class Array_PF {
 		}
 
 	}
-	public void validCodeSquaresOfaSortedArray(WebDriver driver) {
+	public void validCodeSquaresOfaSortedArray() {
 		String codeFromExcel;
 		try {
 			codeFromExcel = ExcelReader.readExcelSheet("SquaresofSortedArray");
@@ -204,13 +207,18 @@ public class Array_PF {
 			e.printStackTrace();
 		}
 	}
-	public void invalidCodeSubmit(WebDriver driver) {
+	public void invalidCodeSubmit() {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
 		submit.click();
 	}
 	public void submit() {
 		submit.click();
+	}
+	public String getTitle() {
+		
+		return driver.getTitle();
+		
 	}
 
 }

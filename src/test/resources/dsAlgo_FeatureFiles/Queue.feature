@@ -115,3 +115,22 @@ Given Queue User Launches DsAlgo portal
     When The Queue user click "Practice Questions" link
     Then The Queue user should be redirected to "Practice Questions" Page
     
+    Scenario: Data-Driven Editor Test cases for Implementation of Queue in Python
+      Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
+      When Queue User enters data from Excel "Editor" in "Implementation of Queue in Python"
+      Then The Queue editor should display Expected Text
+     
+    Scenario: Data-Driven Editor Test cases for Implementation using collections.deque
+      Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
+      When Queue User enters data from Excel "Editor" in "Implementation using collections.deque"
+      Then The Queue editor should display Expected Text
+   
+    Scenario: Data-Driven Editor Test cases for Implementation using array
+      Given The Queue user is in the tryEditor page in "Implementation using array" page
+      When Queue User enters data from Excel "Editor" in "Implementation using array"
+      Then The Queue editor should display Expected Text
+   
+    Scenario: Data-Driven Editor Test cases for Queue Operations
+      Given The Queue user is in the tryEditor page in "Queue Operations" page
+      When Queue User enters data from Excel "Editor" in "Queue Operations"
+      Then The Queue editor should display Expected Text

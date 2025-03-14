@@ -1,5 +1,7 @@
 package dsAlgo_PageObjects;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,12 +9,19 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import dsAlgo_DriverFactory.DriverFactory;
 
 public class Graph {
+	WebDriver driver;
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
-	public Graph (WebDriver webDriver)
+	public Graph()
 	 {
-	  PageFactory.initElements(webDriver, this);
+		driver = DriverFactory.getDriverInstance();   
+		PageFactory.initElements(driver, this);
 	 }
 	 
 	 @FindBy(xpath="//input[@name='username']")
@@ -62,6 +71,10 @@ public class Graph {
 	 @FindBy(xpath = "//a[text()='%s']")
 	 WebElement dynamicLink;	  
 	   
+	 public String getTitle() {
+			return driver.getTitle();
+	 }
+	 
 	 public void SetUserName(String uName) {
 	  inputUsername.clear();
 	  inputUsername.sendKeys(uName);
@@ -78,7 +91,7 @@ public class Graph {
 	 }
 	 
 	 public void ClickGraph() {
-		 Graph1.click();
+		 wait.until(ExpectedConditions.visibilityOf(Graph1)).click();		 
 	 }
 	 
 	 public void ClickSubGraph() {
@@ -94,23 +107,39 @@ public class Graph {
 		 TryEditor.click();
 	 }
 	 
-	 public void ClickBtnRun() {
-		 btnRun.click();
+	 public void ClickBtnRun() {		
+		 wait.until(ExpectedConditions.visibilityOf(btnRun)).click();
 	 }
 	 
-	 public void ClickText(WebDriver driver, String string) {		 
+	 public void openHome() {
+		 driver.get("https://dsportalapp.herokuapp.com/home");
+	 }
+	 
+	 public void openLogin() {
+		 driver.get("https://dsportalapp.herokuapp.com/login");
+	 }
+	 
+	 public String AlertMsg() {
+		 return driver.switchTo().alert().getText();
+	 }
+	 
+	 public void Alertaccept() {
+		 driver.switchTo().alert().accept();
+	 }
+	 
+	 public void ClickText(String string) {		 
 		 String dynamicPath = String.format("//a[text()='%s']", string);
 		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
-		 dynamicLink.click();
+		 wait.until(ExpectedConditions.visibilityOf(dynamicLink)).click();
 	 }
 	 
-	 public void ClickGraph2(WebDriver driver, String string) {		 
+	 public void ClickGraph2(String string) {		 
 		 String dynamicPath = String.format("(//a[text()='%s'])[2]", string);
 		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
-		 dynamicLink.click();
+		 wait.until(ExpectedConditions.visibilityOf(dynamicLink)).click();		 
 	 }
 	 
-	 public void PythonCode(WebDriver driver, String string) {
+	 public void PythonCode(String string) {
 		 Actions actions = new Actions(driver);
 	     actions.moveToElement(CodeMirror).click().sendKeys(string).build().perform();
 	 }
