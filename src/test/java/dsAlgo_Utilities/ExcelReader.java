@@ -63,9 +63,7 @@ public class ExcelReader {
 			while (cell.hasNext()) {
 				Cell currCell = cell.next();
 				code = currCell.getStringCellValue();
-				System.out.print(code + " ~ ");
 			}
-			System.out.println();
 			workbook.close();
 		}
 		return code;

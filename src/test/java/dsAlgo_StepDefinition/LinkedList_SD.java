@@ -3,8 +3,11 @@ package dsAlgo_StepDefinition;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.LinkedList;
 import dsAlgo_Utilities.ExcelReader;
 import io.cucumber.java.en.Given;
@@ -12,6 +15,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LinkedList_SD {
+	
+    private static final Logger logger = LoggerFactory.getLogger(LinkedList_SD.class);
+
 	LinkedList linkedList = new LinkedList();
 
 	@Given("User is in login page")
@@ -48,7 +54,7 @@ public class LinkedList_SD {
 	@When("LinkedUser clicks the {string} button in the Linked List panel")
 	public void the_user_clicks_the_button_in_the_linked_list_panel(String string) {
 		linkedList.clcikGetStartedLinkedListBtn();
-		System.out.println("User is in the Linked List page");
+		logger.info("User is in the Linked List page");
 	}
 
 	@When("LinkedUser selects {string} from the dropdown menu")
@@ -114,7 +120,6 @@ public class LinkedList_SD {
 		List<Object[]> input = ExcelReader.readExcelData(Linkedlist);
 		Object[] code = input.get(0);
 		String invalidCode = (String) code[0];
-		System.out.println("hhh" + invalidCode);
 		linkedList.inputEditorInvalid(invalidCode);
 		linkedList.runBtnClick();
 	}
@@ -138,7 +143,6 @@ public class LinkedList_SD {
 		List<Object[]> code = ExcelReader.readExcelData(Linkedlist);
 		Object[] validInputRow = code.get(1);
 		String validCode = (String) validInputRow[0];
-		System.out.println("validCode" + validCode);
 		linkedList.inputEditorValid(validCode);
 		linkedList.runBtnClick();
 	}
@@ -149,7 +153,6 @@ public class LinkedList_SD {
 		List<Object[]> console = ExcelReader.readExcelData(string);
 		Object[] consoleOutput = console.get(1);
 		String expectedOutput = (String) consoleOutput[1];
-		System.out.println("expectedOutput" + expectedOutput);
 		Assert.assertEquals(expectedOutput, linkedList.console());
 	}
 

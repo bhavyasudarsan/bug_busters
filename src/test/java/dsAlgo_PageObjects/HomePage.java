@@ -86,7 +86,6 @@ public class HomePage {
 
 	public String registerBtn() {
 		String p = register.getText();
-		System.out.println("p" + p);
 		return p;
 	}
 
@@ -157,7 +156,6 @@ public class HomePage {
 
 	public void messageDisplayed() {
 		warningMessage.getText();
-//	 System.out.println("ppp"+warningMessage.getText());
 
 	}
 
