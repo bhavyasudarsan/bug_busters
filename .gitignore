@@ -5,3 +5,4 @@ target/*
 logs/*
 allure-results/*
 ExtentReports/*
+target/
