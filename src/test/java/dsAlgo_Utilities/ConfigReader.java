@@ -4,9 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import dsAlgo_DriverFactory.DriverFactory;
+
 public class ConfigReader {
 
 	Properties properties;
+	
+    private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
+
 
 	public ConfigReader() {
 		properties = new Properties();
@@ -15,8 +23,9 @@ public class ConfigReader {
 				throw new FileNotFoundException("config.properties file not found in resources");
 			}
 			properties.load(input);
+			logger.info("Config properties loaded");
 		} catch (Exception e) {
-			System.out.println("Config not found: " + e.getMessage());
+			logger.error("Config not found: " + e.getMessage());
 		}
 	}
 
