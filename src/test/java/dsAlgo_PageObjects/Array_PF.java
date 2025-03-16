@@ -1,6 +1,8 @@
 package dsAlgo_PageObjects;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,21 +20,21 @@ import dsAlgo_Utilities.ExcelReader;
 public class Array_PF {
 	
  WebDriver driver ;
+ 
+ 	WebDriverWait wait;
+	List<Object[]> arrayData;
   
 	public Array_PF() {
 		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
+		try {
+			arrayData = ExcelReader.readExcelData("Array");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	WebDriverWait wait;
-
-	@FindBy(linkText = "Get Started")WebElement getStart;
-	@FindBy(linkText = "Sign in")WebElement signIn;
-	@FindBy(id = "id_username")WebElement userName;
-	@FindBy(id = "id_password")WebElement password;
-	@FindBy(xpath = "//*[@value='Login']")WebElement login;
-	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement loginStatus;
-
+	
 	@FindBy(xpath = "/html/body/div[3]/div[2]/div/div/a")WebElement arrayGetStarted;
 	@FindBy(linkText = "Arrays in Python")WebElement arraysInPython;
 	@FindBy(linkText = "Try here>>>")WebElement tryHere;
@@ -51,31 +53,6 @@ public class Array_PF {
 	@FindBy(linkText = "Arrays Using List")WebElement arraysUsingList;
 	@FindBy(linkText = "Basic Operations in Lists")WebElement basicOperationsinLists;
 	@FindBy(linkText = "Applications of Array")WebElement applicationsofArray;
-
-	public void getStart() {
-		getStart.click();
-	}
-
-	public void signIn() {
-		signIn.click();
-	}
-
-	public void enterCredentials(String loginName, String loginPassword) {
-
-		userName.sendKeys(loginName);
-		password.sendKeys(loginPassword);
-
-	}
-
-	public void clickLogin() {
-		login.click();
-	}
-
-	public String getStatus() {
-
-		return loginStatus.getText();
-
-	}
 
 	public void arrayGetStarted() {
 
@@ -108,16 +85,26 @@ public class Array_PF {
 		return alertMessage;
 	}
 
-	public void invalidPythonCode() {
-		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
-		run();
+	public void invalidPythonCode(int row) {
+			Actions actions = new Actions(driver);
+			Object[] objArray = arrayData.get(row);
+			String invalidInput = (String) objArray[1];
+			actions.moveToElement(tryEditor).click().sendKeys(invalidInput).build().perform();
+			run();	
 	}
 
-	public void validPythonCode() {
+	public void validPythonCode(int row) {
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditor).click().sendKeys("print(\"VALID CODE\")").build().perform();
+		Object[] objArray = arrayData.get(row);
+		String validInput = (String) objArray[1];
+		actions.moveToElement(tryEditor).click().sendKeys(validInput).build().perform();
 		run();
+	}
+	
+	public String expectedOutputFromExcel(int row) {
+		Object[] objArray = arrayData.get(row);
+		String output = (String) objArray[2];
+		return output;
 	}
 
 	public String output() {
@@ -167,49 +154,22 @@ public class Array_PF {
 		wait.until(ExpectedConditions.visibilityOf(applicationsofArray)).click();
 	}
 
-	public void validCodeSearchtheArray() {
-		String codeFromExcel;
+	public void validCodePracticeQuestions(int row) {
 		try {
-			codeFromExcel = ExcelReader.readExcelSheet("SearchTheArray");
+			Object[] objArray = arrayData.get(row);
+			String codeFromExcel = (String) objArray[1];
 			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	public void validCodeMaxConsecutiveOnes() {
-		String codeFromExcel;
-		try {
-			codeFromExcel = ExcelReader.readExcelSheet("MaxConsecutiveOnes");
-			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-	}
-	public void validCodeEvenNumberofDigits() {
-		String codeFromExcel;
-		try {
-			codeFromExcel = ExcelReader.readExcelSheet("EvenNumberDigits");
-			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-	public void validCodeSquaresOfaSortedArray() {
-		String codeFromExcel;
-		try {
-			codeFromExcel = ExcelReader.readExcelSheet("SquaresofSortedArray");
-			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	public void invalidCodeSubmit() {
+	public void invalidCodeSubmit(int row) {
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
+		Object[] objArray = arrayData.get(row);
+		String codeFromExcel = (String) objArray[1];
+		actions.moveToElement(tryEditor).click().sendKeys(codeFromExcel).build().perform();
 		submit.click();
 	}
 	public void submit() {

@@ -1,6 +1,8 @@
 package dsAlgo_PageObjects;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,24 +14,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dsAlgo_DriverFactory.DriverFactory;
+import dsAlgo_Utilities.ExcelReader;
 
 public class Tree_PF {
 	WebDriver driver;
+	List<Object[]> treeData;
+	WebDriverWait wait;
 	
 	public Tree_PF() {
 		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
+		try {
+			treeData = ExcelReader.readExcelData("Editor");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
-	WebDriverWait wait;
-
-	@FindBy(linkText = "Get Started")WebElement getStart;
-	@FindBy(linkText = "Sign in")WebElement signIn;
-	@FindBy(id = "id_username")WebElement userName;
-	@FindBy(id = "id_password")WebElement password;
-	@FindBy(xpath = "//*[@value='Login']")WebElement login;
 	
-	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement loginStatus;
 	@FindBy(xpath = "/html/body/div[3]/div[6]/div/div/a")WebElement treeGetStarted;
 	
 	@FindBy(linkText = "Overview of Trees")WebElement overviewOfTrees;
@@ -53,31 +54,6 @@ public class Tree_PF {
 	@FindBy(linkText="Implementation Of BST")WebElement implementationOfBST;
 	@FindBy(linkText="Practice Questions")WebElement practiceQuestions;
 
-	public void getStart() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOf(getStart)).click();
-	}
-
-	public void signIn() {
-		signIn.click();
-	}
-
-	public void enterCredentials(String loginName, String loginPassword) {
-
-		userName.sendKeys(loginName);
-		password.sendKeys(loginPassword);
-
-	}
-
-	public void clickLogin() {
-		login.click();
-	}
-
-	public String getStatus() {
-
-		return loginStatus.getText();
-
-	}
 
 	public void treeGetStarted() {
 
@@ -103,22 +79,24 @@ public class Tree_PF {
 		run.click();
 	}
 	
-	public void invalidPythonCode() {
+	public void pythonCodeFromExcel(int row) {
 		Actions actions = new Actions(driver);
-        actions.moveToElement(tryEditor).click().sendKeys("Invalid Code").build().perform();
-        run();
-	}
+		Object[] objArray = treeData.get(row);
+		String pythonCode = (String) objArray[0];
+		actions.moveToElement(tryEditor).click().sendKeys(pythonCode).build().perform();
+		run();	
+}
 	
 	public String alertMessage() {
 		String alertMessage=driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return alertMessage;
 	}
-	
-	public void validPythonCode() {
-		Actions actions = new Actions(driver);
-        actions.moveToElement(tryEditor).click().sendKeys("print(\"VALID CODE\")").build().perform();
-        run();
+
+	public String expectedOutputFromExcel(int row) {
+		Object[] objArray = treeData.get(row);
+		String output = (String) objArray[1];
+		return output;
 	}
 	
 	public String output() {
