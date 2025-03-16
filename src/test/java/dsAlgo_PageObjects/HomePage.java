@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,12 +12,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import junit.framework.Assert;
+import dsAlgo_DriverFactory.DriverFactory;
 
 public class HomePage {
 	public static final String optionList = null;
 
 	WebDriverWait wait;
+	
+	public HomePage() {
+	    driver=  DriverFactory.getDriverInstance();
+		PageFactory.initElements(driver, this);
+	}
 
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -82,7 +86,6 @@ public class HomePage {
 
 	public String registerBtn() {
 		String p = register.getText();
-		System.out.println("p" + p);
 		return p;
 	}
 
@@ -153,7 +156,6 @@ public class HomePage {
 
 	public void messageDisplayed() {
 		warningMessage.getText();
-//	 System.out.println("ppp"+warningMessage.getText());
 
 	}
 

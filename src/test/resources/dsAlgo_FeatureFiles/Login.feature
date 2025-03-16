@@ -41,27 +41,8 @@ Feature: Login
     When The Login user clicks "Sign out" 
     Then The Login user should be redirected to home page with message "Logged out successfully"
     
-    Scenario: Data-Driven Login Test case 1
+    Scenario: Data-Driven Login Test cases
     Given The Login user is on the DS Algo Sign in Page
-    When Login User logs in with data from Excel "src/test/resources/login_data.xlsx" for row "1"
+    When Login User logs in with data from Excel "Login"
     Then Login User should see the either Log in Success or Failure
     
-    Scenario: Data-Driven Login Test case 2
-    Given The Login user is on the DS Algo Sign in Page
-    When Login User logs in with data from Excel "src/test/resources/login_data.xlsx" for row "2"
-    Then Login User should see the either Log in Success or Failure
-   
-    Scenario: Data-Driven Login Test case 3
-    Given The Login user is on the DS Algo Sign in Page
-    When Login User logs in with data from Excel "src/test/resources/login_data.xlsx" for row "3"
-    Then Login User should see the either Log in Success or Failure
-    
-    Scenario: Data-Driven Login Test case 4
-    Given The Login user is on the DS Algo Sign in Page
-    When Login User logs in with data from Excel "src/test/resources/login_data.xlsx" for row "4"
-    Then Login User should see the either Log in Success or Failure
-    
-    Scenario: Data-Driven Login Test case 5
-    Given The Login user is on the DS Algo Sign in Page
-    When Login User logs in with data from Excel "src/test/resources/login_data.xlsx" for row "5"
-    Then Login User should see the either Log in Success or Failure

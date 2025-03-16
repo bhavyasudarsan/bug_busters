@@ -73,23 +73,12 @@ Given Graph User Launches DsAlgo portal
     When The Graph user write the valid code in Editor and click the Run Button
     Then The Graph user should able to see output in the console
     
-    Scenario: Data-Driven Editor Test case 1
+    Scenario: Data-Driven Editor Test cases for Graph
       Given The Graph user is in the tryEditor page in "Graph" page
-      When Graph User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
-      Then The Graph editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 2
-      Given The Graph user is in the tryEditor page in "Graph" page
-      When Graph User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
+      When Graph User enters data from Excel "Editor" in "Graph"
       Then The Graph editor should display Expected Text
       
-    Scenario: Data-Driven Editor Test case 3
+    Scenario: Data-Driven Editor Test cases for Graph Representation
       Given The Graph user is in the tryEditor page in "Graph Representations" page
-      When Graph User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
+      When Graph User enters data from Excel "Editor" in "Graph Representations"
       Then The Graph editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 4
-      Given The Graph user is in the tryEditor page in "Graph Representations" page
-      When Graph User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
-      Then The Graph editor should display Expected Text
-  

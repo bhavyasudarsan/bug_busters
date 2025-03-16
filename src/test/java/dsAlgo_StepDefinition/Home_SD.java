@@ -1,23 +1,19 @@
 package dsAlgo_StepDefinition;
 import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
+
 import java.util.List;
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
-import dsAlgo_DriverFactory.DriverFactory;
+
 import dsAlgo_PageObjects.HomePage;
-import io.cucumber.java.After;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class Home_SD {
 
-	HomePage homePage;
-	WebDriver driver;
-
-	public Home_SD() {
-		driver = DriverFactory.initiateDriver();
-		homePage = new HomePage(driver);
-	}
+	HomePage homePage = new HomePage();;
 
 	@Given("Browser is open")
 	public void browser_is_open() {

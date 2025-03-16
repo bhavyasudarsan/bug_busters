@@ -115,42 +115,22 @@ Given Queue User Launches DsAlgo portal
     When The Queue user click "Practice Questions" link
     Then The Queue user should be redirected to "Practice Questions" Page
     
-    Scenario: Data-Driven Editor Test case 1
+    Scenario: Data-Driven Editor Test cases for Implementation of Queue in Python
       Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
+      When Queue User enters data from Excel "Editor" in "Implementation of Queue in Python"
       Then The Queue editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 2
-      Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
-      Then The Queue editor should display Expected Text
-      
-    Scenario: Data-Driven Editor Test case 3
+     
+    Scenario: Data-Driven Editor Test cases for Implementation using collections.deque
       Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
+      When Queue User enters data from Excel "Editor" in "Implementation using collections.deque"
       Then The Queue editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 4
-      Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
-      Then The Queue editor should display Expected Text
-      
-    Scenario: Data-Driven Editor Test case 5
+   
+    Scenario: Data-Driven Editor Test cases for Implementation using array
       Given The Queue user is in the tryEditor page in "Implementation using array" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
+      When Queue User enters data from Excel "Editor" in "Implementation using array"
       Then The Queue editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 6
-      Given The Queue user is in the tryEditor page in "Implementation using array" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
-      Then The Queue editor should display Expected Text    
-    
-    Scenario: Data-Driven Editor Test case 7
+   
+    Scenario: Data-Driven Editor Test cases for Queue Operations
       Given The Queue user is in the tryEditor page in "Queue Operations" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "1"
-      Then The Queue editor should display Expected Text
-
-		Scenario: Data-Driven Editor Test case 8
-      Given The Queue user is in the tryEditor page in "Queue Operations" page
-      When Queue User enters data from Excel "src/test/resources/editor_data.xlsx" for Row "2"
+      When Queue User enters data from Excel "Editor" in "Queue Operations"
       Then The Queue editor should display Expected Text

@@ -12,8 +12,17 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import dsAlgo_DriverFactory.DriverFactory;
+
 public class LinkedList {
+	WebDriver driver;
+
 	WebDriverWait wait;
+	
+	public LinkedList() {
+	    driver=  DriverFactory.getDriverInstance();
+		PageFactory.initElements(driver, this);
+	}
 
 	@FindBy(xpath = "//button[@class='btn']")
 	WebElement getStartBtn;
@@ -72,7 +81,7 @@ public class LinkedList {
 	WebElement typeOfLinkListink;
 	@FindBy(xpath = "//p[text()='Types of Linked List']")
 	WebElement titleTypeOfLinkList;
-	private WebDriver driver;
+//	private WebDriver driver;
 	@FindBy(xpath = "//a[text()='Implement Linked List in Python']")
 	WebElement implimentLink;
 	@FindBy(xpath = "//p[text()='Implement Linked List in Python']")
@@ -90,11 +99,7 @@ public class LinkedList {
 	@FindBy(xpath = "//p[text()='Deletion']")
 	WebElement titleDeletion;
 
-	public LinkedList(WebDriver driver) {
-		PageFactory.initElements(driver, this);
-		this.driver = driver; // Store the WebDriver instance
-
-	}
+	
 
 	public void ClickGetStBtn() {
 		getStartBtn.click();
@@ -117,16 +122,23 @@ public class LinkedList {
 		userName.sendKeys("bugbusters");
 	}
 
-	public void Password() {
-		passWord.sendKeys("Team@bug");
+	public void password(String password ) {
+		passWord.sendKeys(password);
+	}
+	public void username(String username) {
+		userName.sendKeys(username);
 	}
 
 	public void Loginbtn() {
-		login.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(login)).click();
 	}
 
-	public void clickIntrodcution() {
-		introduction.click();
+	public void clickIntrodcution( ) {
+		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(introduction)).click();
+//		introduction.click();
 	}
 
 	public String statusMessage() {
@@ -138,19 +150,27 @@ public class LinkedList {
 	}
 
 	public void clcikGetStartedLinkedListBtn() {
-		getStartedLinkedListBtn.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(getStartedLinkedListBtn)).click();
+//		getStartedLinkedListBtn.click();
 	}
 
 	public void dropdownMenuClick() {
-		dropdownMenu.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.visibilityOf(dropdownMenu)).click();
+
+//		dropdownMenu.click();
 	}
 
 	public void clickLinkedListFromDropdown() {
-		selectLinkedListFromDropdownMenu.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.visibilityOf(selectLinkedListFromDropdownMenu)).click();
 	}
 
 	public String titleLinkedList() {
+
 		return title.getText();
+		
 	}
 
 	public void tryHereBtnClick() {
@@ -158,12 +178,14 @@ public class LinkedList {
 	}
 
 	public String runBtnText() {
+		
 		return runBtn.getText();
 	}
 
 	public void runBtnClick() {
-
-		runBtn.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.visibilityOf(runBtn)).click();
+//		runBtn.click();
 		
 	}
 
@@ -179,17 +201,10 @@ public class LinkedList {
 		return driver.switchTo().alert().getText();
 	}
 
-	public void inputEditorInvalid() {
+	public void inputEditor(String code ) {
 
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("hii").build().perform();
-
-	}
-
-	public void inputEditorValid() {
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("print 'hello'").build().perform();
+		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
 
 	}
 
@@ -259,4 +274,8 @@ public class LinkedList {
 	public void tryEditorPage() {
 		driver.get("https://dsportalapp.herokuapp.com/tryEditor");
 	}
+	public void openHomeScreen() {
+	driver.get("https://dsportalapp.herokuapp.com/home");
+
+}
 }
