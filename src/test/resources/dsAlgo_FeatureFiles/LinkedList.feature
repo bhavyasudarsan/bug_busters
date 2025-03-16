@@ -3,7 +3,7 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Background: User launches the dsAlgo application
     Given User is in login page
-    When User enter username and password from Excel test_data.xlsx sheet "Background"
+    When User enter username and password from Excel test_data.xlsx sheet "Login"
     And User clicks on Login button
 
   Scenario: Verify that user is able to navigate to "Linked List" from dropdown
@@ -29,18 +29,18 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for "Introduction" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to navigate to "Try Editor" page for "Introduction" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to navigate to "Creating Linked LIst"  page
     Given LinkedUser is in the Linked List page
@@ -54,18 +54,18 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for Creating Linked LIst page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for "Creating Linked LIst" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to navigate to "Types of Linked List" page
     Given LinkedUser is in the Linked List page
@@ -79,18 +79,18 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for "Types of Linked List" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for "Types of Linked List" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to navigate to "Implement Linked List in Python" page
     Given LinkedUser is in the Linked List page
@@ -104,13 +104,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
@@ -129,13 +129,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
@@ -154,13 +154,13 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
@@ -179,15 +179,15 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario: Verify that user receives error when click on Run button without entering code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor
-    Then LinkedUser should  able to see "error message" in alert window
+    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user receives error for invalid python code for Insertion page
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
 
   Scenario: Verify that user is able to see output for valid python code
     Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
+    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
