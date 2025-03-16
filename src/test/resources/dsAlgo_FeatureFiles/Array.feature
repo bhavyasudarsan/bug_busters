@@ -1,12 +1,11 @@
 @arrayTest
 Feature: Testing the Array Module in dsAlgo portal
 
-Background: Array user launches the dsAlgo application
-Given Array user is in login page 
-When Array User enters Username as "bugbusters" and Password as "Team@bug" 
-And Array User clicks on Login button
-Then Array User should see the Home page on successful login status "You are logged in"
-    
+Background: User launches the dsAlgo application
+Given User is in login page
+When User enter username and password from Excel test_data.xlsx sheet "Login"
+And User clicks on Login button 
+
 Scenario: Verify that user is able to navigate to Arrays in Python page
 Given The user is in the Array page after Sign in
 When The user clicks Arrays in Python button
@@ -25,7 +24,7 @@ Then The Array user should able to see an error message in alert window
 Scenario: Verify that user recieves error for invalid python code for Arrays in Python page
 Given The user is in the tryEditor page for Arrays in Python page
 When The Array user write the invalid code in Editor and click the Run
-Then The Array user should able to see an error message in alert window
+Then The Array user should able to see an error message in alert window for invalid code
 
 Scenario: Verify that user is able to see Output for the valid python code for Arrays in Python page
 Given The user is in the tryEditor page for Arrays in Python page
@@ -55,12 +54,12 @@ Then The user should able to see output in the console for Search the array
 Scenario: Verify that user receives error on submitting invalid python code for Search the array question
 Given The user is on the practice question editor from Search the array
 When The user write the invalid code for Search the array in Editor and Click the Submit
-Then The user see an error message "Error occurred during submission" for Search the array
+Then The user see an error message Error occurred during submission for Search the array
 
 Scenario: Verify that user receives error on submitting valid python code for Search the array question
 Given The user is on the practice question editor from Search the array
 When The user write the valid code for Search the array in Editor and Click the Submit
-Then The user see success message "Submission Successful" for Search the array
+Then The user see success message Submission Successful for Search the array
 
 Scenario: Verify that user is able to navigate to Max Consecutive Ones Page from Practice question page of Arrays in Python page
 Given The user is on the Arrays in Python page
@@ -80,12 +79,12 @@ Then The user should able to see output in the console for Max Consecutive Ones
 Scenario: Verify that user receives error on submitting invalid python code for Max Consecutive Ones question
 Given The user is on the practice question editor from Max Consecutive Ones question
 When The user write the invalid code for Max Consecutive in Editor and Click the Submit
-Then The user see an error message "Error occurred during submission" for Max Consecutive
+Then The user see an error message Error occurred during submission for Max Consecutive
 
 Scenario: Verify that user receives error on submitting valid python code for Max Consecutive Ones question
 Given The user is on the practice question editor from Max Consecutive Ones question
 When The user write the valid code for Max Consecutive in Editor and Click the Submit
-Then The user see success message "Submission Successful" for Max Consecutive
+Then The user see success message Submission Successful for Max Consecutive
 
 Scenario: Verify that user is able to navigate to Find Numbers with Even Number of Digits Page from Practice question page of Arrays in Python page
 Given The user is on the Arrays in Python page
@@ -105,12 +104,12 @@ Then The user should able to see output in the console for Find Numbers with Eve
 Scenario: Verify that user receives error on submitting invalid python code for Find Numbers with Even Number of Digits question
 Given The user is on the practice question editor from FindNumbers with Even Number of Digits
 When The user write the invalid code for Find Numbers with Even Number of Digits in Editor and Click the Submit
-Then The user see an error message "Error occurred during submission" for Find Numbers with Even Number of Digits
+Then The user see an error message Error occurred during submission for Find Numbers with Even Number of Digits
 
 Scenario: Verify that user receives error on submitting valid python code for Find Numbers with Even Number of Digits question
 Given The user is on the practice question editor from FindNumbers with Even Number of Digits
 When The user write the valid code for Find Numbers with Even Number of Digits in Editor and Click the Submit
-Then The user see success message "Submission Successful" for Find Numbers with Even Number of Digits
+Then The user see success message Submission Successful for Find Numbers with Even Number of Digits
 
 Scenario: Verify that user is able to navigate to Squares of a Sorted Array Page from Practice question page of Arrays in Python page
 Given The user is on the Arrays in Python page
@@ -130,12 +129,12 @@ Then The user should able to see output in the console for Squares of a Sorted A
 Scenario: Verify that user receives error on submitting invalid python code for Squares of a Sorted Array question
 Given The user is on the practice question editor from Squares of a Sorted Array
 When The user write the invalid code for Squares of a Sorted Array in Editor and Click the Submit
-Then The user see an error message "Error occurred during submission" for Squares of a Sorted Array
+Then The user see an error message Error occurred during submission for Squares of a Sorted Array
 
 Scenario: Verify that user receives error on submitting valid python code for Squares of a Sorted Array question
 Given The user is on the practice question editor from Squares of a Sorted Array
 When The user write the valid code for Squares of a Sorted Array in Editor and Click the Submit
-Then The user see success message "Submission Successful" for Squares of a Sorted Array
+Then The user see success message Submission Successful for Squares of a Sorted Array
 
 Scenario: Verify that user is able to navigate to Arrays Using List Page from Arrays in Python page
 Given The user is on the Arrays in Python page
@@ -155,7 +154,7 @@ Then The Array user should able to see an error message in alert window
 Scenario: Verify that user recieves error for invalid python code for Arrays Using List  page
 Given The user is in the tryEditor page from Arrays Using List page
 When The Array user write the invalid code in Editor and click the Run
-Then The Array user should able to see an error message in alert window
+Then The Array user should able to see an error message in alert window for invalid code
 
 Scenario: Verify that user is able to see Output for the valid python code for Arrays Using List  page
 Given The user is in the tryEditor page from Arrays Using List page
@@ -180,7 +179,7 @@ Then The Array user should able to see an error message in alert window
 Scenario: Verify that user recieves error for invalid python code for Basic Operations in Lists  page
 Given The user is in the tryEditor page from Basic Operations in Lists
 When The Array user write the invalid code in Editor and click the Run
-Then The Array user should able to see an error message in alert window
+Then The Array user should able to see an error message in alert window for invalid code
 
 Scenario: Verify that user is able to see Output for the valid python code for Basic Operations in Lists  page
 Given The user is in the tryEditor page from Basic Operations in Lists
@@ -205,7 +204,7 @@ Then The Array user should able to see an error message in alert window
 Scenario: Verify that user recieves error for invalid python code for Applications of Array  page
 Given The user is in the tryEditor page from Applications of Array
 When The Array user write the invalid code in Editor and click the Run
-Then The Array user should able to see an error message in alert window
+Then The Array user should able to see an error message in alert window for invalid code
 
 Scenario: Verify that user is able to see Output for the valid python code for Applications of Array  page
 Given The user is in the tryEditor page from Applications of Array
