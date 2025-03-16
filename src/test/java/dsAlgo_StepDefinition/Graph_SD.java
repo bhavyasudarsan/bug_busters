@@ -20,7 +20,7 @@ public class Graph_SD {
 	public Graph_SD() {
         graph_PF = new Graph();
     }
-	
+	 
 	@Given("Graph User Launches DsAlgo portal")
 	public void graph_user_launches_ds_algo_portal() {
 	    // Write code here that turns the phrase above into concrete actions		
@@ -184,7 +184,7 @@ public class Graph_SD {
     	graph_PF.PythonCode(inputText);        
 		graph_PF.ClickBtnRun();
 		
-		if (expectedOutput.equals("AlertMessage"))
+		if (expectedOutput.contains("NameError:"))
 	   	{			
 	    	String alertMsg = graph_PF.AlertMsg();	    	
 			Assert.assertTrue(alertMsg.contains("NameError:"));	 
