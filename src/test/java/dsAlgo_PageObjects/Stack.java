@@ -184,25 +184,27 @@ public class Stack {
 	public String runBtnText() {
 		return runBtn.getText();
 	}
-
+	 public void Alertaccept() {
+		 driver.switchTo().alert().accept();
+	 }
 	public String alertMessage() {
 
 		return driver.switchTo().alert().getText();
 	}
 
-	public void inputEditorInvalid() {
+	public void inputEditor(String code) {
 
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("hii").build().perform();
-
+		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
 	}
+	
 
-	public void inputEditorValid() {
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("print 'hello'").build().perform();
-
-	}
+//	public void inputEditorValid(String validCode) {
+//
+//		Actions actions = new Actions(driver);
+//		actions.moveToElement(tryEditorInput).click().sendKeys(validCode).build().perform();
+//
+//	}
 
 	public String console() {
 		return tryEditorConsole.getText();
@@ -239,4 +241,5 @@ public class Stack {
 		return driver.getTitle();
 	}
 
+	
 }

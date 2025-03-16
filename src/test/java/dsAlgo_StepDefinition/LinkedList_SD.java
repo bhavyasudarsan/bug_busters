@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import dsAlgo_DriverFactory.DriverFactory;
 import dsAlgo_PageObjects.LinkedList;
 import dsAlgo_Utilities.ExcelReader;
 import io.cucumber.java.en.Given;
@@ -15,8 +14,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LinkedList_SD {
-	
-    private static final Logger logger = LoggerFactory.getLogger(LinkedList_SD.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(LinkedList_SD.class);
 
 	LinkedList linkedList = new LinkedList();
 
@@ -27,9 +26,9 @@ public class LinkedList_SD {
 	}
 
 	@When("User enter username and password from Excel test_data.xlsx sheet {string}")
-	public void user_enter_username_and_password_from_excel_test_data_xlsx_sheet(String Background) throws IOException {
-		List<Object[]> loginData = ExcelReader.readExcelData(Background);
-		Object[] objArray = loginData.get(0);
+	public void user_enter_username_and_password_from_excel_test_data_xlsx_sheet(String Login) throws IOException {
+		List<Object[]> loginData = ExcelReader.readExcelData(Login);
+		Object[] objArray = loginData.get(1);
 		String username = (String) objArray[0];
 		String password = (String) objArray[1];
 		linkedList.username(username);
@@ -108,49 +107,61 @@ public class LinkedList_SD {
 		linkedList.tryEditorPage();
 	}
 
-	@When("LinkedUser clicks the Run Button without entering the code in the Editor")
-	public void linked_user_the_run_button_without_entering_the_code_in_the_editor() {
-		linkedList.inputEditor();
+	@When("LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void linked_user_clicks_the_run_button_without_entering_the_code_in_the_editor_from_excel_test_data_xlsx_sheet(
+			String Editor) throws IOException {
+		List<Object[]> input = ExcelReader.readExcelData(Editor);
+		Object[] code = input.get(3);
+		String invalidCode = (String) code[0];
+		System.out.println("emptycode" + invalidCode);
+		linkedList.inputEditor(invalidCode);
 		linkedList.runBtnClick();
+	}
+
+	@Then("LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet {string}")
+	public void linked_user_should_able_to_see_error_message_in_alert_window_without_entering_value_from_excel_test_data_xlsx_sheet(
+			String Editor) throws IOException {
+		List<Object[]> input = ExcelReader.readExcelData(Editor);
+		Object[] code = input.get(3);
+		String expectedAlertMessage = (String) code[1];
+		System.out.println("expectedAlertMessage" + expectedAlertMessage);
+		String test = linkedList.alertMessage();
+		Assert.assertEquals(expectedAlertMessage, test);
 	}
 
 	@When("LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet {string}")
 	public void linked_user_clicks_the_run_button_by_entering_invalid_python_code_in_the_editor_from_excel_sheet(
 			String Linkedlist) throws IOException {
 		List<Object[]> input = ExcelReader.readExcelData(Linkedlist);
-		Object[] code = input.get(0);
+		Object[] code = input.get(2);
 		String invalidCode = (String) code[0];
-		linkedList.inputEditorInvalid(invalidCode);
+		linkedList.inputEditor(invalidCode);
 		linkedList.runBtnClick();
-	}
-	@Then("LinkedUser should  able to see {string} in alert window")
-	public void linked_user_should_able_to_see_in_alert_window(String string) {
-		Assert.assertEquals(string, linkedList.alertMessage());
 	}
 
 	@Then("LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet {string}")
 	public void linked_user_should_able_to_see_an_error_message_in_alert_window_by_entering_invalid_python_code_in_the_editor_from_excel_test_data_xlsx_sheet(
-			String Linkedlist) throws IOException {
-		List<Object[]> input = ExcelReader.readExcelData(Linkedlist);
-		Object[] code = input.get(0);
+			String Editor) throws IOException {
+		List<Object[]> input = ExcelReader.readExcelData(Editor);
+		Object[] code = input.get(2);
 		String expectedAlertMessage = (String) code[1];
 		Assert.assertEquals(expectedAlertMessage, linkedList.alertMessage());
 	}
 
 	@When("LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet {string}")
 	public void linked_user_clicks_the_run_button_by_entering_valid_python_code_in_the_editor_from_excel_sheet(
-			String Linkedlist) throws IOException {
-		List<Object[]> code = ExcelReader.readExcelData(Linkedlist);
+			String Editor) throws IOException {
+		List<Object[]> code = ExcelReader.readExcelData(Editor);
 		Object[] validInputRow = code.get(1);
 		String validCode = (String) validInputRow[0];
-		linkedList.inputEditorValid(validCode);
+		linkedList.inputEditor(validCode);
 		linkedList.runBtnClick();
 	}
 
 	@Then("LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet {string}")
 	public void linked_user_should_able_to_see_hello_in_the_console_by_entering_valid_python_code_in_the_editor_from_excel_sheet(
-			String string) throws IOException {
-		List<Object[]> console = ExcelReader.readExcelData(string);
+			String Editor) throws IOException {
+		List<Object[]> console = ExcelReader.readExcelData(Editor);
 		Object[] consoleOutput = console.get(1);
 		String expectedOutput = (String) consoleOutput[1];
 		Assert.assertEquals(expectedOutput, linkedList.console());

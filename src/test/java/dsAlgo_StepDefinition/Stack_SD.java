@@ -1,8 +1,12 @@
 package dsAlgo_StepDefinition;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.testng.Assert;
 
 import dsAlgo_PageObjects.Stack;
+import dsAlgo_Utilities.ExcelReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -88,36 +92,59 @@ public class Stack_SD {
 		stack.tryEditorPage();
 	}
 
-	@When("The stack user clicks the Run Button without entering the code in the Editor")
-	public void the_stack_user_clicks_the_run_button_without_entering_the_code_in_the_editor() {
-		stack.runBtnClick();
+	@When("The stack user clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_clicks_the_run_button_without_entering_the_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+		List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+        Object[] code=excelValue.get(3);
+        String   emptyCode=(String) code[0];
+        stack.inputEditor(emptyCode);
+	     stack.runBtnClick();
 	}
 
-	@Then("The stack user should able to see {string} in alert window")
-	public void the_stack_user_should_able_to_see_in_alert_window(String string) {
-		Assert.assertEquals(string, stack.alertMessage());
+	@Then("The stack user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_should_able_to_see_an_error_message_in_alert_window_without_entering_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+		 List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+			Object[] message=excelValue.get(3);
+			String expectedAlert= (String) message[1];
+			System.out.println("expectedAlert"+expectedAlert);
+			Assert.assertEquals(expectedAlert,stack.alertMessage());	
 	}
 
-	@When("The stack user clicks the Run Button by entering invalid code  in the Editor")
-	public void the_stack_user_clicks_the_run_button_by_entering_invalid_code_in_the_editor() {
-		stack.inputEditorInvalid();
-		stack.runBtnClick();
+	@When("The stack user clicks the Run Button by entering invalid code  in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_clicks_the_run_button_by_entering_invalid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+		    List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+	         Object[] code=excelValue.get(2);
+	         String   invalidCode=(String) code[0];
+	         stack.inputEditor(invalidCode);
+ 		     stack.runBtnClick();
 	}
 
-	@Then("The stack user should able to see an {string} in alert window")
-	public void the_stack_user_should_able_to_see_an_error_message_in_alert_window(String string) {
-		Assert.assertEquals("NameError: name 'hii' is not defined on line 1", stack.alertMessage());
+	@Then("The stack user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_should_able_to_see_an_error_message_in_alert_window(String Editor) throws IOException {
+	    List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+		Object[] message=excelValue.get(2);
+		String expectedAlert= (String) message[1];
+		System.out.println("expectedAlert"+expectedAlert);
+		Assert.assertEquals(expectedAlert,stack.alertMessage());		
+	}
+	
+	@When("The stack user clicks the Run Button by entering valid code  in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_clicks_the_run_button_by_entering_valid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+		 List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+         Object[] code=excelValue.get(1);
+         String   validCode=(String) code[0];
+         System.out.println("validCode"+validCode);
+         stack.inputEditor(validCode);
+         stack.runBtnClick();
+       
 	}
 
-	@When("The stack user clicks the Run Button by entering valid code  in the Editor")
-	public void the_stack_user_clicks_the_run_button_by_entering_valid_code_in_the_editor() {
-		stack.inputEditorValid();
-		stack.runBtnClick();
-	}
-
-	@Then("The stack user should able to see {string}  in alert window")
-	public void the_stack_user_should_able_to_see_output_in_alert_window(String string) {
-		Assert.assertEquals(string, stack.console());
+	@Then("The stack user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet {string}")
+	public void the_stack_user_should_able_to_see_output_in_alert_window_by_entering_valid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+		List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
+		Object[] message=excelValue.get(1);
+		String expectedOutput= (String) message[1];
+		Assert.assertEquals(expectedOutput,stack.console());
 	}
 
 	@When("The Stack user clicks Implementation in Stack button")

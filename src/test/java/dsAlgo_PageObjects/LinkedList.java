@@ -129,9 +129,6 @@ public class LinkedList {
 		userName.sendKeys(username);
 	}
 
-	public void Password() {
-		passWord.sendKeys("Team@bug");
-	}
 	public void Loginbtn() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(login)).click();
@@ -168,13 +165,10 @@ public class LinkedList {
 	public void clickLinkedListFromDropdown() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(selectLinkedListFromDropdownMenu)).click();
-//		selectLinkedListFromDropdownMenu.click();
 	}
 
 	public String titleLinkedList() {
-//		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", basicOperationsinLists);
-//		wait.until(ExpectedConditions.visibilityOf(basicOperationsinLists)).click();
+
 		return title.getText();
 		
 	}
@@ -207,17 +201,10 @@ public class LinkedList {
 		return driver.switchTo().alert().getText();
 	}
 
-	public void inputEditorInvalid(String invalidCode ) {
+	public void inputEditor(String code ) {
 
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("hii").build().perform();
-
-	}
-
-	public void inputEditorValid(String validCode) {
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("print 'hello'").build().perform();
+		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
 
 	}
 
