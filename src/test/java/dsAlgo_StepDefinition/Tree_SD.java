@@ -10,34 +10,8 @@ import io.cucumber.java.en.When;
 
 public class Tree_SD {
 	 
-	Tree_PF tree;
+	Tree_PF tree=  new Tree_PF();
 	
-	@Given("Tree user is in login page")
-	public void tree_user_is_in_login_page() {
-		tree =  new Tree_PF(); 
-		tree.getStart();
-		tree.signIn();
-	}
-
-	@When("Tree user enters Username as {string} and Password as {string}")
-	public void tree_user_enters_username_as_and_password_as(String username, String password) {
-		System.out.println("User Name: "+ username);
-		System.out.println("Password: "+ password);
-		
-		tree.enterCredentials(username, password);
-	}
-
-	@When("Tree user clicks on Login button")
-	public void tree_user_clicks_on_login_button() {
-		 tree.clickLogin();
-	}
-
-	@Then("Tree user should see the Home page on successful login status {string}")
-	public void tree_user_should_see_the_home_page_on_successful_login_status(String expectedStatus) {
-		Assert.assertEquals(tree.getStatus(), expectedStatus);
-	    System.out.println("Login passed");
-	}
-
 	@Given("The user is in the Tree page after Sign in")
 	public void the_user_is_in_the_tree_page_after_sign_in() {
 		 tree.treeGetStarted();
@@ -84,23 +58,29 @@ public class Tree_SD {
 
 	@Then("The tree user should able to see an error message in the alert window")
 	public void the_tree_user_should_able_to_see_an_error_message_in_the_alert_window() {
-		String alertText= tree.alertMessage();
-		Assert.assertNotNull(alertText);
+		
+		Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(3));
 	}
 
 	@When("The tree user write invalid python code in the Editor and click Run button")
 	public void the_tree_user_write_invalid_python_code_in_the_editor_and_click_run_button() {
-	    tree.invalidPythonCode();  
+	    tree.pythonCodeFromExcel(2);
+	}
+	
+	@Then("The tree user should able to see an error message in the alert window for invalid code")
+	public void the_tree_user_should_able_to_see_an_error_message_in_alert_window_for_invalid_code() { 
+	   Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(2));
 	}
 
 	@When("The tree user write valid python code in the Editor and click Run button")
 	public void the_tree_user_write_valid_python_code_in_the_editor_and_click_run_button() {
-		tree.validPythonCode();	
+		tree.pythonCodeFromExcel(1);
 	}
 
 	@Then("The tree user should able to see output in the console")
 	public void the_tree_user_should_able_to_see_output_in_the_console() {
-	   Assert.assertNotNull(tree.output());
+		
+		 Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(1));
 	}
 	
 	@When("The user clicks the Terminologies button")

@@ -12,13 +12,11 @@ public class CommonUtils {
 	    Actions actions = new Actions(driver);
 
 	    actions.click(element).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
-
-	    System.out.println("Code :: " + code);
 	   
 	    String[] lines = code.split("\n");
 
 	    for (String line : lines) {
-	        System.out.println("Processing line: " + line);
+	       
 	        actions.sendKeys(Keys.HOME).perform();
 	        
 	        int leadingSpaces = countLeadingSpaces(line);
