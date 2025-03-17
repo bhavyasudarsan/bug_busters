@@ -26,18 +26,33 @@ Given The user is in the Time Complexity page
 When The user clicks Try Here button
 Then The user should be redirected to a page having an "Assessment" with a Run button to test
 
+#Scenario: Verify that user receives error when click on Run button without entering code in Editor page
+#Given The user is in the tryEditor page
+#When The user clicks the Run button without entering the code in the Editor
+#Then The user should able to see an error message
+#
+#Scenario: Verify that user receives error for invalid python code
+#Given The user is in the tryEditor page
+#When The user write the invalid code in Editor and click the Run button
+#Then The user should able to see an "NameError: name 'hi' is not defined on line 1" message in alert window
+#
+#Scenario: Verify that user is able to see output for valid python code
+#Given The user is in the tryEditor page
+#When The user write the valid code in Editor and click the Run button
+#Then The user should able to see output in the console
+
 Scenario: Verify that user receives error when click on Run button without entering code in Editor page
 Given The user is in the tryEditor page
-When The user clicks the Run button without entering the code in the Editor
-Then The user should able to see an error message
+When The user clicks the Run button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
+Then The user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet "Editor"
 
 Scenario: Verify that user receives error for invalid python code
 Given The user is in the tryEditor page
-When The user write the invalid code in Editor and click the Run button
-Then The user should able to see an "NameError: name 'hi' is not defined on line 1" message in alert window
+When The user clicks the Run button by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+Then The user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
 
 Scenario: Verify that user is able to see output for valid python code
 Given The user is in the tryEditor page
-When The user write the valid code in Editor and click the Run button
-Then The user should able to see output in the console
+When The user clicks the Run button by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+Then The user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
 

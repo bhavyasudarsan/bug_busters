@@ -108,7 +108,7 @@ public class DataStructure_PF {
 		js.executeScript("window.scrollBy(0,600)", "");
 		
 		Actions actions = new Actions(driver);
-        actions.moveToElement(textEditor).click().sendKeys("Hello").build().perform();
+        actions.moveToElement(textEditor).click().sendKeys("Hiiii").build().perform();
 		runButton.click();
 	}  
 	public void textEditorWithValiddData() {
@@ -136,6 +136,22 @@ public class DataStructure_PF {
 		
 		return driver.getTitle();
 		
+	}
+	
+	public void inputEditor(String code) {
+
+		Actions actions = new Actions(driver);
+		actions.moveToElement(textEditor).click().sendKeys(code).build().perform();
+	}
+	
+	public void runBtnClick() {
+		
+		runButton.click();
+	}
+	
+	public String console() {
+		
+		return console.getText();
 	}
 
 }
