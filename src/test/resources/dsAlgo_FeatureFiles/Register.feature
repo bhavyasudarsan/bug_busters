@@ -89,7 +89,6 @@ Then The user should be land to "Registration" page
 #And land on the "NumpyNinja" page
 
  Scenario: Data-Driven Register Test cases
- #Given The user is in the Home page
  When The User register with data from Excel "Register"
  Then The User should see the either register Success or Failure
 

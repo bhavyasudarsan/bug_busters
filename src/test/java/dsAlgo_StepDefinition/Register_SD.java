@@ -173,12 +173,12 @@ public class Register_SD {
 		     for (Object[] row : registerData) 
 		     { 
 		         username = (String) row[0];
-		         System.out.println(username);
+		         System.out.println(username+"\n" );
 		         password1 = (String) row[1];
-		         System.out.println(password1);
+		         System.out.println(password1+ "\n");
 		         password2 = (String) row[2];
 		         expectedResult = (String) row[3]; 
-		         System.out.println(expectedResult);
+		         System.out.println(expectedResult+ "\n\n\n");
 		         
 		         performRegister(username, password1, password2, expectedResult);
 		        
