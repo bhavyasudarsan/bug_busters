@@ -15,11 +15,10 @@ import dsAlgo_DriverFactory.DriverFactory;
 public class Stack {
 	WebDriverWait wait;
 	WebDriver driver;
-	
+
 	public Stack() {
-		driver=  DriverFactory.getDriverInstance();
+		driver = DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
-		
 	}
 
 	@FindBy(xpath = "//div[@class='nav-item dropdown']")
@@ -81,34 +80,16 @@ public class Stack {
 	WebElement tryEditorInput;
 	@FindBy(xpath = "//pre[@id='output']")
 	public WebElement tryEditorConsole;
-	
+
 	@FindBy(xpath = "//a[text()='Implementation']")
 	WebElement linkImplementation;
 	@FindBy(xpath = "//p[text()='Implementation']")
 	WebElement implementationPageIdentifier;
-	
+
 	@FindBy(xpath = "//a[text()='Applications']")
 	WebElement linkApplication;
 	@FindBy(xpath = "//p[text()='Applications']")
 	WebElement applicationsPageIdentifier;
-	
-	
-	public void ClickGetStBtn() {
-		getStartBtn.click();
-	}
-
-	public void SignBtn() {
-
-		signIn.click();
-	}
-
-	public void Login() {
-		signIn.click();
-	}
-
-	public void openURL(String url) {
-		signIn.click();
-	}
 
 	public void dropDownStack() {
 		dropdownMenu.click();
@@ -116,25 +97,6 @@ public class Stack {
 
 	public void dropDownSelectStack() {
 		selectStackFromDropdoMenu.click();
-	}
-
-	public void Username() {
-		userName.sendKeys("bugbusters");
-	}
-
-	public void Password() {
-		passWord.sendKeys("Team@bug");
-	}
-
-	public void Loginbtn() {
-		login.click();
-	}
-
-	public void signInbtnWithWait() {
-
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(signIn)).click();
-
 	}
 
 	public void clickGetStartedStackBtn() {
@@ -145,23 +107,7 @@ public class Stack {
 		return status.getText();
 	}
 
-	public void dropdownMenuClick() {
-		dropdownMenu.click();
-	}
-
-	public void dropdownMenuStackClick() {
-		dropdownMenu.click();
-	}
-
-	public void clickStackFromDropdown() {
-		selectStackFromDropdownMenu.click();
-	}
-
 	public String titleStack() {
-		return title.getText();
-	}
-
-	public String titleHome() {
 		return title.getText();
 	}
 
@@ -184,9 +130,7 @@ public class Stack {
 	public String runBtnText() {
 		return runBtn.getText();
 	}
-	 public void Alertaccept() {
-		 driver.switchTo().alert().accept();
-	 }
+
 	public String alertMessage() {
 
 		return driver.switchTo().alert().getText();
@@ -197,14 +141,6 @@ public class Stack {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
 	}
-	
-
-//	public void inputEditorValid(String validCode) {
-//
-//		Actions actions = new Actions(driver);
-//		actions.moveToElement(tryEditorInput).click().sendKeys(validCode).build().perform();
-//
-//	}
 
 	public String console() {
 		return tryEditorConsole.getText();
@@ -225,14 +161,15 @@ public class Stack {
 	public String applicationPageIdentify() {
 		return applicationsPageIdentifier.getText();
 	}
+
 	public void tryEditorPage() {
 		driver.get("https://dsportalapp.herokuapp.com/tryEditor");
 	}
-	
+
 	public void currentURL() {
 		driver.getCurrentUrl();
+	}
 
-	}	
 	public void getUrl() {
 		driver.get("https://dsportalapp.herokuapp.com/");
 	}
@@ -241,5 +178,4 @@ public class Stack {
 		return driver.getTitle();
 	}
 
-	
 }

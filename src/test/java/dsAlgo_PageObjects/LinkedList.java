@@ -99,27 +99,12 @@ public class LinkedList {
 	@FindBy(xpath = "//p[text()='Deletion']")
 	WebElement titleDeletion;
 
-	
-
 	public void ClickGetStBtn() {
 		getStartBtn.click();
 	}
 
 	public void SignBtn() {
-
 		signIn.click();
-	}
-
-	public void Login() {
-		signIn.click();
-	}
-
-	public void openURL(String url) {
-		signIn.click();
-	}
-
-	public void Username() {
-		userName.sendKeys("bugbusters");
 	}
 
 	public void password(String password ) {
@@ -135,42 +120,25 @@ public class LinkedList {
 	}
 
 	public void clickIntrodcution( ) {
-		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(introduction)).click();
-//		introduction.click();
-	}
-
-	public String statusMessage() {
-		return status.getText();
-	}
-
-	public boolean isStatusMessage() {
-		return status.isDisplayed();
 	}
 
 	public void clcikGetStartedLinkedListBtn() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(getStartedLinkedListBtn)).click();
-//		getStartedLinkedListBtn.click();
 	}
-
 	public void dropdownMenuClick() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(dropdownMenu)).click();
-
-//		dropdownMenu.click();
 	}
-
 	public void clickLinkedListFromDropdown() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(selectLinkedListFromDropdownMenu)).click();
 	}
 
 	public String titleLinkedList() {
-
 		return title.getText();
-		
 	}
 
 	public void tryHereBtnClick() {
@@ -178,40 +146,25 @@ public class LinkedList {
 	}
 
 	public String runBtnText() {
-		
 		return runBtn.getText();
 	}
 
 	public void runBtnClick() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(runBtn)).click();
-//		runBtn.click();
-		
-	}
-
-	public void inputEditor() {
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys("").build().perform();
-
 	}
 
 	public String alertMessage() {
-
 		return driver.switchTo().alert().getText();
 	}
 
 	public void inputEditor(String code ) {
-
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
-
 	}
 
 	public String console() {
-
 		return tryEditorConsole.getText();
-
 	}
 
 	public void creatingLinkedListClick() {
