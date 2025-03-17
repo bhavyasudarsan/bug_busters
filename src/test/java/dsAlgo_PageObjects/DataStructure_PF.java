@@ -1,6 +1,9 @@
 package dsAlgo_PageObjects;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,15 +14,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dsAlgo_DriverFactory.DriverFactory;
+import dsAlgo_Utilities.ExcelReader;
 
 public class DataStructure_PF {
 	
 	WebDriver driver ;
 	WebDriverWait wait;
-
+	
 	public DataStructure_PF() {
 		
-		driver=DriverFactory.getDriverInstance();
+	    driver=  DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -152,6 +156,11 @@ public class DataStructure_PF {
 	public String console() {
 		
 		return console.getText();
+	}
+	public void openHomeScreen() {
+		
+		driver.get("https://dsportalapp.herokuapp.com/home");
+
 	}
 
 }

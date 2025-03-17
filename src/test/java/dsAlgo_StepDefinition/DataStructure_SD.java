@@ -22,38 +22,39 @@ public class DataStructure_SD {
 		data_strcture_PF.getStart();
 		data_strcture_PF.signIn();
 	}
-	@When("user enters Username as {string} and Password as {string}")
-	public void user_enters_username_as_and_password_as(String username, String password) {
+	@When("User enter username and password from Excel test_data.xlsx sheet {string}")
+	public void user_enter_username_and_password_from_excel_test_data_xlsx_sheet(String Login) throws IOException {
+	   
+		List<Object[]> loginData = ExcelReader.readExcelData(Login);
 		
-		System.out.println("User Name: "+ username);
-		System.out.println("Password: "+ password);
-		data_strcture_PF.enterCredentials(username, password);
+		Object[] objArray = loginData.get(1);
+		
+		String username = (String) objArray[0];
+		String password = (String) objArray[1];
+		
+		data_strcture_PF.enterCredentials(username,password);
 	}
-	@When("user clicks on Login button")
+
+	@When("User clicks on Login button")
 	public void user_clicks_on_login_button() {
 		
 		data_strcture_PF.clickLogin();
-	}
-	@Then("user should see the Home page on successful login status {string}")
-	public void user_should_see_the_home_page_on_successful_login_status(String expectedStatus) {
-		
-		Assert.assertEquals(data_strcture_PF.getStatus(), expectedStatus);
-	    System.out.println("\n You are Home Page \n");
 	}
 	
 	@Given("The user is in the Home page after Sign in")
 	public void the_user_is_in_the_home_page_after_sign_in()  {
 		
-//		data_strcture_PF.getStart();
-//		data_strcture_PF.signIn();
+		data_strcture_PF.openHomeScreen();
 		System.out.println("\n User is on the Home Page\n ");
 	}
+	
 	@When("The user clicks the Get Started button in Data Structure Page")
 	public void the_user_clicks_the_get_started_button_in_data_structure_page(){
 	
 		data_strcture_PF.data_structureGetSatrted();	
 	
 	}
+	
 	@Then("The user be directed to {string} Page")
 	public void the_user_be_directed_to_page(String string) {
 	 

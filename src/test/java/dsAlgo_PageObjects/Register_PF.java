@@ -55,7 +55,9 @@ public class Register_PF {
 	
 	public void getStart() {
 		
-		getStart.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(getStart)).click();
+		//getStart.click();
 	}
 
 	public void registerlink() {
@@ -68,9 +70,6 @@ public class Register_PF {
 		userNameElement.sendKeys(loginName);
 		password1Element.sendKeys(loginPassword1);
 		password2Element.sendKeys(loginPassword2);
-		System.out.println("User Name :"+loginName+"\n");
-		System.out.println("Password1 :"+loginPassword1+"\n");
-		System.out.println("Password2 :"+loginPassword2+"\n");
 		
 	}
 	public void clickRegister() {
@@ -98,11 +97,24 @@ public class Register_PF {
 		
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", userNameElement);
     }
+	public String getValidationMessagePwd() {
+		
+        return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", password1Element);
+    }
+	public String getValidationMessagePwd2() {
+		
+        return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", password2Element);
+    }
 	
 	public String getTitle() {
 		
 		return driver.getTitle();
 	}
+	
+	public void openRegister() {
+		
+		 driver.get("https://dsportalapp.herokuapp.com/register");
+	 }
 	
 	public void dropDownClick() {
 		

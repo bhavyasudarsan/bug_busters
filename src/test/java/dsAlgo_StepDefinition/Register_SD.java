@@ -26,8 +26,9 @@ public class Register_SD {
 		@Given("The user is in the Home page")
 		public void The_user_is_in_the_Home_page() {
 		 
+			
 			register_PF.getStart();
-			register_PF.registerlink();
+			//register_PF.registerlink();
 		}
 		@When("The user clicks Register link on the Home page")
 		public void the_user_clicks_register_link_on_the_home_page() {
@@ -172,9 +173,12 @@ public class Register_SD {
 		     for (Object[] row : registerData) 
 		     { 
 		         username = (String) row[0];
+		         System.out.println(username);
 		         password1 = (String) row[1];
+		         System.out.println(password1);
 		         password2 = (String) row[2];
-		         expectedResult = (String) row[3];  
+		         expectedResult = (String) row[3]; 
+		         System.out.println(expectedResult);
 		         
 		         performRegister(username, password1, password2, expectedResult);
 		        
@@ -191,30 +195,31 @@ public class Register_SD {
    	     //Implementation of the Register functionality.
    		
 			register_PF.enterCredentials(username, password1, password2);
-			System.out.println("UN: "+username);
-			System.out.println("Pass1: "+password1);
-			System.out.println("Pass2: "+password2);
 			register_PF.clickRegister();		
    		 
-   		 if (expectedResult.equals("Please fill out this field."))
+   		 if (expectedResult.equals("Please fill in this field."))
    		 {
-   			 if (username.equals("") || password1.equals("") || password2.equals(""))
+   			 if (username.equals(""))
    			 {
    				 Assert.assertEquals(expectedResult,register_PF.getValidationMessage());
    			 }
+   			 else if (password1.equals(""))
+   			 {
+   				Assert.assertEquals(expectedResult,register_PF.getValidationMessagePwd());
+   			 }
+   			 else
+   			 {
+   				Assert.assertEquals(expectedResult,register_PF.getValidationMessagePwd2());
+   			 }
    		 }
-   		 else
+   		 else 
    		 {
-   			 System.out.println("\n"+ expectedResult +"\n");
-   			 System.out.println(register_PF.getStatus());
-   			 Assert.assertEquals(expectedResult, register_PF.getStatus());
+   				 Assert.assertEquals(expectedResult, register_PF.getStatus());
    		 }
    		
-   		register_PF.registerlink(); // method to reach to registration page "registration link click"
-   		Register_PF register_PF = new Register_PF();
+   		register_PF.openRegister(); // method to reach to registration page "registration link click"
+   	    register_PF = new Register_PF();
    		 
-   		// login_PF.openLogin();
-   		 //login_PF = new Login();
    	 }
 		
 	}

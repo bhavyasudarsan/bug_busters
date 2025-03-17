@@ -9,7 +9,7 @@ Then The user should be land to "Registration" page
 #Given The user is on the user registration page  
 #When user enters Username as "Numpy1_Testers" and Password as "bug1_test" and Confirm Password as "bug1_test" and user clicks resgister button  
 #Then The user should be redirected to "NumpyNinja" with message New Account Created.You are logged in.
-#
+
 #Scenario Outline: Verify that user receives error message for all empty fields during registration
 #Given The user is on the user registration page  
 #When The user clicks register button after leaving the Username as " " textbox and Password as " " and Confirm Password as " " textbox empty 
@@ -92,7 +92,5 @@ Then The user should be land to "Registration" page
  #Given The user is in the Home page
  When The User register with data from Excel "Register"
  Then The User should see the either register Success or Failure
- 
- 
- 
+
  
