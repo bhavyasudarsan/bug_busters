@@ -15,7 +15,7 @@ public class Tree_SD {
 	@Given("The user is in the Tree page after Sign in")
 	public void the_user_is_in_the_tree_page_after_sign_in() {
 		 tree.treeGetStarted();
-		System.out.println("User is in Tree page");
+		
 	}
 
 	@When("The user clicks the Overview of Trees button")

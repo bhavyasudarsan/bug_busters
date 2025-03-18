@@ -14,7 +14,6 @@ public class Array_SD {
 	@Given("The user is in the Array page after Sign in")
 	public void the_user_is_in_the_array_page_after_sign_in() {
 			array.arrayGetStarted();
-			System.out.println(array.getTitle());
 	}
 
 	@When("The user clicks Arrays in Python button")

@@ -13,14 +13,20 @@ import io.cucumber.java.Scenario;
 
 public class Hooks {
 
-	DriverFactory driverFactory = new DriverFactory();
-	ConfigReader configReader = new ConfigReader();
+	DriverFactory driverFactory;// = new DriverFactory();
+	ConfigReader configReader;// = new ConfigReader();
 	WebDriver driver;
 	String url;
 
+	public Hooks() {
+		this.driverFactory = new DriverFactory();
+		this.configReader = new ConfigReader();
+	}
+	
 	@Before
 	public void setup() {
-		driver = driverFactory.driverSetup(configReader.getBrowser());
+		String browser = driverFactory.getBrowserType();
+		driver= driverFactory.driverSetup(browser);	
 		url = configReader.getUrl();
 		driver.get(url);
 	}
