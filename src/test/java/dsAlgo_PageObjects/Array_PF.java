@@ -18,14 +18,13 @@ import dsAlgo_Utilities.CommonUtils;
 import dsAlgo_Utilities.ExcelReader;
 
 public class Array_PF {
-	
- WebDriver driver ;
- 
- 	WebDriverWait wait;
+
+	WebDriver driver;
 	List<Object[]> arrayData;
-  
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 	public Array_PF() {
-		driver=DriverFactory.getDriverInstance();
+		driver = DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 		try {
 			arrayData = ExcelReader.readExcelData("Array");
@@ -34,43 +33,51 @@ public class Array_PF {
 		}
 	}
 
-	
-	@FindBy(xpath = "/html/body/div[3]/div[2]/div/div/a")WebElement arrayGetStarted;
-	@FindBy(linkText = "Arrays in Python")WebElement arraysInPython;
-	@FindBy(linkText = "Try here>>>")WebElement tryHere;
+	@FindBy(xpath = "//a[@href='array']")
+	WebElement arrayGetStarted;
+	@FindBy(linkText = "Arrays in Python")
+	WebElement arraysInPython;
+	@FindBy(linkText = "Try here>>>")
+	WebElement tryHere;
 
-	@FindBy(xpath = "//*[text()='Run']")WebElement run;
-	@FindBy(xpath = "//div[@class='CodeMirror-code']")WebElement tryEditor;
-	@FindBy(id = "output")WebElement output;
-	@FindBy(xpath="//*[@value='Submit']")WebElement submit;
+	@FindBy(xpath = "//*[text()='Run']")
+	WebElement run;
+	@FindBy(xpath = "//div[@class='CodeMirror-code']")
+	WebElement tryEditor;
+	@FindBy(id = "output")
+	WebElement output;
+	@FindBy(xpath = "//*[@value='Submit']")
+	WebElement submit;
 
-	@FindBy(linkText = "Practice Questions")WebElement practiceQuestions;
-	@FindBy(linkText = "Search the array")WebElement searchTheArray;
-	@FindBy(linkText = "Max Consecutive Ones")WebElement maxConsecutiveOnes;
-	@FindBy(linkText = "Find Numbers with Even Number of Digits")WebElement findNumberswithEvenNumberofDigits;
-	@FindBy(linkText = "Squares of a Sorted Array")WebElement squaresOfaSortedArray;
+	@FindBy(linkText = "Practice Questions")
+	WebElement practiceQuestions;
+	@FindBy(linkText = "Search the array")
+	WebElement searchTheArray;
+	@FindBy(linkText = "Max Consecutive Ones")
+	WebElement maxConsecutiveOnes;
+	@FindBy(linkText = "Find Numbers with Even Number of Digits")
+	WebElement findNumberswithEvenNumberofDigits;
+	@FindBy(linkText = "Squares of a Sorted Array")
+	WebElement squaresOfaSortedArray;
 
-	@FindBy(linkText = "Arrays Using List")WebElement arraysUsingList;
-	@FindBy(linkText = "Basic Operations in Lists")WebElement basicOperationsinLists;
-	@FindBy(linkText = "Applications of Array")WebElement applicationsofArray;
+	@FindBy(linkText = "Arrays Using List")
+	WebElement arraysUsingList;
+	@FindBy(linkText = "Basic Operations in Lists")
+	WebElement basicOperationsinLists;
+	@FindBy(linkText = "Applications of Array")
+	WebElement applicationsofArray;
 
 	public void arrayGetStarted() {
-
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(arrayGetStarted)).click();
-
 	}
 
 	public void arraysInPython() {
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", arraysInPython);
 		wait.until(ExpectedConditions.elementToBeClickable(arraysInPython)).click();
-
 	}
 
 	public void tryHere() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tryHere);
 		wait.until(ExpectedConditions.elementToBeClickable(tryHere)).click();
 	}
@@ -86,11 +93,11 @@ public class Array_PF {
 	}
 
 	public void invalidPythonCode(int row) {
-			Actions actions = new Actions(driver);
-			Object[] objArray = arrayData.get(row);
-			String invalidInput = (String) objArray[1];
-			actions.moveToElement(tryEditor).click().sendKeys(invalidInput).build().perform();
-			run();	
+		Actions actions = new Actions(driver);
+		Object[] objArray = arrayData.get(row);
+		String invalidInput = (String) objArray[1];
+		actions.moveToElement(tryEditor).click().sendKeys(invalidInput).build().perform();
+		run();
 	}
 
 	public void validPythonCode(int row) {
@@ -100,7 +107,7 @@ public class Array_PF {
 		actions.moveToElement(tryEditor).click().sendKeys(validInput).build().perform();
 		run();
 	}
-	
+
 	public String expectedOutputFromExcel(int row) {
 		Object[] objArray = arrayData.get(row);
 		String output = (String) objArray[2];
@@ -108,14 +115,12 @@ public class Array_PF {
 	}
 
 	public String output() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", output);
 		wait.until(ExpectedConditions.visibilityOf(output));
 		return (output.getText());
 	}
 
 	public void practiceQuestions() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", practiceQuestions);
 		wait.until(ExpectedConditions.visibilityOf(practiceQuestions)).click();
 	}
@@ -137,19 +142,16 @@ public class Array_PF {
 	}
 
 	public void arraysUsingList() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", arraysUsingList);
 		wait.until(ExpectedConditions.visibilityOf(arraysUsingList)).click();
 	}
 
 	public void basicOperationsinLists() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", basicOperationsinLists);
 		wait.until(ExpectedConditions.visibilityOf(basicOperationsinLists)).click();
 	}
 
 	public void applicationsofArray() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", applicationsofArray);
 		wait.until(ExpectedConditions.visibilityOf(applicationsofArray)).click();
 	}
@@ -172,13 +174,13 @@ public class Array_PF {
 		actions.moveToElement(tryEditor).click().sendKeys(codeFromExcel).build().perform();
 		submit.click();
 	}
+
 	public void submit() {
 		submit.click();
 	}
+
 	public String getTitle() {
-		
 		return driver.getTitle();
-		
 	}
 
 }
