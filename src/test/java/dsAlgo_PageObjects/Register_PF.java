@@ -148,8 +148,4 @@ public class Register_PF {
 		queueToSelect.click();
 	}
 	
-	
-	
-	
-
 }

@@ -29,7 +29,7 @@ Then The user should be redirected to a page having an "Assessment" with a Run b
 #Given The user is in the tryEditor page
 #When The user clicks the Run button without entering the code in the Editor
 #Then The user should able to see an error message
-#
+
 #Scenario: Verify that user receives error for invalid python code
 #Given The user is in the tryEditor page
 #When The user write the invalid code in Editor and click the Run button
