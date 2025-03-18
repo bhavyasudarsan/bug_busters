@@ -22,7 +22,6 @@ public class Register_SD {
 			
 			register_PF = new Register_PF();
 	    }
-		
 		@Given("The user is in the Home page")
 		public void The_user_is_in_the_Home_page() {
 		 

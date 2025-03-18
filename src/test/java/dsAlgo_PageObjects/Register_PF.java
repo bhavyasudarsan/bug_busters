@@ -22,7 +22,6 @@ public class Register_PF {
 		driver=DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
-	
 	@FindBy(linkText = "Get Started")WebElement getStart;
 	@FindBy(xpath = "//a[@href='/register']")WebElement registerlink;
 	@FindBy(id = "id_username")WebElement userNameElement;

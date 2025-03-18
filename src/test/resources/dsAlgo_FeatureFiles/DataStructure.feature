@@ -39,7 +39,7 @@ Then The user should be redirected to a page having an "Assessment" with a Run b
 #Given The user is in the tryEditor page
 #When The user write the valid code in Editor and click the Run button
 #Then The user should able to see output in the console
-
+#
 Scenario: Verify that user receives error when click on Run button without entering code in Editor page
 Given The user is in the tryEditor page
 When The user clicks the Run button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"

@@ -1,4 +1,4 @@
-Feature: Register
+Feature: Register 
 
 Background: User launches dsAlgo application
 Given The user is in the Home page
