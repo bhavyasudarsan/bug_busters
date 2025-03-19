@@ -11,7 +11,7 @@ Feature: Login
     When The user clicks login button after leaving the "Username" textbox and "Password" textbox empty
     Then The error message "Please fill out this field." appears below Username textbox in Login page
     
-     Scenario: Verify that user receives error message for empty Password field during Login
+    Scenario: Verify that user receives error message for empty Password field during Login
     Given The user is on the DS Algo Sign in Page for Login
     When The user clicks login button after entering the "Username" and leaves "Password" textbox empty
     Then The error message "Please fill out this field." appears below Password textbox in Login page
@@ -41,12 +41,13 @@ Feature: Login
     When The user clicks "Sign out" 
     Then The user should be redirected to home page with message "Logged out successfully"
     
-   Scenario Outline: Data-Driven Login Test cases
+    Scenario Outline: Data-Driven Login Test cases
     Given The user is on the DS Algo Sign in Page for Login
     When User logs in with data from Excel "<SheetName>" and <RowNumber> for Login
     Then User should see the either Log in Success or Failure
     
 	Examples:
+		
    |SheetName|RowNumber|
    |  Login  |1|
    |  Login  |2|
