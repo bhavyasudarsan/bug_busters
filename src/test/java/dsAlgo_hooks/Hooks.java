@@ -12,32 +12,39 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 public class Hooks {
-	
-	DriverFactory driverFactory = new DriverFactory();
-	ConfigReader configReader = new ConfigReader();
+
+	DriverFactory driverFactory;// = new DriverFactory();
+	ConfigReader configReader;// = new ConfigReader();
 	WebDriver driver;
 	String url;
+
+	public Hooks() {
+		this.driverFactory = new DriverFactory();
+		this.configReader = new ConfigReader();
+	}
 	
 	@Before
 	public void setup() {
-		driver=driverFactory.driverSetup(configReader.getBrowser());
-		url=configReader.getUrl();
+		String browser = driverFactory.getBrowserType();
+		driver= driverFactory.driverSetup(browser);	
+		url = configReader.getUrl();
 		driver.get(url);
 	}
-	
+
 	@AfterStep
-    public void takeScreenshot(Scenario scenario) {
-    	
-        if(scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", scenario.getName());
-        }     
-    }
-	
+	public void takeScreenshot(Scenario scenario) {
+
+		if (scenario.isFailed()) {
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.attach(screenshot, "image/png", scenario.getName());
+		}
+	}
+
 	@After
 	public void tearDown() {
-			if (driver != null) {
-				driver.quit();
-			}
+		if (driver != null) {
+			driver.quit();
+		}
 	}
-	}
+
+}

@@ -4,34 +4,48 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ConfigReader {
-	
- Properties properties;
 
-public ConfigReader() {
-    properties = new Properties();
-    try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-        if (input == null) {
-            throw new FileNotFoundException("config.properties file not found in resources");
-        }
-        properties.load(input);
-    } catch (Exception e) {
-        System.out.println("Config not found: " + e.getMessage());
-    }
-}
+	public static ThreadLocal<Properties> property= new ThreadLocal<Properties>();
 
-public String getUsername()  {
-		return properties.getProperty("username");      
-}
-public String getPassword() {
-	return properties.getProperty("password");	
-}
-public String getBrowser()  {
-	return properties.getProperty("browser");
-}
-public String getUrl()  {
-	return properties.getProperty("url");
-	
-}
+	private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
+
+	public ConfigReader() {
+	Properties	properties = new Properties();
+		try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+			if (input == null) {
+				throw new FileNotFoundException("config.properties file not found in resources");
+			}
+			properties.load(input);
+			property.set(properties);
+			logger.info("Config properties loaded");
+		} catch (Exception e) {
+			logger.error("Config not found: " + e.getMessage());
+		}
+	}
+
+	public String getUsername() {
+		return property.get().getProperty("username");
+	}
+
+	public String getPassword() {
+		return property.get().getProperty("password");
+	}
+
+	public String getBrowser() {
+		return property.get().getProperty("browser");
+	}
+
+	public void setBrowser(String value) {
+		property.get().setProperty("browser", value);
+	}
+
+	public String getUrl() {
+		return property.get().getProperty("url");
+
+	}
 
 }

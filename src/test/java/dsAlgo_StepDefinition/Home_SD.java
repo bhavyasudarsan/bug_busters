@@ -1,4 +1,5 @@
 package dsAlgo_StepDefinition;
+
 import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
 
@@ -41,14 +42,15 @@ public class Home_SD {
 	}
 
 	@Then("The Homepage user should be navigated to the Data Structure Introduction page, which displays the {string} and {string} links.")
-	public void the_user_should_be_navigated_to_the_data_structure_introduction_page_which_displays_the_and_links(String string, String string2) {
+	public void the_user_should_be_navigated_to_the_data_structure_introduction_page_which_displays_the_and_links(
+			String string, String string2) {
 		Assert.assertEquals(string, homePage.registerBtn());
 		Assert.assertEquals(string2, homePage.signInBtn());
 	}
 
 	@Given("The Homepage user is on the Homepage")
 	public void the_user_is_on_the_homepage() {
-          homePage.home();
+		homePage.home();
 	}
 
 	@When("The Homepage user clicks the Data Structures dropdown")
@@ -122,7 +124,7 @@ public class Home_SD {
 			homePage.clickArrayBtn();
 			break;
 		case "Data Structures-Introduction":
-			homePage.clickDataSttructureBtn();
+			homePage.clickDataStructureBtn();
 			break;
 		case "Stack":
 			homePage.clickStackBtn();

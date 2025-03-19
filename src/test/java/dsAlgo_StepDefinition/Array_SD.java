@@ -10,34 +10,10 @@ import io.cucumber.java.en.When;
 public class Array_SD {
 	
 	Array_PF array = new Array_PF();
-	
-	@Given("Array user is in login page")
-	public void array_user_launches_the_ds_algo_application() {
-		   array.getStart();
-		   array.signIn();
-	}
-
-	@When("Array User enters Username as {string} and Password as {string}")
-	public void array_user_enters_username_as_and_password_as(String username, String password) {
-		array.enterCredentials(username, password);
-	}
-
-	@When("Array User clicks on Login button")
-	public void array_user_clicks_on_login_button() {
-		array.clickLogin();
-	}
-
-	@Then("Array User should see the Home page on successful login status {string}")
-	public void array_user_should_see_the_home_page_on_successful_login_status(String expectedStatus) {
-		Assert.assertEquals(array.getStatus(), expectedStatus);
-	    System.out.println("Login passed");
-	}
-	
 
 	@Given("The user is in the Array page after Sign in")
 	public void the_user_is_in_the_array_page_after_sign_in() {
 			array.arrayGetStarted();
-			System.out.println(array.getTitle());
 	}
 
 	@When("The user clicks Arrays in Python button")
@@ -84,16 +60,22 @@ public class Array_SD {
 	
 	@When("The Array user write the invalid code in Editor and click the Run")
 	public void the_array_user_write_the_invalid_code_in_editor_and_click_the_run() {
-	    array.invalidPythonCode();
+	    array.invalidPythonCode(17);
+	}
+	
+	@Then("The Array user should able to see an error message in alert window for invalid code")
+	public void the_array_user_should_able_to_see_an_error_message_in_alert_window_for_invalid_code() { 
+	   Assert.assertEquals(array.alertMessage(),array.expectedOutputFromExcel(17));
 	}
 	
 	@When("The Array user write the valid code in Editor and click the Run")
 	public void the_array_user_write_the_valid_code_in_editor_and_click_the_run() {
-	    array.validPythonCode();
+	    array.validPythonCode(16);
 	}
 	@Then("The Array user should able to see output in the console")
 	public void the_array_user_should_able_to_see_output_in_the_console() {
-		Assert.assertNotNull(array.output());
+		
+		Assert.assertEquals(array.output(), array.expectedOutputFromExcel(16));
 	}
 	
 	@When("The user clicks Practice Questions button from Arrays in Python page")
@@ -125,38 +107,40 @@ public class Array_SD {
 		
 	@When("The user write the invalid code for Search the array in Editor and Click the Run")
 	public void the_user_write_the_invalid_code_for_search_the_array_in_editor_and_click_the_run() {
-	   array.invalidPythonCode();
+	   array.invalidPythonCode(1);
 	}
 	@Then("The user should able to see an error message in alert window for Search the array")
 	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_search_the_array() {
+		
 		String alertText= array.alertMessage();
-		Assert.assertNotNull(alertText);
+		Assert.assertEquals(alertText,array.expectedOutputFromExcel(1) );
+		
 	}
 	@When("The user write the valid code for Search the array in Editor and Click the Run")
 	public void the_user_write_the_valid_code_for_search_the_array_in_editor_and_click_the_run() {
-	    array.validCodeSearchtheArray();
+	    array.validCodePracticeQuestions(0);
 	    array.run();
 	}
 	@Then("The user should able to see output in the console for Search the array")
 	public void the_user_should_able_to_see_output_in_the_console_for_search_the_array() {
-	    Assert.assertEquals(array.output(), "Element Not Found");
+	    Assert.assertEquals(array.output(),array.expectedOutputFromExcel(0));
 	}
 	@When("The user write the invalid code for Search the array in Editor and Click the Submit")
 	public void the_user_write_the_invalid_code_for_search_the_array_in_editor_and_click_the_submit() {
-	    array.invalidCodeSubmit();
+	    array.invalidCodeSubmit(3);
 	}
-	@Then("The user see an error message {string} for Search the array")
-	public void the_user_see_an_error_message_for_search_the_array(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see an error message Error occurred during submission for Search the array")
+	public void the_user_see_an_error_message_for_search_the_array() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(3));
 	}
 	@When("The user write the valid code for Search the array in Editor and Click the Submit")
 	public void the_user_write_the_valid_code_for_search_the_array_in_editor_and_click_the_submit() {
-	    array.validCodeSearchtheArray();
+	    array.validCodePracticeQuestions(2);
 	    array.submit();
 	}
-	@Then("The user see success message {string} for Search the array")
-	public void the_user_see_success_message_for_search_the_array(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see success message Submission Successful for Search the array")
+	public void the_user_see_success_message_for_search_the_array() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(2));
 	}
 	@When("The user clicks the Max Consecutive Ones link")
 	public void the_user_clicks_the_max_consecutive_ones_link() {
@@ -172,38 +156,40 @@ public class Array_SD {
 
 	@When("The user write the invalid code for Max Consecutive Ones in Editor and Click the Run")
 	public void the_user_write_the_invalid_code_for_max_consecutive_ones_in_editor_and_click_the_run() {
-	   array.invalidPythonCode();
+	   array.invalidPythonCode(5);
 	}
 	@Then("The user should able to see an error message in alert window for Max Consecutive Ones")
 	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_max_consecutive_ones() {
 		String alertText= array.alertMessage();
-		Assert.assertNotNull(alertText);
+		Assert.assertEquals(alertText, array.expectedOutputFromExcel(5));
 	}
 	@When("The user write the valid code for Max Consecutive Ones in Editor and Click the Run")
 	public void the_user_write_the_valid_code_for_max_consecutive_ones_in_editor_and_click_the_run() {
-	    array.validCodeMaxConsecutiveOnes();
+	    array.validCodePracticeQuestions(4);
 	    array.run();
 	}
 	@Then("The user should able to see output in the console for Max Consecutive Ones")
 	public void the_user_should_able_to_see_output_in_the_console_for_max_consecutive_ones() {
-		Assert.assertEquals(array.output(),"3");
+		Double actual=Double.parseDouble(array.output());
+		Double expected=Double.parseDouble(array.expectedOutputFromExcel(4));
+		Assert.assertEquals(actual,expected);
 	}
 	@When("The user write the invalid code for Max Consecutive in Editor and Click the Submit")
 	public void the_user_write_the_invalid_code_for_max_consecutive_in_editor_and_click_the_submit() {
-	    array.invalidCodeSubmit();
+	    array.invalidCodeSubmit(7);
 	}
-	@Then("The user see an error message {string} for Max Consecutive")
-	public void the_user_see_an_error_message_for_max_consecutive(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see an error message Error occurred during submission for Max Consecutive")
+	public void the_user_see_an_error_message_for_max_consecutive() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(7));
 	}
 	@When("The user write the valid code for Max Consecutive in Editor and Click the Submit")
 	public void the_user_write_the_valid_code_for_max_consecutive_in_editor_and_click_the_submit() {
-	    array.validCodeMaxConsecutiveOnes();
+	    array.validCodePracticeQuestions(6);
 	    array.submit();
 	}
-	@Then("The user see success message {string} for Max Consecutive")
-	public void the_user_see_success_message_for_max_consecutive(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see success message Submission Successful for Max Consecutive")
+	public void the_user_see_success_message_for_max_consecutive() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(6));
 	}
 	
 	@When("The user clicks the FindNumbers with Even Number of Digits link")
@@ -218,38 +204,40 @@ public class Array_SD {
 	}
 	@When("The user write the invalid code for Find Numbers with Even Number of Digits in Editor and Click the Run")
 	public void the_user_write_the_invalid_code_for_find_numbers_with_even_number_of_digits_in_editor_and_click_the_run() {
-	    array.invalidPythonCode();
+	    array.invalidPythonCode(9);
 	}
 	@Then("The user should able to see an error message in alert window for Find Numbers with Even Number of Digits")
 	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_find_numbers_with_even_number_of_digits() {
 		String alertText= array.alertMessage();
-		Assert.assertNotNull(alertText);
+		Assert.assertEquals(alertText,array.expectedOutputFromExcel(9));
 	}
 	@When("The user write the valid code for Find Numbers with Even Number of Digits in Editor and Click the Run")
 	public void the_user_write_the_valid_code_for_find_numbers_with_even_number_of_digits_in_editor_and_click_the_run() {
-	   array.validCodeEvenNumberofDigits();
+	   array.validCodePracticeQuestions(8);
 	   array.run();
 	}
 	@Then("The user should able to see output in the console for Find Numbers with Even Number of Digits")
 	public void the_user_should_able_to_see_output_in_the_console_for_find_numbers_with_even_number_of_digits() {
-		Assert.assertEquals(array.output(),"3");
+		Double actual=Double.parseDouble(array.output());
+		Double expected=Double.parseDouble(array.expectedOutputFromExcel(8));
+		Assert.assertEquals(actual,expected);
 	}
 	@When("The user write the invalid code for Find Numbers with Even Number of Digits in Editor and Click the Submit")
 	public void the_user_write_the_invalid_code_for_find_numbers_with_even_number_of_digits_in_editor_and_click_the_submit() {
-	    array.invalidCodeSubmit();
+	    array.invalidCodeSubmit(11);
 	}
-	@Then("The user see an error message {string} for Find Numbers with Even Number of Digits")
-	public void the_user_see_an_error_message_for_find_numbers_with_even_number_of_digits(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see an error message Error occurred during submission for Find Numbers with Even Number of Digits")
+	public void the_user_see_an_error_message_for_find_numbers_with_even_number_of_digits() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(11));
 	}
 	@When("The user write the valid code for Find Numbers with Even Number of Digits in Editor and Click the Submit")
 	public void the_user_write_the_valid_code_for_find_numbers_with_even_number_of_digits_in_editor_and_click_the_submit() {
-	    array.validCodeEvenNumberofDigits();
+	    array.validCodePracticeQuestions(10);
 	    array.submit();
 	}
-	@Then("The user see success message {string} for Find Numbers with Even Number of Digits")
-	public void the_user_see_success_message_for_find_numbers_with_even_number_of_digits(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see success message Submission Successful for Find Numbers with Even Number of Digits")
+	public void the_user_see_success_message_for_find_numbers_with_even_number_of_digits() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(10));
 	}
 	@When("The user clicks the Squares of a Sorted Array link")
 	public void the_user_clicks_the_squares_of_a_sorted_array_link() {
@@ -263,38 +251,38 @@ public class Array_SD {
 	}
 	@When("The user write the invalid code for Squares of a Sorted Array in Editor and Click the Run")
 	public void the_user_write_the_invalid_code_for_squares_of_a_sorted_array_in_editor_and_click_the_run() {
-	    array.invalidPythonCode();
+	    array.invalidPythonCode(13);
 	}
 	@Then("The user should able to see an error message in alert window for Squares of a Sorted Array")
 	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_squares_of_a_sorted_array() {
 		String alertText= array.alertMessage();
-		Assert.assertNotNull(alertText);
+		Assert.assertEquals(alertText, array.expectedOutputFromExcel(13));
 	}
 	@When("The user write the valid code for Squares of a Sorted Array in Editor and Click the Run")
 	public void the_user_write_the_valid_code_for_squares_of_a_sorted_array_in_editor_and_click_the_run() {
-	   array.validCodeSquaresOfaSortedArray();
+	   array.validCodePracticeQuestions(12);
 	   array.run();
 	}
 	@Then("The user should able to see output in the console for Squares of a Sorted Array")
 	public void the_user_should_able_to_see_output_in_the_console_for_squares_of_a_sorted_array() {
-		Assert.assertEquals(array.output(),"[0, 1, 9, 16, 100]");
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(12));
 	}
 	@When("The user write the invalid code for Squares of a Sorted Array in Editor and Click the Submit")
 	public void the_user_write_the_invalid_code_for_squares_of_a_sorted_array_in_editor_and_click_the_submit() {
-	    array.invalidCodeSubmit();
+	    array.invalidCodeSubmit(15);
 	}
-	@Then("The user see an error message {string} for Squares of a Sorted Array")
-	public void the_user_see_an_error_message_for_squares_of_a_sorted_array(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see an error message Error occurred during submission for Squares of a Sorted Array")
+	public void the_user_see_an_error_message_for_squares_of_a_sorted_array() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(15));
 	}
 	@When("The user write the valid code for Squares of a Sorted Array in Editor and Click the Submit")
 	public void the_user_write_the_valid_code_for_squares_of_a_sorted_array_in_editor_and_click_the_submit() {
-	    array.validCodeSquaresOfaSortedArray();
+	    array.validCodePracticeQuestions(14);
 	    array.submit();
 	}
-	@Then("The user see success message {string} for Squares of a Sorted Array")
-	public void the_user_see_success_message_for_squares_of_a_sorted_array(String string) {
-		Assert.assertEquals(array.output(),string);
+	@Then("The user see success message Submission Successful for Squares of a Sorted Array")
+	public void the_user_see_success_message_for_squares_of_a_sorted_array() {
+		Assert.assertEquals(array.output(),array.expectedOutputFromExcel(14));
 	}
 	@When("The user clicks the Arrays Using List button")
 	public void the_user_clicks_the_arrays_using_list_button() {
