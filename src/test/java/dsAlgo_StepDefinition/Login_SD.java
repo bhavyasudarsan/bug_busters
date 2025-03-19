@@ -144,17 +144,14 @@ public class Login_SD {
  @When("User logs in with data from Excel {string} and {int} for Login")
  public void login_user_logs_in_with_data_from_excel_for_row(String SheetName, int RowNo) throws IOException {
      List<Object[]> loginData = ExcelReader.readExcelData(SheetName);
-     int index = 1;
-     for (Object[] row : loginData) { 
-    	 if (index == RowNo)
-    	 {
-	         username = (String) row[0];
-	         password = (String) row[1];
-	         expectedResult = (String) row[2];         
-	         performLogin(username, password, expectedResult);
-    	 }
-         index++;
-     }
+     if (RowNo <= loginData.size()) 
+     {
+    	    Object[] row = loginData.get(RowNo-1); // Access the desired row directly
+    	    username = (String) row[0];
+    	    password = (String) row[1];
+    	    expectedResult = (String) row[2];    	    
+    	    performLogin(username, password, expectedResult);
+     }      
  }
 
  @Then("User should see the either Log in Success or Failure")
