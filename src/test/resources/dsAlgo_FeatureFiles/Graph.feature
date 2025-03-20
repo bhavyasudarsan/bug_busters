@@ -84,5 +84,3 @@ Examples:
        		
 | SheetName4 | RowNumber4 |  
 | Editor     | 2          |
-    
-    
