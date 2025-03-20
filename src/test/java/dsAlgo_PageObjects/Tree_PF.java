@@ -25,11 +25,6 @@ public class Tree_PF {
 	public Tree_PF() {
 		driver = DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
-		try {
-			treeData = ExcelReader.readExcelData("Editor");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@FindBy(xpath = "//a[@href='tree']")
@@ -97,8 +92,13 @@ public class Tree_PF {
 		run.click();
 	}
 
-	public void pythonCodeFromExcel(int row) {
+	public void pythonCodeFromExcel(String sheetname,int row) {
 		Actions actions = new Actions(driver);
+		try {
+			treeData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Object[] objArray = treeData.get(row);
 		String pythonCode = (String) objArray[0];
 		actions.moveToElement(tryEditor).click().sendKeys(pythonCode).build().perform();
@@ -111,7 +111,12 @@ public class Tree_PF {
 		return alertMessage;
 	}
 
-	public String expectedOutputFromExcel(int row) {
+	public String expectedOutputFromExcel(String sheetname,int row) {
+		try {
+			treeData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Object[] objArray = treeData.get(row);
 		String output = (String) objArray[1];
 		return output;

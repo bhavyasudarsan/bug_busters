@@ -26,11 +26,6 @@ public class Array_PF {
 	public Array_PF() {
 		driver = DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
-		try {
-			arrayData = ExcelReader.readExcelData("Array");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@FindBy(xpath = "//a[@href='array']")
@@ -68,7 +63,7 @@ public class Array_PF {
 	WebElement applicationsofArray;
 
 	public void arrayGetStarted() {
-		wait.until(ExpectedConditions.visibilityOf(arrayGetStarted)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(arrayGetStarted)).click();
 	}
 
 	public void arraysInPython() {
@@ -92,23 +87,41 @@ public class Array_PF {
 		return alertMessage;
 	}
 
-	public void invalidPythonCode(int row) {
+	public void invalidPythonCode(String sheetname,int row) {
 		Actions actions = new Actions(driver);
+		try {
+			arrayData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		Object[] objArray = arrayData.get(row);
 		String invalidInput = (String) objArray[1];
 		actions.moveToElement(tryEditor).click().sendKeys(invalidInput).build().perform();
 		run();
 	}
 
-	public void validPythonCode(int row) {
+	public void validPythonCode(String sheetname,int row) {
 		Actions actions = new Actions(driver);
+		try {
+			arrayData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		Object[] objArray = arrayData.get(row);
 		String validInput = (String) objArray[1];
 		actions.moveToElement(tryEditor).click().sendKeys(validInput).build().perform();
 		run();
 	}
 
-	public String expectedOutputFromExcel(int row) {
+	public String expectedOutputFromExcel(String sheetname,int row) {
+		try {
+			arrayData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		Object[] objArray = arrayData.get(row);
 		String output = (String) objArray[2];
 		return output;
@@ -156,8 +169,9 @@ public class Array_PF {
 		wait.until(ExpectedConditions.visibilityOf(applicationsofArray)).click();
 	}
 
-	public void validCodePracticeQuestions(int row) {
+	public void validCodePracticeQuestions(String sheetname,int row) {
 		try {
+			arrayData = ExcelReader.readExcelData(sheetname);
 			Object[] objArray = arrayData.get(row);
 			String codeFromExcel = (String) objArray[1];
 			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
@@ -167,7 +181,12 @@ public class Array_PF {
 
 	}
 
-	public void invalidCodeSubmit(int row) {
+	public void invalidCodeSubmit(String sheetname,int row) {
+		try {
+			arrayData = ExcelReader.readExcelData(sheetname);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Actions actions = new Actions(driver);
 		Object[] objArray = arrayData.get(row);
 		String codeFromExcel = (String) objArray[1];
