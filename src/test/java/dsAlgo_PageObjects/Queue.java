@@ -67,14 +67,6 @@ public class Queue {
 			return driver.getTitle();
 	 }
 	 
-	 public void openHome() {
-		 driver.get("https://dsportalapp.herokuapp.com/home");
-	 }
-	 
-	 public void openLogin() {
-		 driver.get("https://dsportalapp.herokuapp.com/login");
-	 }
-	 
 	 public void SetUserName(String uName) {
 	  inputUsername.clear();
 	  inputUsername.sendKeys(uName);
