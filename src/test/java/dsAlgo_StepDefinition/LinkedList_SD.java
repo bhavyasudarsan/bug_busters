@@ -30,7 +30,7 @@ public class LinkedList_SD {
 		List<Object[]> loginData = ExcelReader.readExcelData(Login);
 		Object[] objArray = loginData.get(1);
 		String username = (String) objArray[0];
-		String password = (String) objArray[1];
+		String password = (String) objArray[1];		
 		linkedList.username(username);
 		linkedList.password(password);
 	}

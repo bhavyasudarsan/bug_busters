@@ -1,6 +1,5 @@
 package dsAlgo_StepDefinition;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -48,62 +47,12 @@ public class Login_SD {
 	 login_PF.openLogin();
  }
 
- @When("The user clicks login button after leaving the {string} textbox and {string} textbox empty")
- public void the_user_clicks_login_button_after_leaving_the_textbox_and_textbox_empty(String string, String string2) {
-     // Write code here that turns the phrase above into concrete actions
-	 login_PF.ClickBtnLogin();
- }
-
- @Then("The error message {string} appears below Username textbox in Login page")
- public void the_error_message_appears_below_username_textbox(String string) {
-	// Write code here that turns the phrase above into concrete actions 		
-		String ValidationMsg = login_PF.getValidationMessage(login_PF.inputUsername);
-		Assert.assertEquals(string, ValidationMsg);
- }
- 
-@When("The user clicks login button after entering the {string} and leaves {string} textbox empty")
- public void the_user_clicks_login_button_after_entering_the_and_leaves_textbox_empty(String string, String string2) {
-     // Write code here that turns the phrase above into concrete actions
-	 login_PF.SetUserName(string);
-	 login_PF.ClickBtnLogin();
-      
- }
-
- @Then("The error message {string} appears below Password textbox in Login page")
- public void the_error_message_appears_below_password_textbox(String string) {
-     // Write code here that turns the phrase above into concrete actions
-	 String ValidationMsg = login_PF.getValidationMessage(login_PF.inputPassword);
-	 Assert.assertEquals(string, ValidationMsg); 
- }
- 
- @When("The user clicks login button after entering the Password only")
- public void the_user_clicks_login_button_after_entering_the_password_only() {
-     // Write code here that turns the phrase above into concrete actions
-	 login_PF.SetPassword("password");
-	 login_PF.ClickBtnLogin();      
- }
-
  @When("The user clicks login button after entering invalid username and valid password")
  public void the_user_clicks_login_button_after_entering_invalid_username_and_valid_password() {
      // Write code here that turns the phrase above into concrete actions
 	 login_PF.SetUserName("Username");
 	 login_PF.SetPassword("password");
 	 login_PF.ClickBtnLogin();	 
- }
- 
- @Then("The user should able to see an error message {string}.")
- public void the_user_should_able_to_see_an_error_message(String string) {
-     // Write code here that turns the phrase above into concrete actions	 
-	 Assert.assertEquals(string, login_PF.getErrMsg());
-	
- }
- 
- @When("The user clicks login button after entering Valid username and Incorrect password")
- public void the_user_clicks_login_button_after_entering_valid_username_and_incorrect_password() {
-     // Write code here that turns the phrase above into concrete actions
-	 login_PF.SetUserName("bugbusters");
-	 login_PF.SetPassword("password");
-	 login_PF.ClickBtnLogin();		 
  }
 
  @When("The user clicks login button after entering valid username and valid password for Login")
@@ -114,10 +63,10 @@ public class Login_SD {
 	 login_PF.ClickBtnLogin();	 
  }
 
- @Then("The user should land in Data Structure Home Page with message {string} for Login")
- public void the_user_should_land_in_data_structure_home_page_with_message(String string) {
+ @Then("The user should see Login success message for Login")
+ public void the_user_should_land_in_data_structure_home_page_with_message() {
      // Write code here that turns the phrase above into concrete actions	 
-	 Assert.assertEquals(string, login_PF.getErrMsg()); 
+	 Assert.assertEquals(expectedResult, login_PF.getErrMsg()); 
 }
 
  @Given("The user is in the Home page after Sign in for Login")
@@ -142,7 +91,7 @@ public class Login_SD {
  }
  
  @When("User logs in with data from Excel {string} and {int} for Login")
- public void login_user_logs_in_with_data_from_excel_for_row(String SheetName, int RowNo) throws IOException {
+ public void login_user_logs_in_with_data_from_excel_for_row(String SheetName, Integer RowNo) throws IOException {
      List<Object[]> loginData = ExcelReader.readExcelData(SheetName);
      if (RowNo <= loginData.size()) 
      {
@@ -154,7 +103,7 @@ public class Login_SD {
      }      
  }
 
- @Then("User should see the either Log in Success or Failure")
+ @Then("The error or validation message appears after Login button clicked")
  public void login_user_should_see_the_either_log_in_sucess_or_failure() {
      // Assert the expected result
 	 if (expectedResult.equals("Please fill out this field."))
@@ -167,10 +116,10 @@ public class Login_SD {
 		 {
 			 Assert.assertEquals(expectedResult, login_PF.getValidationMessage(login_PF.inputPassword));
 		 }			 
-	 }
+	 }	 
 	 else
 	 {
-		 Assert.assertEquals(expectedResult, login_PF.getErrMsg());
+		 Assert.assertEquals(expectedResult, login_PF.getErrMsg()); 
 	 }
  }
 
