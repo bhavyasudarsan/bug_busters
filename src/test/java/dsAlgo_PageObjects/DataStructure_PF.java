@@ -29,12 +29,10 @@ public class DataStructure_PF {
 	@FindBy(id = "id_password")WebElement password;
 	@FindBy(xpath = "//*[@value='Login']")WebElement btnlogin;
 	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement loginStatus;
-	
 	@FindBy(xpath = "//a[@href='data-structures-introduction']")WebElement data_structureGetSatrted;
 	@FindBy(xpath = "//a[@href='/data-structures-introduction/practice']")WebElement practiceQuestion;
 	@FindBy(xpath = "//a[@href='time-complexity']")WebElement timeComplexity;
 	@FindBy(linkText="Try here>>>")WebElement timeComplexityTryhere;
-	
 	@FindBy(xpath = "//div[@class='CodeMirror-code']")WebElement textEditor;
 	@FindBy(xpath = "//pre[@id='output']")WebElement console;
 	@FindBy(xpath = "//button[text()='Run']")WebElement runButton;

@@ -1,43 +1,23 @@
 package dsAlgo_StepDefinition;
 
+import io.cucumber.core.logging.LoggerFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.io.IOException;
 import java.util.List;
 import org.testng.Assert;
+import ch.qos.logback.classic.Logger;
 import dsAlgo_PageObjects.DataStructure_PF;
 import dsAlgo_Utilities.ExcelReader;
 
 public class DataStructure_SD {
 	
 	DataStructure_PF data_strcture_PF = new DataStructure_PF();
+	//private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
 	
-	@Given("user is in login page")
-	public void user_is_in_login_page() {
-		
-		data_strcture_PF.getStart();
-		data_strcture_PF.signIn();
-	}
-	
-	@When("User enter username and password from Excel test_data.xlsx sheet {string}")
-	public void user_enter_username_and_password_from_excel_test_data_xlsx_sheet(String Login) throws IOException {
-	   
-		List<Object[]> loginData = ExcelReader.readExcelData(Login);
-		
-		Object[] objArray = loginData.get(1);
-		
-		String username = (String) objArray[0];
-		String password = (String) objArray[1];
-		
-		data_strcture_PF.enterCredentials(username,password);
-	}
-
-	@When("User clicks on Login button")
-	public void user_clicks_on_login_button() {
-		
-		data_strcture_PF.clickLogin();
-	}
+	String expectedResult;
+	String inputText;
 	
 	@Given("The user is in the Home page after Sign in")
 	public void the_user_is_in_the_home_page_after_sign_in()  {
@@ -50,7 +30,6 @@ public class DataStructure_SD {
 	public void the_user_clicks_the_get_started_button_in_data_structure_page(){
 	
 		data_strcture_PF.data_structureGetSatrted();	
-	
 	}
 	
 	@Then("The user be directed to {string} Page")
@@ -96,7 +75,6 @@ public class DataStructure_SD {
 		System.out.println("\n You are on practice question page \n");
 	}
 	
-	
 	@Given("The user is in the Time Complexity page")
 	public void the_user_is_in_the_time_complexity_page()  {
 		
@@ -122,117 +100,46 @@ public class DataStructure_SD {
 		data_strcture_PF.timeComplexity(); 
 		data_strcture_PF.timeComplexityTryhere();
 	}
-	@When("The user clicks the Run button without entering the code in the Editor")
-	public void the_user_clicks_the_run_button_without_entering_the_code_in_the_editor()  {
-		
-		data_strcture_PF.textEditorWithNoData();
-	}
-	@Then("The user should able to see an error message")
-	public void the_user_should_able_to_see_an_error_message() {
-		
-		Assert.assertEquals(data_strcture_PF.alertMessage(), "Enter code in Try editor box");
-		System.out.println("\n You are on Try Editor page \n");
-		System.out.println("Error message not populated");
-	}
 	
-	@When("The user write the invalid code in Editor and click the Run button")
-	public void the_user_write_the_invalid_code_in_editor_and_click_the_run_button() {
+	@When("The user clicks the Run button by entering invalid code from {string} and {int} for tryEditor page")
+	public void the_user_clicks_the_run_button_by_entering_invalid_code_from_and_for_try_editor_page(String SheetName, Integer RowNo) throws IOException {
 	   
-		data_strcture_PF.textEditorWithInvalidData();
+		List<Object[]> registerData = ExcelReader.readExcelData(SheetName);
+	     if (RowNo <= registerData.size()) 
+	     {
+	    	    Object[] row = registerData.get(RowNo-1); // Access the desired row directly
+	    	    inputText = (String) row[0];
+	    	    expectedResult = (String) row[1];  
+	    	    
+	    	    data_strcture_PF.inputEditor(inputText);
+	            data_strcture_PF.runBtnClick();
+	     }  
 	}
 
-	@Then("The user should able to see an {string} message in alert window")
-	public void the_user_should_able_to_see_an_message_in_alert_window(String string) {
-		
-		Assert.assertEquals(data_strcture_PF.alertMessage(), "NameError: name 'hi' is not defined on line 1");
+	@Then("The user should able to see an error message in alert window for tryEditor page")
+	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_try_editor_page() {
+	 
+		Assert.assertEquals(expectedResult,data_strcture_PF.alertMessage());	
 	}
 
-	@When("The user write the valid code in Editor and click the Run button")
-	public void the_user_write_the_valid_code_in_editor_and_click_the_run_button() {
-	    
-		data_strcture_PF.textEditorWithValiddData();
-	}
-
-	@Then("The user should able to see output in the console")
-	public void the_user_should_able_to_see_output_in_the_console() {
+	@When("The user clicks the Run button by entering valid code from {string} and {int} for tryEditor page")
+	public void the_user_clicks_the_run_button_by_entering_valid_code_from_and_for_try_editor_page(String SheetName, Integer RowNo) throws IOException {
 	   
-		Assert.assertEquals("Hello", data_strcture_PF.getStatusTextEditor());
-	}
-	
-	@When("The user clicks the Run button without entering the code in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_clicks_the_run_button_without_entering_the_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
-		
-		List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
-		
-        Object[] code=excelValue.get(3);
-        
-        String   emptyCode=(String) code[0];
-        
-        data_strcture_PF.inputEditor(emptyCode);
-        data_strcture_PF.runBtnClick();
-	   
+		List<Object[]> registerData = ExcelReader.readExcelData(SheetName);
+	     if (RowNo <= registerData.size()) 
+	     {
+	    	    Object[] row = registerData.get(RowNo-1); // Access the desired row directly
+	    	    inputText = (String) row[0];
+	    	    expectedResult = (String) row[1];  
+	    	    data_strcture_PF.inputEditor(inputText);
+	            data_strcture_PF.runBtnClick();
+	     } 
 	}
 
-	@Then("The user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_should_able_to_see_an_error_message_in_alert_window_without_entering_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
+	@Then("The user should able to see output in the console for tryEditor page")
+	public void the_user_should_able_to_see_output_in_the_console_for_try_editor_page() {
 	  
-		 List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
-		 
-			Object[] message=excelValue.get(3);
-			String expectedAlert = (String) message[1];
-			
-			System.out.println("expectedAlert"+expectedAlert);
-			Assert.assertEquals(expectedAlert,data_strcture_PF.alertMessage());
+		System.out.println(data_strcture_PF.console());
+		Assert.assertEquals(expectedResult,data_strcture_PF.console());	
 	}
-
-	@When("The user clicks the Run button by entering invalid code  in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_clicks_the_run_button_by_entering_invalid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
-	   
-		 List<Object[]> excelValue = ExcelReader.readExcelData(Editor);
-		 
-         Object[] code = excelValue.get(2);
-         String   invalidCode = (String) code[0];
-         
-         data_strcture_PF.inputEditor(invalidCode);
-         data_strcture_PF.runBtnClick();
-	}
-
-	@Then("The user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_should_able_to_see_an_error_message_in_alert_window_by_entering_invalid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
-	  
-		 List<Object[]> excelValue = ExcelReader.readExcelData(Editor);
-		 
-			Object[] message = excelValue.get(2);
-			String expectedAlert = (String) message[1];
-			
-			System.out.println("expectedAlert"+expectedAlert);
-			Assert.assertEquals(expectedAlert,data_strcture_PF.alertMessage());	
-	}
-	
-	@When("The user clicks the Run button by entering valid code  in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_clicks_the_run_button_by_entering_valid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
-	   
-		List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
-		 
-        Object[] code=excelValue.get(1);
-        String   validCode=(String) code[0];
-        
-        System.out.println("validCode"+validCode);
-        
-        data_strcture_PF.inputEditor(validCode);
-        data_strcture_PF.runBtnClick();
-	}
-
-	@Then("The user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet {string}")
-	public void the_user_should_able_to_see_output_in_alert_window_by_entering_valid_code_in_the_editor_from_excel_test_data_xlsx_sheet(String Editor) throws IOException {
-	  
-		List<Object[]> excelValue=ExcelReader.readExcelData(Editor);
-		
-		Object[] message = excelValue.get(1);
-		String expectedOutput = (String) message[1];
-		
-		Assert.assertEquals(expectedOutput,data_strcture_PF.console());
-	}
-	
-	
 }

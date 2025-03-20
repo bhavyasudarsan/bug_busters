@@ -31,6 +31,7 @@ public class Register_PF {
 	@FindBy(xpath = "//*[@value='Register']")WebElement btnRegister;
 	
 	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement registerStatus;
+	//div[@class="alert alert-primary"]
 	
 	@FindBy(xpath = "//a[@href='/login']")WebElement SignInlink;
 	@FindBy(xpath = "//div[@id='navbarCollapse']/div[1]")
@@ -71,11 +72,20 @@ public class Register_PF {
 	}
 	public void clickRegister() {
 		
-		btnRegister.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(btnRegister)).click();
 	}
-	public String getStatus() {    // Warning message for textfield
+	public String getStatus() {    // Alert message for invalid registration
 
-		return registerStatus.getText();
+		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(registerStatus)).click();
+		
+		
+	String msg=	registerStatus.getText();
+		return msg;
+		
+		
 	}
 	public void SigninlinkIn() {
 		
