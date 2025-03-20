@@ -10,38 +10,12 @@ import io.cucumber.java.en.When;
 
 public class Tree_SD {
 	 
-	Tree_PF tree;
+	Tree_PF tree=  new Tree_PF();
 	
-	@Given("Tree user is in login page")
-	public void tree_user_is_in_login_page() {
-		tree =  new Tree_PF(); 
-		tree.getStart();
-		tree.signIn();
-	}
-
-	@When("Tree user enters Username as {string} and Password as {string}")
-	public void tree_user_enters_username_as_and_password_as(String username, String password) {
-		System.out.println("User Name: "+ username);
-		System.out.println("Password: "+ password);
-		
-		tree.enterCredentials(username, password);
-	}
-
-	@When("Tree user clicks on Login button")
-	public void tree_user_clicks_on_login_button() {
-		 tree.clickLogin();
-	}
-
-	@Then("Tree user should see the Home page on successful login status {string}")
-	public void tree_user_should_see_the_home_page_on_successful_login_status(String expectedStatus) {
-		Assert.assertEquals(tree.getStatus(), expectedStatus);
-	    System.out.println("Login passed");
-	}
-
 	@Given("The user is in the Tree page after Sign in")
 	public void the_user_is_in_the_tree_page_after_sign_in() {
 		 tree.treeGetStarted();
-		System.out.println("User is in Tree page");
+		
 	}
 
 	@When("The user clicks the Overview of Trees button")
@@ -77,30 +51,21 @@ public class Tree_SD {
 	    tree.tryHere();
 	}
 
-	@When("The tree user clicks the Run button without entering the code in the Editor")
-	public void the_tree_user_clicks_the_run_button_without_entering_the_code_in_the_editor() {
-	    tree.run();
+	@When("The user writes invalid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_writes_invalid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-
-	@Then("The tree user should able to see an error message in the alert window")
-	public void the_tree_user_should_able_to_see_an_error_message_in_the_alert_window() {
-		String alertText= tree.alertMessage();
-		Assert.assertNotNull(alertText);
+	@Then("The user see an error message in alert window as per {string} and {int} for Tree")
+	public void the_user_see_an_error_message_in_alert_window_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(sheetname,row));
 	}
-
-	@When("The tree user write invalid python code in the Editor and click Run button")
-	public void the_tree_user_write_invalid_python_code_in_the_editor_and_click_run_button() {
-	    tree.invalidPythonCode();  
+	@When("The user write the valid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_write_the_valid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-
-	@When("The tree user write valid python code in the Editor and click Run button")
-	public void the_tree_user_write_valid_python_code_in_the_editor_and_click_run_button() {
-		tree.validPythonCode();	
-	}
-
-	@Then("The tree user should able to see output in the console")
-	public void the_tree_user_should_able_to_see_output_in_the_console() {
-	   Assert.assertNotNull(tree.output());
+	@Then("The user should able to see output in the console as per {string} and {int} for Tree")
+	public void the_user_should_able_to_see_output_in_the_console_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(sheetname,row));
 	}
 	
 	@When("The user clicks the Terminologies button")
