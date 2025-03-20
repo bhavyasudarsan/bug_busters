@@ -51,36 +51,21 @@ public class Tree_SD {
 	    tree.tryHere();
 	}
 
-	@When("The tree user clicks the Run button without entering the code in the Editor")
-	public void the_tree_user_clicks_the_run_button_without_entering_the_code_in_the_editor() {
-	    tree.run();
+	@When("The user writes invalid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_writes_invalid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-
-	@Then("The tree user should able to see an error message in the alert window")
-	public void the_tree_user_should_able_to_see_an_error_message_in_the_alert_window() {
-		
-		Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(3));
+	@Then("The user see an error message in alert window as per {string} and {int} for Tree")
+	public void the_user_see_an_error_message_in_alert_window_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(sheetname,row));
 	}
-
-	@When("The tree user write invalid python code in the Editor and click Run button")
-	public void the_tree_user_write_invalid_python_code_in_the_editor_and_click_run_button() {
-	    tree.pythonCodeFromExcel(2);
+	@When("The user write the valid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_write_the_valid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-	
-	@Then("The tree user should able to see an error message in the alert window for invalid code")
-	public void the_tree_user_should_able_to_see_an_error_message_in_alert_window_for_invalid_code() { 
-	   Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(2));
-	}
-
-	@When("The tree user write valid python code in the Editor and click Run button")
-	public void the_tree_user_write_valid_python_code_in_the_editor_and_click_run_button() {
-		tree.pythonCodeFromExcel(1);
-	}
-
-	@Then("The tree user should able to see output in the console")
-	public void the_tree_user_should_able_to_see_output_in_the_console() {
-		
-		 Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(1));
+	@Then("The user should able to see output in the console as per {string} and {int} for Tree")
+	public void the_user_should_able_to_see_output_in_the_console_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(sheetname,row));
 	}
 	
 	@When("The user clicks the Terminologies button")
