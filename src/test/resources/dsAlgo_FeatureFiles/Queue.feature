@@ -1,5 +1,5 @@
 @Queue
-Feature: Queue 
+Feature: Testing the Queue Module in dsAlgo portal
 
   Background: User launches the dsAlgo application
 	Given User is in login page
