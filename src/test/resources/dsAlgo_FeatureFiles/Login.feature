@@ -11,8 +11,7 @@ Given The user is on the DS Algo Sign in Page for Login
 When User logs in with data from Excel "<SheetName>" and <RowNumber> for Login
 Then The error or validation message appears after Login button clicked
     
-Examples:
-		
+Examples:		
 |SheetName|RowNumber|
 |  Login  | 1       |
 |  Login  | 3       |
@@ -21,13 +20,12 @@ Examples:
                  
 Scenario Outline: Verify that user able to land on Home page after entering valid Username and Password fields
 Given The user is on the DS Algo Sign in Page for Login
-When User logs in with data from Excel "<SheetName1>" and <RowNumber1> for Login
+When User logs in with data from Excel "<SheetName>" and <RowNumber> for Login
 Then The user should see Login success message for Login
  
-Examples:
-		
-|SheetName1|RowNumber1|
-|  Login   | 2        |
+Examples:		
+|SheetName|RowNumber|
+|  Login  | 2       |
       
 Scenario: Verify that user able to sign out successfully
 Given The user is in the Home page after Sign in for Login
