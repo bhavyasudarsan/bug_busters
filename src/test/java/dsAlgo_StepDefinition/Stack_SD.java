@@ -25,7 +25,7 @@ public class Stack_SD {
 
 	@Given("User is redirct the Home page for Stack")
 	public void user_is_redirct_the_home_page_for_stack() {
-		stack.currentURL();
+		configReader.getHomeUrl();
 		stack.statusMessage();
 	}
 

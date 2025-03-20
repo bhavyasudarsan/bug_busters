@@ -124,12 +124,12 @@ public class HomePage {
 	}
 
 	public void stackClick() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", stackToSelect);
 		wait.until(ExpectedConditions.elementToBeClickable(stackToSelect)).click();
 	}
 	public void dataStructureClick() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", stackToSelect);
 		wait.until(ExpectedConditions.elementToBeClickable(dataStructureToSelect)).click();
 	}
@@ -152,8 +152,8 @@ public class HomePage {
 		wait.until(ExpectedConditions.elementToBeClickable(queueToSelect)).click();
 	}
 
-	public void messageDisplayed() {
-		warningMessage.getText();
+	public String messageDisplayed() {
+		 return warningMessage.getText();
 	}
 	public void home() {
 		driver.get("https://dsportalapp.herokuapp.com/home");
