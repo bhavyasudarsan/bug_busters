@@ -5,46 +5,46 @@ Given The user is in the Home page
 When The user clicks Register link on the Home page
 Then The user should be land to "Registration" page
 
-#Scenario: Verify that user able to land on login page
-#Given The user is on the user registration page  
-#When The user clicks Sign in link on the Registration page
-#Then The user should see the "Login" Page
-#
-#Scenario: Verify that user able to see warning message while selecting "Arrays" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Arrays" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
-#
-#Scenario: Verify that user able to see warning message while selecting "Linked List" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Linked List" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
-#
-#Scenario: Verify that user able to see warning message while selecting "Stack" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Stack" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
-#
-#Scenario: Verify that user able to see warning message while selecting "Queue" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Queue" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
-#
-#Scenario: Verify that user able to see warning message while selecting "Tree" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Tree" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
-#
-#Scenario: Verify that user able to see warning message while selecting "Graph" from the drop down without Sign in
-#Given The user is on the user registration page  
-#When The user selects "Graph" from the drop down without Sign in.
-#Then The user should able to see an warning message "You are not logged in" 
-#And land on the "NumpyNinja" page
+Scenario: Verify that user able to land on login page
+Given The user is on the user registration page  
+When The user clicks Sign in link on the Registration page
+Then The user should see the "Login" Page
+
+Scenario: Verify that user able to see warning message while selecting "Arrays" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Arrays" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
+
+Scenario: Verify that user able to see warning message while selecting "Linked List" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Linked List" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
+
+Scenario: Verify that user able to see warning message while selecting "Stack" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Stack" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
+
+Scenario: Verify that user able to see warning message while selecting "Queue" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Queue" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
+
+Scenario: Verify that user able to see warning message while selecting "Tree" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Tree" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
+
+Scenario: Verify that user able to see warning message while selecting "Graph" from the drop down without Sign in
+Given The user is on the user registration page  
+When The user selects "Graph" from the drop down without Sign in.
+Then The user should able to see an warning message "You are not logged in" 
+And land on the "NumpyNinja" page
 
 Scenario Outline: Verify that user receives error message for all invalid fields during Register
 When The user register with data from Excel "<SheetName>" and <RowNumber> for Register
