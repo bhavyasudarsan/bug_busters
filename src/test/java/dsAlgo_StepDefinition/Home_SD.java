@@ -64,14 +64,11 @@ public class Home_SD {
 		int actualCount = homePage.getDropdownOptionsCount();
 		List<String> actualOptionsText = homePage.getDropdownOptionsText();
 
-		// Get the expected options list from the step argument
 		List<String> expectedOptions = homePage.getExpectedOptionsList(optionList);
 
-		// Assertion: Check if the actual count of options matches the expected count
 		assertEquals("The number of dropdown options does not match the expected count", expectedCount.intValue(),
 				actualCount);
 
-		// Assertion: Check if the actual options match the expected options
 		for (int i = 0; i < actualOptionsText.size(); i++) {
 			String actualOptionText = actualOptionsText.get(i).trim();
 			String expectedOptionText = expectedOptions.get(i).trim();
@@ -90,9 +87,12 @@ public class Home_SD {
 			homePage.linkedListClick();
 			break;
 
+		case "Data Structures-Introduction":
+			homePage.dataStructureClick();
+			break;
 		case "Stack":
 			homePage.stackClick();
-			break;
+			break;		
 		case "Queue":
 			homePage.queueClick();
 			break;

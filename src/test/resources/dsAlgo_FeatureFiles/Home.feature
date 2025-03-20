@@ -57,6 +57,11 @@ Feature: dsAlgo
     Given The user at the Homepage
     When The user selects "Graph" from the drop down without Sign in.
     Then The user should able to see an warning message "You are not logged in"
+     @tag9
+  Scenario: Verify that user able to see warning message while selecting "Data Structures-Introduction" from the drop down without Sign in
+    Given The user at the Homepage
+    When The user selects "Data Structures-Introduction" from the drop down without Sign in.
+    Then The user should able to see an warning message "You are not logged in"
 
   @tag10
   Scenario: Verify that user able to see warning message on clicking "Get Started" buttons of "Data Structures-Introduction" on the home page without Sign in

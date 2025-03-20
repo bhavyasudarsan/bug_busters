@@ -7,22 +7,20 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dsAlgo_DriverFactory.DriverFactory;
-
 public class ConfigReader {
 
-	Properties properties;
-	
-    private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
+	public static ThreadLocal<Properties> property= new ThreadLocal<Properties>();
 
+	private static final Logger logger = LoggerFactory.getLogger(ConfigReader.class);
 
 	public ConfigReader() {
-		properties = new Properties();
+	Properties	properties = new Properties();
 		try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
 			if (input == null) {
 				throw new FileNotFoundException("config.properties file not found in resources");
 			}
 			properties.load(input);
+			property.set(properties);
 			logger.info("Config properties loaded");
 		} catch (Exception e) {
 			logger.error("Config not found: " + e.getMessage());
@@ -30,19 +28,33 @@ public class ConfigReader {
 	}
 
 	public String getUsername() {
-		return properties.getProperty("username");
+		return property.get().getProperty("username");
 	}
 
 	public String getPassword() {
-		return properties.getProperty("password");
+		return property.get().getProperty("password");
 	}
 
 	public String getBrowser() {
-		return properties.getProperty("browser");
+		return property.get().getProperty("browser");
+	}
+
+	public void setBrowser(String value) {
+		property.get().setProperty("browser", value);
 	}
 
 	public String getUrl() {
-		return properties.getProperty("url");
+		return property.get().getProperty("url");
+
+	}
+	
+	public String getHomeUrl() {
+		return property.get().getProperty("Homeurl");
+
+	}
+	
+	public String getLoginUrl() {
+		return property.get().getProperty("Loginurl");
 
 	}
 
