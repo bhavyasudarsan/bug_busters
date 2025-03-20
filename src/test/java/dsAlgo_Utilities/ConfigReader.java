@@ -47,5 +47,15 @@ public class ConfigReader {
 		return property.get().getProperty("url");
 
 	}
+	
+	public String getHomeUrl() {
+		return property.get().getProperty("Homeurl");
+
+	}
+	
+	public String getLoginUrl() {
+		return property.get().getProperty("Loginurl");
+
+	}
 
 }

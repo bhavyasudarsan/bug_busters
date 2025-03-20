@@ -111,14 +111,6 @@ public class Graph {
 		 wait.until(ExpectedConditions.visibilityOf(btnRun)).click();
 	 }
 	 
-	 public void openHome() {
-		 driver.get("https://dsportalapp.herokuapp.com/home");
-	 }
-	 
-	 public void openLogin() {
-		 driver.get("https://dsportalapp.herokuapp.com/login");
-	 }
-	 
 	 public String AlertMsg() {
 		 return driver.switchTo().alert().getText();
 	 }

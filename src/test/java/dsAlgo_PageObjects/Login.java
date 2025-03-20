@@ -13,10 +13,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dsAlgo_DriverFactory.DriverFactory;
+import dsAlgo_Utilities.ConfigReader;
 
 public class Login {
 	WebDriver driver;
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	ConfigReader configReader = new ConfigReader();
 	
 	 public Login ()
 	 {
@@ -50,11 +52,11 @@ public class Login {
 	 
 	   
 	 public void openHome() {
-		 driver.get("https://dsportalapp.herokuapp.com/home");
+		 driver.get(configReader.getHomeUrl());
 	 }
 	 
 	 public void openLogin() {
-		 driver.get("https://dsportalapp.herokuapp.com/login");
+		 driver.get(configReader.getLoginUrl());
 	 }
 	 
 	 public String getTitle() {
