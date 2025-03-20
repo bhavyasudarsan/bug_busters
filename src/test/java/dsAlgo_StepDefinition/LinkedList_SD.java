@@ -230,4 +230,5 @@ public class LinkedList_SD {
 	public void user_should_be_able_to_see_the_result_for_linked_list() {
 		Assert.assertEquals(expectedOutput, linkedList.console());
 	}
+
 }
