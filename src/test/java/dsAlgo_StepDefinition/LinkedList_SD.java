@@ -17,7 +17,7 @@ import io.cucumber.java.en.When;
 public class LinkedList_SD {
 
 	private static final Logger logger = LoggerFactory.getLogger(LinkedList_SD.class);
-    ConfigReader configReader = new ConfigReader();
+	ConfigReader configReader = new ConfigReader();
 
 	LinkedList linkedList = new LinkedList();
 	String expectedOutput;
@@ -138,6 +138,7 @@ public class LinkedList_SD {
 
 		case "Deletion":
 			Assert.assertEquals("Deletion", linkedList.getTitleDeletionLink());
+			break;
 		}
 
 	}
@@ -148,8 +149,8 @@ public class LinkedList_SD {
 		linkedList.clickIntrodcution();
 	}
 
-	@When("User clicks {string} button in {string} page for LinkedList")
-	public void user_clicks_button_in_page_for_linked_list(String string, String string2) {
+	@When("User clicks Try Here button in {string} page for LinkedList")
+	public void user_clicks_button_in_page_for_linked_list(String string) {
 		linkedList.tryHereBtnClick();
 	}
 
@@ -158,10 +159,11 @@ public class LinkedList_SD {
 			String string) {
 		Assert.assertEquals(string, linkedList.runBtnText());
 	}
-	@Given("User is on the {string} page for {string} LinkedList")
-	public void user_is_on_the_page_for_linked_list(String string, String string2) {
+
+	@Given("User is on the try Editor page for {string} for LinkedList")
+	public void user_is_on_the_try_editor_page_for_linked_list(String string) {
 		linkedList.clcikGetStartedLinkedListBtn();
-		switch (string2) {
+		switch (string) {
 		case "Introduction":
 			linkedList.clickIntrodcution();
 			break;
@@ -196,8 +198,10 @@ public class LinkedList_SD {
 		linkedList.tryHereBtnClick();
 		linkedList.tryEditorPage();
 	}
+
 	@When("User clicks the Run Button by entering invalid data from {string} and {int} for LinkedList")
-	public void user_clicks_the_run_button_by_entering_invalid_data_from_and_for_linked_list(String sheetName, Integer int1) throws IOException {
+	public void user_clicks_the_run_button_by_entering_invalid_data_from_and_for_linked_list(String sheetName,
+			Integer int1) throws IOException {
 		List<Object[]> input = ExcelReader.readExcelData(sheetName);
 		Object[] code = input.get(int1 - 1);
 		String inputCode = (String) code[0];
@@ -212,7 +216,8 @@ public class LinkedList_SD {
 	}
 
 	@When("User clicks the Run Button by entering valid data from {string} and {int} for LinkedList")
-	public void user_clicks_the_run_button_by_entering_valid_data_from_and_for_linked_list(String sheetName, Integer int1) throws IOException {
+	public void user_clicks_the_run_button_by_entering_valid_data_from_and_for_linked_list(String sheetName,
+			Integer int1) throws IOException {
 		List<Object[]> input = ExcelReader.readExcelData(sheetName);
 		Object[] code = input.get(int1 - 1);
 		String inputCode = (String) code[0];
@@ -225,70 +230,4 @@ public class LinkedList_SD {
 	public void user_should_be_able_to_see_the_result_for_linked_list() {
 		Assert.assertEquals(expectedOutput, linkedList.console());
 	}
-	@Given("LinkedUser is in the Linked List page")
-	public void linked_user_is_in_the_linked_list_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.getTitleLinked();
-	}
-
-	@Given("LinkedUser is on the Creating Linked LIst page")
-	public void linked_user_is_on_the_creating_linked_l_ist_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.creatingLinkedListClick();
-		linkedList.getTitleCreatingLinkedList();
-	}
-
-	@When("LinkedUser clicks {string}  button in  Creating Linked LIst page")
-	public void linked_user_clicks_button_in_creating_linked_l_ist_page(String string) {
-		linkedList.tryHereBtnClick();
-	}
-
-	@Then("LinkedUser should be redirected to a page having a try Editor with a {string} button to test")
-	public void linked_user_should_be_redirected_to_a_page_having_a_try_editor_with_a_button_to_test(String tryEditor) {
-		Assert.assertEquals(tryEditor, linkedList.runBtnText());
-	}
-
-	@Given("LinkedUser is on the Types of Linked List page")
-	public void linked_user_is_on_the_types_of_linked_list_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.typeOfLinkListinkClick();
-		linkedList.getTitleTypeOfLinked();
-	}
-
-	@Given("LinkedUser is on the Implement Linked List in Python page")
-	public void linked_user_is_on_the_implement_linked_list_in_python_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.implimentLinkedListClick();
-		linkedList.getTitleImplimentLinked();
-	}
-
-	@When("LinkedUser clicks {string}  button in  Implement Linked List in Python page")
-	public void linked_user_clicks_button_in_implement_linked_list_in_python_page(String string) {
-		linkedList.tryHereBtnClick();
-	}
-
-	@Given("LinkedUser is on the Traversal page")
-	public void linked_user_is_on_the_traversal_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.traversalClick();
-		linkedList.getTitleTraversal();
-	}
-
-	@Given("LinkedUser is on the Insertion page")
-	public void linked_user_is_on_the_insertion_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-		linkedList.insertionClick();
-		linkedList.getTitleInsertionLink();
-	}
-
-	@Given("LinkedUser is on the Linked List page")
-	public void linked_user_is_on_the_linked_list_page() {
-		linkedList.clcikGetStartedLinkedListBtn();
-	}
-
-	@When("LinkedUser clicks {string}  button in  Insertion page")
-	public void linked_user_clicks_button_in_insertion_page(String string) {
-		linkedList.tryHereBtnClick();
-	}
-
 }

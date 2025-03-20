@@ -33,7 +33,7 @@ Feature: Testing the Linked List Module in dsAlgo portal
 
   Scenario Outline: Verify that user is able to navigate to Try Editor page for corresponding page
     Given User is on "<Page1>" page for LinkedList
-    When User clicks "Try Here" button in "<Page1>" page for LinkedList
+    When User clicks Try Here button in "<Page1>" page for LinkedList
     Then User should be redirected to a page having a try Editor with a "Run" button to test for LinkedList
 
     Examples: 
@@ -47,7 +47,7 @@ Feature: Testing the Linked List Module in dsAlgo portal
       | Deletion                        |
 
   Scenario Outline: Verify that user receives error when click on Run button with invalid code for each page
-    Given User is on the "Editor" page for "<PageName>" LinkedList
+    Given User is on the try Editor page for "<PageName>" for LinkedList
     When User clicks the Run Button by entering invalid data from "<sheetName>" and <rowNumber> for LinkedList
     Then User should be able to see the error for LinkedList
 
@@ -69,7 +69,7 @@ Feature: Testing the Linked List Module in dsAlgo portal
       | Deletion                        | Editor    |         3 |
 
   Scenario Outline: Verify that user receives output when click on Run button with valid code for each page
-    Given User is on the "Editor" page for "<PageName>" LinkedList
+    Given User is on the try Editor page for "<PageName>" for LinkedList
     When User clicks the Run Button by entering valid data from "<sheetName>" and <rowNumber> for LinkedList
     Then User should be able to see the result for LinkedList
 
