@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,17 +12,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import junit.framework.Assert;
+import dsAlgo_DriverFactory.DriverFactory;
 
 public class HomePage {
 	public static final String optionList = null;
-
+    WebDriver driver;
 	WebDriverWait wait;
-
-	public HomePage(WebDriver driver) {
+	
+	public HomePage() {
+	    driver=  DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
-		this.driver = driver; // Store the WebDriver instance
-
 	}
 
 	@FindBy(xpath = "//button[@class='btn']")
@@ -70,8 +68,6 @@ public class HomePage {
 	@FindBy(xpath = "//h5[text()='Linked List']/../a")
 	WebElement graphBtn;
 
-	private WebDriver driver;
-
 	public void clickStBtn() {
 		btn.click();
 	}
@@ -82,7 +78,6 @@ public class HomePage {
 
 	public String registerBtn() {
 		String p = register.getText();
-		System.out.println("p" + p);
 		return p;
 	}
 
@@ -97,7 +92,6 @@ public class HomePage {
 	public int getDropdownOptionsCount() {
 		return options.size();
 	}
-
 	public List<String> getDropdownOptionsText() {
 		List<String> optionText = new ArrayList<>();
 		for (WebElement option : options) {
@@ -153,22 +147,17 @@ public class HomePage {
 
 	public void messageDisplayed() {
 		warningMessage.getText();
-//	 System.out.println("ppp"+warningMessage.getText());
-
 	}
-
 	public void home() {
 		driver.get("https://dsportalapp.herokuapp.com/home");
 	}
 
 	public void clickArrayBtn() {
 		arrayBtn.click();
-
 	}
 
-	public void clickDataSttructureBtn() {
+	public void clickDataStructureBtn() {
 		dataSttructureBtn.click();
-
 	}
 
 	public void clickStackBtn() {
@@ -185,5 +174,12 @@ public class HomePage {
 
 	public void clickGraphBtn() {
 		graphBtn.click();
+	}
+	public void getUrl() {
+		driver.get("https://dsportalapp.herokuapp.com/");
+	}
+
+	public void currentURL() {
+		driver.getCurrentUrl();
 	}
 }
