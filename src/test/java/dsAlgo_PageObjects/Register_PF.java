@@ -27,11 +27,8 @@ public class Register_PF {
 	@FindBy(id = "id_username")WebElement userNameElement;
 	@FindBy(id = "id_password1")WebElement password1Element;
 	@FindBy(id = "id_password2")WebElement password2Element;
-	
 	@FindBy(xpath = "//*[@value='Register']")WebElement btnRegister;
-	
 	@FindBy(xpath = "//*[@class ='alert alert-primary']")WebElement registerStatus;
-	
 	@FindBy(xpath = "//a[@href='/login']")WebElement SignInlink;
 	@FindBy(xpath = "//div[@id='navbarCollapse']/div[1]")
 	WebElement dropDown;
@@ -54,7 +51,6 @@ public class Register_PF {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(getStart)).click();
-		//getStart.click();
 	}
 
 	public void registerlink() {
@@ -67,27 +63,27 @@ public class Register_PF {
 		userNameElement.sendKeys(loginName);
 		password1Element.sendKeys(loginPassword1);
 		password2Element.sendKeys(loginPassword2);
-		
 	}
 	public void clickRegister() {
 		
-		btnRegister.click();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(btnRegister)).click();
 	}
-	public String getStatus() {    // Warning message for textfield
+	public String getStatus() throws InterruptedException {    // Alert message for invalid registration
 
-		return registerStatus.getText();
+		String msg=	registerStatus.getText();
+		Thread.sleep(1000);
+		return msg;
 	}
 	public void SigninlinkIn() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		SignInlink.click();
 	}
-	
 	public String alertMessage() {
 		
 		String alertMessage = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
-		
 		return alertMessage;
 	}
 	public String getValidationMessage() {
@@ -107,11 +103,6 @@ public class Register_PF {
 		
 		return driver.getTitle();
 	}
-	
-	public void openRegister() {
-		
-		 driver.get("https://dsportalapp.herokuapp.com/register");
-	 }
 	
 	public void dropDownClick() {
 		

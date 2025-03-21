@@ -1,11 +1,12 @@
 Feature: Data Structure
 
-Background: The user sign in to dsAlgo Portal
-Given user is in login page
+Background: User launches the dsAlgo application
+Given User is in login page
 When User enter username and password from Excel test_data.xlsx sheet "Login"
-And User clicks on Login button 
+And User clicks on Login button
 
-Scenario Outline: Verify that user is able to navigate to Data Structure page
+
+Scenario: Verify that user is able to navigate to Data Structure page
 Given The user is in the Home page after Sign in
 When The user clicks the Get Started button in Data Structure Page 
 Then The user be directed to "Data Structures-Introduction" Page
@@ -25,33 +26,25 @@ Given The user is in the Time Complexity page
 When The user clicks Try Here button
 Then The user should be redirected to a page having an "Assessment" with a Run button to test
 
-#Scenario: Verify that user receives error when click on Run button without entering code in Editor page
-#Given The user is in the tryEditor page
-#When The user clicks the Run button without entering the code in the Editor
-#Then The user should able to see an error message
-
-#Scenario: Verify that user receives error for invalid python code
-#Given The user is in the tryEditor page
-#When The user write the invalid code in Editor and click the Run button
-#Then The user should able to see an "NameError: name 'hi' is not defined on line 1" message in alert window
-
-#Scenario: Verify that user is able to see output for valid python code
-#Given The user is in the tryEditor page
-#When The user write the valid code in Editor and click the Run button
-#Then The user should able to see output in the console
-#
-Scenario: Verify that user receives error when click on Run button without entering code in Editor page
+Scenario Outline: Verify that user receives error for invalid python code for tryEditor page
 Given The user is in the tryEditor page
-When The user clicks the Run button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-Then The user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet "Editor"
+When The user clicks the Run button by entering invalid code from "<SheetName>" and <RowNumber> for tryEditor page
+Then The user should able to see an error message in alert window for tryEditor page
 
-Scenario: Verify that user receives error for invalid python code
-Given The user is in the tryEditor page
-When The user clicks the Run button by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-Then The user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+Examples:
+ 
+   |SheetName|RowNumber|
+   |  Editor  |1|
+   |  Editor  |3|
 
-Scenario: Verify that user is able to see output for valid python code
+Scenario Outline: Verify that user is able to see output for valid python code for tryEditor page
 Given The user is in the tryEditor page
-When The user clicks the Run button by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-Then The user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+When The user clicks the Run button by entering valid code from "<SheetName>" and <RowNumber> for tryEditor page
+Then The user should able to see output in the console for tryEditor page
+
+Examples:
+ 
+   |SheetName|RowNumber|
+   |  Editor  |2|
+  
 
