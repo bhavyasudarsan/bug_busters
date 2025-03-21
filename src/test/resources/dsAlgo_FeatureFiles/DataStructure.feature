@@ -5,6 +5,7 @@ Given User is in login page
 When User enter username and password from Excel test_data.xlsx sheet "Login"
 And User clicks on Login button
 
+
 Scenario: Verify that user is able to navigate to Data Structure page
 Given The user is in the Home page after Sign in
 When The user clicks the Get Started button in Data Structure Page 

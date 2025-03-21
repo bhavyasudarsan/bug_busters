@@ -41,40 +41,33 @@ public class DataStructure_PF {
 		
 		getStart.click();
 	}
-
 	public void signIn() {
 		
 		signIn.click();
 	}
-
 	public void enterCredentials(String loginName, String loginPassword) {
 
 		userName.sendKeys(loginName);
 		password.sendKeys(loginPassword);
 	}
-
 	public void clickLogin() {
 		
 		btnlogin.click();
 	}
-
 	public String getStatus() {
 
 		return loginStatus.getText();
 	}
-
 	public void data_structureGetSatrted() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(data_structureGetSatrted)).click();
 	}
-	
 	public void practiceQuestion() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(practiceQuestion)).click();
 	}
-
 	public void timeComplexity() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -82,14 +75,12 @@ public class DataStructure_PF {
 		js.executeScript("window.scrollBy(0,350)", "");
 		timeComplexity.click();
 	}
-	
 	public void timeComplexityTryhere() {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,600)", "");
 		timeComplexityTryhere.click();
 	}  
-	
 	public void textEditorWithNoData() {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -99,7 +90,6 @@ public class DataStructure_PF {
         actions.moveToElement(textEditor).click().sendKeys(" ").build().perform();
 		runButton.click();
 	}  
-	
 	public void textEditorWithInvalidData() {
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -122,39 +112,28 @@ public class DataStructure_PF {
 		
 		return console.getText();
 	}
-	
 	public String alertMessage() {
 		
 		String alertMessage = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
 		return alertMessage;
 	}
-	
 	public String getTitle() {
 		
-		return driver.getTitle();
-		
+		return driver.getTitle();	
 	}
-	
 	public void inputEditor(String code) {
 
 		Actions actions = new Actions(driver);
 		actions.moveToElement(textEditor).click().sendKeys(code).build().perform();
 	}
-	
 	public void runBtnClick() {
 		
 		runButton.click();
 	}
-	
 	public String console() {
 		
 		return console.getText();
-	}
-	public void openHomeScreen() {
-		
-		driver.get("https://dsportalapp.herokuapp.com/home");
-
 	}
 
 }

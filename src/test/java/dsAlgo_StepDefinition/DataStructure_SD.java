@@ -1,20 +1,20 @@
 package dsAlgo_StepDefinition;
 
-import io.cucumber.core.logging.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.io.IOException;
 import java.util.List;
 import org.testng.Assert;
-import ch.qos.logback.classic.Logger;
 import dsAlgo_PageObjects.DataStructure_PF;
 import dsAlgo_Utilities.ExcelReader;
 
 public class DataStructure_SD {
 	
 	DataStructure_PF data_strcture_PF = new DataStructure_PF();
-	//private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
+	private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
 	
 	String expectedResult;
 	String inputText;
@@ -22,8 +22,7 @@ public class DataStructure_SD {
 	@Given("The user is in the Home page after Sign in")
 	public void the_user_is_in_the_home_page_after_sign_in()  {
 		
-		data_strcture_PF.openHomeScreen();
-		System.out.println("\n User is on the Home Page\n ");
+		logger.info("You are on the Home page");
 	}
 	
 	@When("The user clicks the Get Started button in Data Structure Page")
@@ -36,7 +35,6 @@ public class DataStructure_SD {
 	public void the_user_be_directed_to_page(String string) {
 	 
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
-		System.out.println("\n You are on data structure page \n");
 	}
 	
 	@Given("The user is in the Data Structures page")
@@ -54,7 +52,6 @@ public class DataStructure_SD {
 	public void the_user_should_be_redirected_to_page(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
-		System.out.println("\n You are on time complexity page \n");
 	}
 	
 	@Given("The user is in the Time Complexity page of data structure")
@@ -72,7 +69,6 @@ public class DataStructure_SD {
 	public void the_user_should_see_the_redirected_to_page(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
-		System.out.println("\n You are on practice question page \n");
 	}
 	
 	@Given("The user is in the Time Complexity page")
@@ -90,7 +86,6 @@ public class DataStructure_SD {
 	public void the_user_should_be_redirected_to_a_page_having_an_with_a_run_button_to_test(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
-		System.out.println("\n You are on Try Editor page \n");
 	}
 	
 	@Given("The user is in the tryEditor page")
@@ -139,7 +134,6 @@ public class DataStructure_SD {
 	@Then("The user should able to see output in the console for tryEditor page")
 	public void the_user_should_able_to_see_output_in_the_console_for_try_editor_page() {
 	  
-		System.out.println(data_strcture_PF.console());
 		Assert.assertEquals(expectedResult,data_strcture_PF.console());	
 	}
 }

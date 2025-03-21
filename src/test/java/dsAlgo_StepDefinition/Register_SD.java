@@ -12,7 +12,6 @@ import dsAlgo_Utilities.ExcelReader;
 public class Register_SD {
 		
 		Register_PF register_PF ;
-		
 		String expectedResult;
 		String username;
 		String password1;
@@ -25,9 +24,7 @@ public class Register_SD {
 		@Given("The user is in the Home page")
 		public void The_user_is_in_the_Home_page() {
 		 
-			
 			register_PF.getStart();
-			//register_PF.registerlink();
 		}
 		@When("The user clicks Register link on the Home page")
 		public void the_user_clicks_register_link_on_the_home_page() {
@@ -38,7 +35,6 @@ public class Register_SD {
 		public void The_user_should_be_land_to_Registration_page(String string) {
 			
 			Assert.assertEquals(register_PF.getTitle(), string);
-			System.out.println("\n You are on registration page \n ");
 		}
 		@Given("The user is on the user registration page")
 		public void the_user_is_on_the_user_registration_page()  {
@@ -55,7 +51,6 @@ public class Register_SD {
 		public void the_user_should_see_the_Login_page(String string) {
 		 
 			Assert.assertEquals(register_PF.getTitle(), string);
-			System.out.println("\n You are on the Login page \n ");
 		}
 		@When("The user selects {string} from the drop down without Sign in.")
 		public void the_user_selects_from_the_drop_down_without_sign_in(String string) {
@@ -89,17 +84,15 @@ public class Register_SD {
 		}
 	
 		@Then("The user should able to see an warning message {string}")
-		public void the_user_should_able_to_see_an_warning_message(String string) {
+		public void the_user_should_able_to_see_an_warning_message(String string) throws InterruptedException {
 		
 			Assert.assertEquals(register_PF.getStatus(), string);
-			System.out.println("\n You are not logged in \n ");	
 		}
 	
 		@Then("land on the {string} page")
 		public void land_on_the_page(String NumpyNinja) {
 		  
 			Assert.assertEquals(register_PF.getTitle(), NumpyNinja);
-			System.out.println("\n You are on the Home page \n ");
 		}
 		
 		@When("The user register with data from Excel {string} and {int} for Register")
@@ -117,9 +110,9 @@ public class Register_SD {
 		     }  
 		}
 		@Then("The error or validation message appears after register button clicked")
-		public void the_error_or_validation_message_appears_after_register_button_clicked() {
+		public void the_error_or_validation_message_appears_after_register_button_clicked() throws InterruptedException {
 		  
-			if (expectedResult.equals("Please fill out this field."))
+			if (expectedResult.equals("Please fill in this field."))
 			 {
 				 if (username.equals(""))
 				 {
@@ -136,8 +129,6 @@ public class Register_SD {
 			 }
 			 else
 			 {
-				 System.out.println(expectedResult+"\n");
-				 System.out.println(register_PF.getStatus()+"\n");
 				 Assert.assertEquals(expectedResult,register_PF.getStatus());				 
 			 }
 		}
@@ -151,6 +142,7 @@ public class Register_SD {
    	    private void performRegister(String username, String password1, String password2,  String expectedResult) {
    	    	
    	    	//Implementation of the Login functionality.
+   	    	
    	    	register_PF.enterCredentials(username, password1, password2);
    	    	register_PF.clickRegister();
    	 } 
