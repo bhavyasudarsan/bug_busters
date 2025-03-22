@@ -5,12 +5,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.io.IOException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import dsAlgo_PageObjects.Register_PF;
 import dsAlgo_Utilities.ExcelReader;
 	
 public class Register_SD {
 		
+		private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
 		Register_PF register_PF ;
 		String expectedResult;
 		String username;
@@ -35,6 +38,7 @@ public class Register_SD {
 		public void The_user_should_be_land_to_Registration_page(String string) {
 			
 			Assert.assertEquals(register_PF.getTitle(), string);
+			logger.info("You are on the"+ string +"page");
 		}
 		@Given("The user is on the user registration page")
 		public void the_user_is_on_the_user_registration_page()  {
@@ -51,6 +55,7 @@ public class Register_SD {
 		public void the_user_should_see_the_Login_page(String string) {
 		 
 			Assert.assertEquals(register_PF.getTitle(), string);
+			logger.info("You are on the"+ string +"page");
 		}
 		@When("The user selects {string} from the drop down without Sign in.")
 		public void the_user_selects_from_the_drop_down_without_sign_in(String string) {
@@ -87,12 +92,14 @@ public class Register_SD {
 		public void the_user_should_able_to_see_an_warning_message(String string) throws InterruptedException {
 		
 			Assert.assertEquals(register_PF.getStatus(), string);
+			logger.info("You are on the"+ string +"page");
 		}
 	
 		@Then("land on the {string} page")
 		public void land_on_the_page(String NumpyNinja) {
 		  
 			Assert.assertEquals(register_PF.getTitle(), NumpyNinja);
+			logger.info("You are on the"+ NumpyNinja +"page");
 		}
 		
 		@When("The user register with data from Excel {string} and {int} for Register")
@@ -117,19 +124,23 @@ public class Register_SD {
 				 if (username.equals(""))
 				 {
 					 Assert.assertEquals(expectedResult, register_PF.getValidationMessage());
+					 logger.info(expectedResult);
 				 }
 				 else if (password1.equals(""))
 				 {
 					 Assert.assertEquals(expectedResult, register_PF.getValidationMessagePwd());
+					 logger.info(expectedResult);
 				 }	
 				 else 
 				 {
 					 Assert.assertEquals(expectedResult, register_PF.getValidationMessagePwd2());
+					 logger.info(expectedResult);
 				 }
 			 }
 			 else
 			 {
-				 Assert.assertEquals(expectedResult,register_PF.getStatus());				 
+				 Assert.assertEquals(expectedResult,register_PF.getStatus());		
+				 logger.info(expectedResult);
 			 }
 		}
 
@@ -137,6 +148,7 @@ public class Register_SD {
 		public void the_user_should_be_redirected_to_page_with_success_message(String string) {
 			
 			Assert.assertEquals(register_PF.getTitle(), "NumpyNinja");
+			logger.info("You are on the NumpyNinja page");
 		}
    	
    	    private void performRegister(String username, String password1, String password2,  String expectedResult) {

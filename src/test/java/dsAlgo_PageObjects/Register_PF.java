@@ -90,10 +90,12 @@ public class Register_PF {
 		
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", userNameElement);
     }
+	
 	public String getValidationMessagePwd() {
 		
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", password1Element);
     }
+	
 	public String getValidationMessagePwd2() {
 		
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", password2Element);
