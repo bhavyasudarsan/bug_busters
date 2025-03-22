@@ -71,6 +71,7 @@ public class Queue_SD{
 	    // Write code here that turns the phrase above into concrete actions
 		String msg = queue_PF.getTitle();		
 		Assert.assertEquals(string, msg);
+		logger.info("User is in the " + string + " Page");
 	}
 
 	@Given("The user is in the tryEditor page in {string} page for Queue")
@@ -86,6 +87,7 @@ public class Queue_SD{
 	    // Write code here that turns the phrase above into concrete actions
 		String alertMsg = queue_PF.AlertMsg();
 		Assert.assertTrue(alertMsg.contains("NameError:"));	
+		logger.info(alertMsg);
 		queue_PF.Alertaccept();		
 	}
 	
@@ -93,6 +95,7 @@ public class Queue_SD{
 	public void the_queue_user_should_able_to_see_output_in_the_console() {
 	    // Write code here that turns the phrase above into concrete actions		
 		Assert.assertEquals(expectedOutput, queue_PF.getOPMsg());
+		logger.info(expectedOutput);
 	}
 		
 	@Then("The user should be redirected to a page having an {string} Page for Queue")
