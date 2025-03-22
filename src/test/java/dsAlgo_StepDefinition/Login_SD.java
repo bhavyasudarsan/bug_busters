@@ -7,11 +7,13 @@ import org.junit.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import dsAlgo_PageObjects.Login;
 import dsAlgo_Utilities.ExcelReader;
 
 public class Login_SD {
-
+	private static final Logger logger = LoggerFactory.getLogger(Login_SD.class);
 	public Login login_PF;
 	String expectedResult;
 	String username;
@@ -24,7 +26,8 @@ public class Login_SD {
  @Given("The user is on the DS Algo Home Page for Login")
  public void the_user_is_on_the_ds_algo_home_page() {
      // Write code here that turns the phrase above into concrete actions
-		login_PF.openHome();		     
+		login_PF.openHome();	
+		logger.info("User is in the DS Algo Home Page");
  }
 
  @When("The user should click the Sign in link for Login")
@@ -38,13 +41,14 @@ public class Login_SD {
      // Write code here that turns the phrase above into concrete actions
 	 String loginPgTitle = login_PF.getTitle();
 	 Assert.assertEquals("Login", loginPgTitle);
-      
+	 logger.info("User is in the Sign in Page"); 
  }
 
  @Given("The user is on the DS Algo Sign in Page for Login")
  public void the_user_is_on_the_ds_algo_sign_in_page() {
      // Write code here that turns the phrase above into concrete actions
 	 login_PF.openLogin();
+	 logger.info("User is in the Sign in Page");
  }
 
  @When("The user clicks login button after entering invalid username and valid password")
@@ -67,6 +71,7 @@ public class Login_SD {
  public void the_user_should_land_in_data_structure_home_page_with_message() {
      // Write code here that turns the phrase above into concrete actions	 
 	 Assert.assertEquals(expectedResult, login_PF.getErrMsg()); 
+	 logger.info("Login Success");
 }
 
  @Given("The user is in the Home page after Sign in for Login")
@@ -87,7 +92,7 @@ public class Login_SD {
  @Then("The user should be redirected to home page with message {string}")
  public void the_user_should_be_redirected_to_home_page_with_message(String string) {
      // Write code here that turns the phrase above into concrete actions	
-	 Assert.assertEquals(string, login_PF.getErrMsg());
+	 Assert.assertEquals(string, login_PF.getErrMsg());	 
  }
  
  @When("User logs in with data from Excel {string} and {int} for Login")

@@ -40,7 +40,8 @@ public class Graph_SD {
 	public void the_user_be_directed_to_page(String string) {
 	    // Write code here that turns the phrase above into concrete actions		
 		String msg = graph_PF.getTitle();
-		Assert.assertEquals(string, msg);		
+		Assert.assertEquals(string, msg);
+		logger.info("User is in the " + string + " Page");
 	}
 	
 	@When("The user select Graph item from the drop down menu")
@@ -157,6 +158,7 @@ public class Graph_SD {
 	public void the_user_should_able_to_see_output_in_the_console() {
 	    // Write code here that turns the phrase above into concrete actions		
 		Assert.assertEquals(expectedOutput, graph_PF.getOPMsg());
+		logger.info(expectedOutput);
 	}
 	
 	@When("The user clicks the Run Button without entering the code in the Editor for Graph")
