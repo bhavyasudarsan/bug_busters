@@ -37,14 +37,6 @@ public class DataStructure_PF {
 	@FindBy(xpath = "//pre[@id='output']")WebElement console;
 	@FindBy(xpath = "//button[text()='Run']")WebElement runButton;
 
-	public void getStart() {
-		
-		getStart.click();
-	}
-	public void signIn() {
-		
-		signIn.click();
-	}
 	public void enterCredentials(String loginName, String loginPassword) {
 
 		userName.sendKeys(loginName);

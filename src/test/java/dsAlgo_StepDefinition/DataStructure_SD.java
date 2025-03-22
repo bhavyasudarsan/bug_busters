@@ -35,6 +35,7 @@ public class DataStructure_SD {
 	public void the_user_be_directed_to_page(String string) {
 	 
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
+		logger.info("You are on the Data Structure page");
 	}
 	
 	@Given("The user is in the Data Structures page")
@@ -52,6 +53,7 @@ public class DataStructure_SD {
 	public void the_user_should_be_redirected_to_page(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
+		logger.info("You are on the"+ string +"page");
 	}
 	
 	@Given("The user is in the Time Complexity page of data structure")
@@ -69,6 +71,7 @@ public class DataStructure_SD {
 	public void the_user_should_see_the_redirected_to_page(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
+		logger.info("You are on the"+ string +"page");
 	}
 	
 	@Given("The user is in the Time Complexity page")
@@ -86,6 +89,7 @@ public class DataStructure_SD {
 	public void the_user_should_be_redirected_to_a_page_having_an_with_a_run_button_to_test(String string) {
 		
 		Assert.assertEquals(data_strcture_PF.getTitle(), string);
+		logger.info("You are on the"+ string +"page");
 	}
 	
 	@Given("The user is in the tryEditor page")
@@ -114,7 +118,8 @@ public class DataStructure_SD {
 	@Then("The user should able to see an error message in alert window for tryEditor page")
 	public void the_user_should_able_to_see_an_error_message_in_alert_window_for_try_editor_page() {
 	 
-		Assert.assertEquals(expectedResult,data_strcture_PF.alertMessage());	
+		Assert.assertEquals(expectedResult,data_strcture_PF.alertMessage());
+		logger.info(expectedResult);
 	}
 
 	@When("The user clicks the Run button by entering valid code from {string} and {int} for tryEditor page")
@@ -135,5 +140,6 @@ public class DataStructure_SD {
 	public void the_user_should_able_to_see_output_in_the_console_for_try_editor_page() {
 	  
 		Assert.assertEquals(expectedResult,data_strcture_PF.console());	
+		logger.info(expectedResult);
 	}
 }

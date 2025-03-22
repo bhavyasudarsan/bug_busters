@@ -1,5 +1,6 @@
 Feature: Register 
 
+
 Background: User launches dsAlgo application
 Given The user is in the Home page
 When The user clicks Register link on the Home page
