@@ -1,136 +1,139 @@
 @Queue
-Feature: Queue 
+Feature: Testing the Queue Module in dsAlgo portal
 
-Background: The user sign in to dsAlgo Portal
-Given Queue User Launches DsAlgo portal 
+Background: User launches the dsAlgo application
+Given User is in login page
+When User enter username and password from Excel test_data.xlsx sheet "Login"
+And User clicks on Login button   
  
-    Scenario Outline: Verify that user is able to navigate to "Queue" page
-    Given The Queue user is in the Main page after Sign in
-    When The Queue user clicks the "Getting Started" button in Queue
-    Then The Queue user should land in "Queue"  
+Scenario: Verify that user is able to navigate to "Queue" page
+Given The user is in the Main page after Sign in for Queue
+When The user clicks the "Getting Started" button in Queue
+Then The user should land in Queue 
     
-    Scenario Outline: Verify that user is able to navigate to "Implementation of Queue in Python" page
-    Given The Queue user is in the "Queue" page
-    When The Queue user click "Implementation of Queue in Python" link
-    Then The Queue user should be redirected to "Implementation of Queue in Python" Page 
+Scenario: Verify that user is able to navigate to "Implementation of Queue in Python" page
+Given The user is in the "Queue" page for Queue
+When The user click "Implementation of Queue in Python" link for Queue
+Then The user should be redirected to "Implementation of Queue in Python" Page for Queue
     
-    Scenario Outline: Verify that user is able to navigate to "try Editor" page
-    Given The Queue user is in the "Implementation of Queue in Python" page
-    When The Queue user click "Try Here" button
-    Then The Queue user should be redirected to a page having an "try Editor" Page
+Scenario: Verify that user is able to navigate to "try Editor" page
+Given The user is in the "Implementation of Queue in Python" page for Queue
+When The user click "Try Here" button for Queue
+Then The user should be redirected to a page having an "try Editor" Page for Queue
+          
+Scenario Outline: Verify that user receives error for invalid python code
+Given The user is in the tryEditor page in "Implementation of Queue in Python" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see an error message in alert window for Queue     
     
-    Scenario Outline: Verify that user receives error when click on Run button without entering code
-    Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-    When The Queue user clicks the Run Button without entering the code in the Editor 
-    Then The Queue user should able to see an error message in alert window
-      
-    Scenario Outline: Verify that user receives error for invalid python code
-    Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-    When The Queue user write the invalid code in Editor and click the Run Button 
-    Then The Queue user should able to see an error message in alert window
+Examples:		
+| SheetName | RowNumber |
+| Editor    | 1         |    
+| Editor    | 3         |
+| Editor    | 4         |
     
-    Scenario Outline: Verify that user is able to see output for valid python code
-    Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-    When The Queue user write the valid code in Editor and click the Run Button 
-    Then The Queue user should able to see output in the console
+Scenario Outline: Verify that user is able to see output for valid python code
+Given The user is in the tryEditor page in "Implementation of Queue in Python" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see output in the console for Queue
     
-    Scenario Outline: Verify that user is able to navigate to "Implementation using collections.deque"  page
-    Given The Queue user is in the "Queue" page
-    When The Queue user click "Implementation using collections.deque" link 
-    Then The Queue user should be redirected to "Implementation using collections.deque" Page
+Examples:		
+| SheetName | RowNumber |  
+| Editor    | 2         |
     
-    Scenario Outline: Verify that user is able to navigate to "try Editor" page
-    Given The Queue user is in the "Implementation using collections.deque" page
-    When The Queue user click "Try Here" button
-    Then The Queue user should be redirected to a page having an "try Editor" Page
+Scenario: Verify that user is able to navigate to "Implementation using collections.deque" page
+Given The user is in the "Queue" page for Queue
+When The user click "Implementation using collections.deque" link for Queue
+Then The user should be redirected to "Implementation using collections.deque" Page for Queue
     
-    Scenario Outline: Verify that user receives error when click on Run button without entering code
-    Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-    When The Queue user clicks the Run Button without entering the code in the Editor 
-    Then The Queue user should able to see an error message in alert window
-      
-    Scenario Outline: Verify that user receives error for invalid python code
-    Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-    When The Queue user write the invalid code in Editor and click the Run Button
-    Then The Queue user should able to see an error message in alert window
+Scenario: Verify that user is able to navigate to "try Editor" page
+Given The user is in the "Implementation using collections.deque" page for Queue
+When The user click "Try Here" button for Queue
+Then The user should be redirected to a page having an "try Editor" Page for Queue
+          
+Scenario Outline: Verify that user receives error for invalid python code
+Given The user is in the tryEditor page in "Implementation using collections.deque" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see an error message in alert window for Queue
     
-    Scenario Outline: Verify that user is able to see output for valid python code
-    Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-    When The Queue user write the valid code in Editor and click the Run Button
-    Then The Queue user should able to see output in the console
+Examples:		
+| SheetName | RowNumber |
+| Editor    | 1         |    
+| Editor    | 3         |
+| Editor    | 4         |
     
-    Scenario Outline: Verify that user is able to navigate to "Implementation using array" page
-    Given The Queue user is in the "Queue" page
-    When The Queue user click "Implementation using array" link
-    Then The Queue user should be redirected to "Implementation using array" Page
+Scenario Outline: Verify that user is able to see output for valid python code
+Given The user is in the tryEditor page in "Implementation using collections.deque" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see output in the console for Queue
     
-    Scenario Outline: Verify that user is able to navigate to "try Editor" page
-    Given The Queue user is in the "Implementation using array" page
-    When The Queue user click "Try Here" button 
-    Then The Queue user should be redirected to a page having an "try Editor" Page
-      
-    Scenario Outline: Verify that user receives error when click on Run button without entering code
-    Given The Queue user is in the tryEditor page in "Implementation using array" page
-    When The Queue user clicks the Run Button without entering the code in the Editor 
-    Then The Queue user should able to see an error message in alert window
-      
-    Scenario Outline: Verify that user receives error for invalid python code
-    Given The Queue user is in the tryEditor page in "Implementation using array" page
-    When The Queue user write the invalid code in Editor and click the Run Button
-    Then The Queue user should able to see an error message in alert window
+Examples:		
+| SheetName | RowNumber |  
+| Editor    | 2         |
     
-    Scenario Outline: Verify that user is able to see output for valid python code
-    Given The Queue user is in the tryEditor page in "Implementation using array" page
-    When The Queue user write the valid code in Editor and click the Run Button
-    Then The Queue user should able to see output in the console
+Scenario: Verify that user is able to navigate to "Implementation using array" page
+Given The user is in the "Queue" page for Queue
+When The user click "Implementation using array" link for Queue
+Then The user should be redirected to "Implementation using array" Page for Queue
+    
+Scenario: Verify that user is able to navigate to "try Editor" page
+Given The user is in the "Implementation using array" page for Queue
+When The user click "Try Here" button for Queue
+Then The user should be redirected to a page having an "try Editor" Page for Queue
+        
+Scenario Outline: Verify that user receives error for invalid python code
+Given The user is in the tryEditor page in "Implementation using array" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see an error message in alert window for Queue
+    
+Examples:		
+| SheetName | RowNumber |
+| Editor    | 1         |    
+| Editor    | 3         |
+| Editor    | 4         |
+    
+Scenario Outline: Verify that user is able to see output for valid python code
+Given The user is in the tryEditor page in "Implementation using array" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see output in the console for Queue
+    
+Examples:		
+| SheetName | RowNumber |  
+| Editor    | 2         |
     
     
-    Scenario Outline: Verify that user is able to navigate to "Queue Operations" page
-    Given The Queue user is in the "Queue" page
-    When The Queue user click "Queue Operations" link 
-    Then The Queue user should be redirected to "Queue Operations" Page
+Scenario: Verify that user is able to navigate to "Queue Operations" page
+Given The user is in the "Queue" page for Queue
+When The user click "Queue Operations" link for Queue
+Then The user should be redirected to "Queue Operations" Page for Queue
     
-    Scenario Outline: Verify that user is able to navigate to "try Editor" page
-    Given The Queue user is in the "Queue Operations" page
-    When The Queue user click "Try Here" button
-    Then The Queue user should be redirected to a page having an "try Editor" Page
+Scenario: Verify that user is able to navigate to "try Editor" page
+Given The user is in the "Queue Operations" page for Queue
+When The user click "Try Here" button for Queue
+Then The user should be redirected to a page having an "try Editor" Page for Queue
+           
+Scenario Outline: Verify that user receives error for invalid python code
+Given The user is in the tryEditor page in "Queue Operations" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see an error message in alert window for Queue
     
-    Scenario Outline: Verify that user receives error when click on Run button without entering code
-    Given The Queue user is in the tryEditor page in "Queue Operations" page
-    When The Queue user clicks the Run Button without entering the code in the Editor 
-    Then The Queue user should able to see an error message in alert window
-       
-    Scenario Outline: Verify that user receives error for invalid python code
-    Given The Queue user is in the tryEditor page in "Queue Operations" page
-    When The Queue user write the invalid code in Editor and click the Run Button
-    Then The Queue user should able to see an error message in alert window
+Examples:		
+| SheetName | RowNumber |
+| Editor    | 1         |    
+| Editor    | 3         |
+| Editor    | 4         |
     
-    Scenario Outline: Verify that user is able to see output for valid python code
-    Given The Queue user is in the tryEditor page in "Queue Operations" page
-    When The Queue user write the valid code in Editor and click the Run Button
-    Then The Queue user should able to see output in the console
+Scenario Outline: Verify that user is able to see output for valid python code
+Given The user is in the tryEditor page in "Queue Operations" page for Queue
+When User enters data from Excel "<SheetName>" and <RowNumber> for Queue
+Then The user should able to see output in the console for Queue
     
-    Scenario Outline: Verify that user is able to navigate to "Practice Questions" page
-    Given The Queue user is in the "Queue" page
-    When The Queue user click "Practice Questions" link
-    Then The Queue user should be redirected to "Practice Questions" Page
+Examples:		
+| SheetName | RowNumber |  
+| Editor    | 2         |
     
-    Scenario: Data-Driven Editor Test cases for Implementation of Queue in Python
-      Given The Queue user is in the tryEditor page in "Implementation of Queue in Python" page
-      When Queue User enters data from Excel "Editor" in "Implementation of Queue in Python"
-      Then The Queue editor should display Expected Text
-     
-    Scenario: Data-Driven Editor Test cases for Implementation using collections.deque
-      Given The Queue user is in the tryEditor page in "Implementation using collections.deque" page
-      When Queue User enters data from Excel "Editor" in "Implementation using collections.deque"
-      Then The Queue editor should display Expected Text
-   
-    Scenario: Data-Driven Editor Test cases for Implementation using array
-      Given The Queue user is in the tryEditor page in "Implementation using array" page
-      When Queue User enters data from Excel "Editor" in "Implementation using array"
-      Then The Queue editor should display Expected Text
-   
-    Scenario: Data-Driven Editor Test cases for Queue Operations
-      Given The Queue user is in the tryEditor page in "Queue Operations" page
-      When Queue User enters data from Excel "Editor" in "Queue Operations"
-      Then The Queue editor should display Expected Text
+Scenario: Verify that user is able to navigate to "Practice Questions" page
+Given The user is in the "Queue" page for Queue
+When The user click "Practice Questions" link for Queue
+Then The user should be redirected to "Practice Questions" Page for Queue
+    

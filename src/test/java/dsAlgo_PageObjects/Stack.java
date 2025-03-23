@@ -1,19 +1,13 @@
 package dsAlgo_PageObjects;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import dsAlgo_DriverFactory.DriverFactory;
 
 public class Stack {
-	WebDriverWait wait;
 	WebDriver driver;
 
 	public Stack() {
@@ -85,7 +79,6 @@ public class Stack {
 	WebElement linkImplementation;
 	@FindBy(xpath = "//p[text()='Implementation']")
 	WebElement implementationPageIdentifier;
-
 	@FindBy(xpath = "//a[text()='Applications']")
 	WebElement linkApplication;
 	@FindBy(xpath = "//p[text()='Applications']")
@@ -161,19 +154,7 @@ public class Stack {
 	public String applicationPageIdentify() {
 		return applicationsPageIdentifier.getText();
 	}
-
-	public void tryEditorPage() {
-		driver.get("https://dsportalapp.herokuapp.com/tryEditor");
-	}
-
-	public void currentURL() {
-		driver.getCurrentUrl();
-	}
-
-	public void getUrl() {
-		driver.get("https://dsportalapp.herokuapp.com/");
-	}
-
+	
 	public String getTitle() {
 		return driver.getTitle();
 	}

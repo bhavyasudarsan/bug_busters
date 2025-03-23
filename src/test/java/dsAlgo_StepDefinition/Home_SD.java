@@ -1,77 +1,83 @@
 package dsAlgo_StepDefinition;
 
-import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
 import dsAlgo_PageObjects.HomePage;
+import dsAlgo_Utilities.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Home_SD {
-
+	private static final Logger logger = LoggerFactory.getLogger(LinkedList_SD.class);
+	ConfigReader configReader = new ConfigReader();
 	HomePage homePage = new HomePage();;
 
 	@Given("Browser is open")
 	public void browser_is_open() {
-		homePage.getUrl();
+		configReader.getUrl();
 	}
 
-	@When("Home user enter  the correct URL for Heroku app")
+	@When("The user enter  the correct URL for Heroku app")
 	public void the_user_enter_the_correct_url_for_heroku_app() {
-		homePage.currentURL();
+		configReader.getUrl();
+
 	}
 
-	@Then("Home User is at dsAlgo  app with {string} btn.")
-	public void user_is_at_ds_algo_app_with_get_start_button(String string) {
+	@Then("The user is at dsAlgo  app with {string} btn.")
+	public void the_user_is_at_ds_algo_app_with_btn(String string) {
 		Assert.assertEquals(string, homePage.clickStBtnString());
+		logger.info("User is at the dsAlgo Portal");
 	}
 
-	@Given("The Homepage user is on the DS Algo Portal")
+	@Given("The user is on the DS Algo Portal")
 	public void the_user_is_on_the_ds_algo_portal() {
-		homePage.currentURL();
+		configReader.getUrl();
+
 	}
 
-	@When("The Homepage user clicks the {string} button")
-	public void the_user_clicks_the_button(String string) {
+	@When("The user clicks the {string} button at Portal")
+	public void the_user_clicks_the_button_at_portal(String string) {
 		homePage.clickStBtn();
 	}
 
-	@Then("The Homepage user should be navigated to the Data Structure Introduction page, which displays the {string} and {string} links.")
+	@Then("The user should be navigated to the Data Structure Introduction page, which displays the {string} and {string} links.")
 	public void the_user_should_be_navigated_to_the_data_structure_introduction_page_which_displays_the_and_links(
 			String string, String string2) {
 		Assert.assertEquals(string, homePage.registerBtn());
 		Assert.assertEquals(string2, homePage.signInBtn());
+		logger.info("User is at the Data Structure Introduction Page");
 	}
 
-	@Given("The Homepage user is on the Homepage")
-	public void the_user_is_on_the_homepage() {
-		homePage.home();
+	@Given("The user at the Home")
+	public void the_user_at_the_home() {
+
+		configReader.getHomeUrl();
+		homePage.clickStBtn();
+		logger.info("User is at the Home Page");
+
 	}
 
-	@When("The Homepage user clicks the Data Structures dropdown")
-	public void the_user_clicks_the_data_structures_dropdown() {
+	@When("The user clicks the Data Structures dropdown at Home")
+	public void the_user_clicks_the_data_structures_dropdown_at_home() {
 		homePage.dropDownClick();
 	}
 
-	@Then("The Homepage user should able to see {int} options {string} in dropdown menu")
-	public void the_user_should_able_to_see_options_in_dropdown_menu(Integer expectedCount, String optionList) {
-
+	@Then("The  user should able to see {int} options {string} in dropdown menu at Home")
+	public void the_user_should_able_to_see_options_in_dropdown_menu_at_home(Integer expectedCount, String optionList) {
 		int actualCount = homePage.getDropdownOptionsCount();
 		List<String> actualOptionsText = homePage.getDropdownOptionsText();
 
-		// Get the expected options list from the step argument
 		List<String> expectedOptions = homePage.getExpectedOptionsList(optionList);
 
-		// Assertion: Check if the actual count of options matches the expected count
-		assertEquals("The number of dropdown options does not match the expected count", expectedCount.intValue(),
-				actualCount);
+		assertEquals(expectedCount.intValue(), actualCount,
+				"The number of dropdown options does not match the expected count");
 
-		// Assertion: Check if the actual options match the expected options
 		for (int i = 0; i < actualOptionsText.size(); i++) {
 			String actualOptionText = actualOptionsText.get(i).trim();
 			String expectedOptionText = expectedOptions.get(i).trim();
@@ -79,8 +85,15 @@ public class Home_SD {
 		}
 	}
 
-	@When("The user selects {string} from the drop down without Sign in.")
-	public void the_user_selects_from_the_drop_down_without_sign_in(String daraStructures) {
+	@Then("The user should able to see a warning message {string} at Home")
+	public void the_user_should_able_to_see_a_warning_message_at_home(String string) {
+		Assert.assertEquals(string, homePage.messageDisplayed());
+		logger.info("Warning Message appears: " + "You are not logged in");
+
+	}
+
+	@When("The user selects {string} from the drop down without Sign in at Home")
+	public void the_user_selects_from_the_drop_down_without_sign_in_at_home(String daraStructures) {
 		homePage.dropDownClick();
 		switch (daraStructures) {
 		case "Arrays":
@@ -107,18 +120,9 @@ public class Home_SD {
 		}
 	}
 
-	@Then("The user should able to see an warning message {string}")
-	public void the_user_should_able_to_see_an_warning_message(String string) {
-		homePage.messageDisplayed();
-	}
-
-	@Given("The user at the Homepage")
-	public void the_user_at_the_homepage() {
-		homePage.home();
-	}
-
-	@When("The user clicks {string} buttons of {string} on the homepage without Sign in")
-	public void the_user_clicks_buttons_of_on_the_homepage_without_sign_in(String butName, String dataStructureType) {
+	@When("The user clicks {string} buttons of {string} on the homepage without Sign in at Home")
+	public void the_user_clicks_buttons_of_on_the_homepage_without_sign_in_at_home(String butName,
+			String dataStructureType) {
 		switch (dataStructureType) {
 		case "Array":
 			homePage.clickArrayBtn();

@@ -7,187 +7,78 @@ Feature: Testing the Linked List Module in dsAlgo portal
     And User clicks on Login button
 
   Scenario: Verify that user is able to navigate to "Linked List" from dropdown
-    Given LinkedUser is on the Home page after signing in
-    When LinkedUser selects "Linked List" from the dropdown menu
-    Then LinkedUser  should be directed to the "Linked List" data structure page
+    Given User is redirct the Home page for LinkedList
+    When User selects "Linked List" from the "dropdownmenu" for LinkedList
+    Then User  should be directed to the "Linked List" data structure page for LinkedList
 
   Scenario: Verify that user is able to navigate to "Linked List" by using start button
-    Given LinkedUser is redirct the Home page
-    When LinkedUser clicks the "Linked List" button in the Linked List panel
-    Then LinkedUser  should be directed to the "Linked List" data structure page
+    Given User is redirct the Home page for LinkedList
+    When User clicks the "Linked List" button in the Linked List panel for LinkedList
+    Then User  should be directed to the "Linked List" data structure page for LinkedList
 
-  Scenario: Verify that user is able to navigate to "Introduction" page
-    Given LinkedUser is on the Linked List page after signing in
-    And LinkedUser selects "Linked List" from the dropdown menu
-    When LinkedUser clicks the "Introduction" button
-    Then LinkedUser should be redirected to the "Introduction" page
+  Scenario Outline: Verify that user is able to navigate to respective page for LinkedList
+    Given User is on the Linked List page after signing in
+    When Userr clicks the "<pageName>" button for LinkedList
+    Then User should be redirected to the respective page for LinkedList
 
-  Scenario: Verify that user is able to navigate to "Try Editor" page for "Introduction" page
-    Given LinkedUser is on "Introduction" page
-    When LinkedUser clicks "Try Here" button in "Introduction" page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
+    Examples: 
+      | PageName                        |
+      | Introduction                    |
+      | Creating Linked List            |
+      | Types of Linked List            |
+      | Implement Linked List in Python |
+      | Traversal                       |
+      | Insertion                       |
+      | Deletion                        |
 
-  Scenario: Verify that user receives error when click on Run button without entering code for "Introduction" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
+  Scenario Outline: Verify that user is able to navigate to Try Editor page for corresponding page
+    Given User is on "<Page1>" page for LinkedList
+    When User clicks Try Here button in "<Page1>" page for LinkedList
+    Then User should be redirected to a page having a try Editor with a "Run" button to test for LinkedList
 
-  Scenario: Verify that user is able to navigate to "Try Editor" page for "Introduction" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Examples: 
+      | Page1                           |
+      | Introduction                    |
+      | Creating Linked List            |
+      | Types of Linked List            |
+      | Implement Linked List in Python |
+      | Traversal                       |
+      | Insertion                       |
+      | Deletion                        |
 
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+  Scenario Outline: Verify that user receives error when click on Run button with invalid code for each page
+    Given User is on the try Editor page for "<PageName>" for LinkedList
+    When User clicks the Run Button by entering invalid data from "<sheetName>" and <rowNumber> for LinkedList
+    Then User should be able to see the error for LinkedList
 
-  Scenario: Verify that user is able to navigate to "Creating Linked LIst"  page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks "Creating Linked LIst" button
-    Then LinkedUser should be redirected to Creating Linked LIst page
+    Examples: 
+      | PageName                        | sheetName | rowNumber |
+      | Introduction                    | Editor    |         4 |
+      | Introduction                    | Editor    |         3 |
+      | Creating Linked List            | Editor    |         4 |
+      | Creating Linked List            | Editor    |         3 |
+      | Types of Linked List            | Editor    |         4 |
+      | Types of Linked List            | Editor    |         3 |
+      | Implement Linked List in Python | Editor    |         4 |
+      | Implement Linked List in Python | Editor    |         3 |
+      | Traversal                       | Editor    |         4 |
+      | Traversal                       | Editor    |         3 |
+      | Insertion                       | Editor    |         4 |
+      | Insertion                       | Editor    |         3 |
+      | Deletion                        | Editor    |         4 |
+      | Deletion                        | Editor    |         3 |
 
-  Scenario: Verify that user is able to navigate to "try Editor" page for "Creating Linked LIst" page
-    Given LinkedUser is on the Creating Linked LIst page
-    When LinkedUser clicks "Try Here"  button in  Creating Linked LIst page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
+  Scenario Outline: Verify that user receives output when click on Run button with valid code for each page
+    Given User is on the try Editor page for "<PageName>" for LinkedList
+    When User clicks the Run Button by entering valid data from "<sheetName>" and <rowNumber> for LinkedList
+    Then User should be able to see the result for LinkedList
 
-  Scenario: Verify that user receives error when click on Run button without entering code for Creating Linked LIst page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Creating Linked LIst" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to navigate to "Types of Linked List" page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks Types of Linked List button
-    Then LinkedUser should be redirected to Types of Linked List page
-
-  Scenario: Verify that user is able to navigate to "try Editor" page for "Types of Linked List" page
-    Given LinkedUser is on the Creating Linked LIst page
-    When LinkedUser clicks "Try Here"  button in  Creating Linked LIst page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for "Types of Linked List" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Types of Linked List" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to navigate to "Implement Linked List in Python" page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks Implement Linked List in Python button
-    Then LinkedUser should be redirected to Implement Linked List in Python page
-
-  Scenario: Verify that user is able to navigate to "try Editor" page for Implement Linked List in Python page
-    Given LinkedUser is on the Implement Linked List in Python page
-    When LinkedUser clicks "Try Here"  button in  Implement Linked List in Python page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for "Implement Linked List in Python" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-
-  Scenario: Verify that user is able to navigate to "Traversal" page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks Traversal button
-    Then LinkedIser should be redirected to Traversal page
-
-  Scenario: Verify that user is able to navigate to "try Editor" page for Traversal page
-    Given LinkedUser is on the Traversal page
-    When LinkedUser clicks "Try Here"  button in  Implement Linked List in Python page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for "Implement Linked List in Python" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Implement Linked List in Python" page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-
-  Scenario: Verify that user is able to navigate to "Insertion" page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks Insertion button
-    Then LinkedIser should be redirected to Insertion page
-
-  Scenario: Verify that user is able to navigate to "try Editor" page for Insertion page
-    Given LinkedUser is on the Insertion page
-    When LinkedUser clicks "Try Here"  button in  Insertion page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for Insertion page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for Insertion page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Linkedlist"
-
-  Scenario: Verify that user is able to navigate to "Deletion" page
-    Given LinkedUser is in the Linked List page
-    When LinkedUser clicks Deletion button
-    Then LinkedIser should be redirected to Deletion page
-
-  Scenario: Verify that user is able to navigate to "try Editor" page for Insertion page
-    Given LinkedUser is on the Insertion page
-    When LinkedUser clicks "Try Here"  button in  Insertion page
-    Then LinkedUser should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for Insertion page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should  able to see error message in alert window without entering value from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for Insertion page
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see an error message in alert window  by entering invalid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given LinkedUser is on the "try Editor" page
-    When LinkedUser clicks the Run Button by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then LinkedUser should able to see hello in the console by entering valid python code in the Editor from Excel test_data.xlsx sheet "Editor"
+    Examples: 
+      | PageName                        | sheetName | rowNumber |
+      | Introduction                    | Editor    |         2 |
+      | Creating Linked List            | Editor    |         2 |
+      | Types of Linked List            | Editor    |         2 |
+      | Implement Linked List in Python | Editor    |         2 |
+      | Traversal                       | Editor    |         2 |
+      | Insertion                       | Editor    |         2 |
+      | Deletion                        | Editor    |         2 |

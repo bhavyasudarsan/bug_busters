@@ -7,86 +7,62 @@ Feature: Testing the Stack Module in dsAlgo portal
     And User clicks on Login button
 
   Scenario: Verify that user is able to navigate to Stack from dropdown
-    Given Stack user is on the Home page after signing in
-    When Stack user selects Stack from the dropdown menu
-    Then Stack user should be directed to the Stack data structure page
+    Given User is redirct the Home page for Stack
+    When User selects Stack from the dropdownmenu for Stack
+    Then User should be directed to the Stack data structure page for Stack
 
   Scenario: Verify that user is able to navigate to Stack by using start button
-    Given Stack user is redirct the Home page
-    When Stack user clicks the Stack button in the Stack panel
-    Then Stack user should be directed to the Stack data structure page
+    Given User is redirct the Home page for Stack
+    When User clicks the Stack button in the Stack panel
+    Then User should be directed to the Stack data structure page for Stack
 
-  Scenario: Verify that user is able to navigate to "Operations in Stack"  page
-    Given The Stack user is in the Stack page
-    When The Stack user clicks Operations in Stack button
-    Then The  Stack user be directed to Operations in Stack Page
+  Scenario Outline: Verify that user is able to navigate to corresponding pages
+    Given The user is in the Stack page for Stack
+    When The user clicks "<PageName>" button for Stack
+    Then The user be directed to "<PageName>" for Stack
+
+    Examples: 
+      | PageName            |
+      | Operations in Stack |
+      | Implementation      |
+      | Applications        |
 
   Scenario: Verify that user is able to navigate to "try Editor" page for "Operations in Stack" page
-    Given The stack user is in the "Operations in Stack" page
-    When The stack user clicks "Try Here" button in Stack page
-    Then The stack user should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for "Operations in Stack" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Operations in Stack" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to navigate to "Implementation"  page
-    Given The Stack user is in the Stack page
-    When The Stack user clicks Implementation in Stack button
-    Then The  Stack user be directed to Implementation  Page
+    Given The user is in the "Operations in Stack" page for Stack
+    When The user clicks "Try Here" button in Stack page for Stack
+    Then The user should be redirected to a page having a try Editor with a "Run" button to test for Stack
 
   Scenario: Verify that user is able to navigate to "try Editor" page for "Implementation" page
-    Given The stack user is in the "Implementation" page
-    When The stack user clicks "Try Here" button in Stack page
-    Then The stack user should be redirected to a page having a try Editor with a "Run" button to test
-
-  Scenario: Verify that user receives error when click on Run button without entering code for "Implementation" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user receives error for invalid python code for "Implementation" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to see output for valid python code
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-
-  Scenario: Verify that user is able to navigate to "Applications"  page
-    Given The Stack user is in the Stack page
-    When The Stack user clicks Applications in Stack button
-    Then The  Stack user be directed to Applications  Page
+    Given The user is in the "Implementation" page for Stack
+    When The user clicks "Try Here" button in Stack page for Stack
+    Then The user should be redirected to a page having a try Editor with a "Run" button to test for Stack
 
   Scenario: Verify that user is able to navigate to "try Editor" page for "Applications" page
-    Given The stack user is in the "Applications" page
-    When The stack user clicks "Try Here" button in Stack page
-    Then The stack user should be redirected to a page having a try Editor with a "Run" button to test
+    Given The user is in the "Applications" page for Stack
+    When The user clicks "Try Here" button in Stack page for Stack
+    Then The user should be redirected to a page having a try Editor with a "Run" button to test for Stack
 
-  Scenario: Verify that user receives error when click on Run button without entering code for "Applications" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button without entering the code in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window without entering code in the Editor from Excel test_data.xlsx sheet "Editor"
+  Scenario Outline: Verify that user receives error when click on Run button with invalid code for each page
+    Given The user is on the try Editor of "<PageName>" for Stack
+    When User clicks the Run Button by entering invalid data from "<sheetName>" and <rowNumber> for Stack
+    Then User should be able to see the error for Stack
 
-  Scenario: Verify that user receives error for invalid python code for "Applications" page
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see an error message in alert window by entering invalid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+    Examples: 
+      | PageName            | sheetName | rowNumber |
+      | Operations in Stack | Editor    |         4 |
+      | Operations in Stack | Editor    |         3 |
+      | Implementation      | Editor    |         4 |
+      | Implementation      | Editor    |         3 |
+      | Applications        | Editor    |         4 |
+      | Applications        | Editor    |         3 |
 
-  Scenario: Verify that user is able to see output for valid python code
-    Given The stack user is on the "try Editor" page
-    When The stack user clicks the Run Button by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
-    Then The stack user should able to see output in alert window by entering valid code  in the Editor from Excel test_data.xlsx sheet "Editor"
+  Scenario Outline: Verify that user receives result when click on Run button with valid code for each page
+    Given The user is on the try Editor of "<PageName>" for Stack
+    When User clicks the Run Button by entering valid data from "<sheetName>" and <rowNumber> for Stack
+    Then User should be able to see the output for Stack
+
+    Examples: 
+      | PageName            | sheetName | rowNumber |
+      | Operations in Stack | Editor    |         2 |
+      | Implementation      | Editor    |         2 |
+      | Applications        | Editor    |         2 |
