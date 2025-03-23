@@ -1,9 +1,6 @@
 package dsAlgo_PageObjects;
 
 import java.time.Duration;
-
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,28 +8,23 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import dsAlgo_DriverFactory.DriverFactory;
 
 public class LinkedList {
 	WebDriver driver;
-
 	WebDriverWait wait;
-	
+
 	public LinkedList() {
-	    driver=  DriverFactory.getDriverInstance();
+		driver = DriverFactory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(xpath = "//button[@class='btn']")
 	WebElement getStartBtn;
-
 	@FindBy(xpath = "//a[text()='Sign in']")
 	WebElement signIn;
 	@FindBy(xpath = "//div[@class='bs-example']")
 	WebElement loginPage;
-
-
 	@FindBy(name = "username")
 	WebElement userName;
 	@FindBy(name = "password")
@@ -41,25 +33,18 @@ public class LinkedList {
 	WebElement login;
 	@FindBy(xpath = "//div[@class='alert alert-primary']")
 	WebElement status;
-
 	@FindBy(xpath = "//h5[text()='Linked List']/../a")
 	WebElement getStartedLinkedListBtn;
-
 	@FindBy(xpath = "//div[@class='nav-item dropdown']")
 	WebElement dropdownMenu;
-
 	@FindBy(xpath = "//a[text()='Linked List']")
 	WebElement selectLinkedListFromDropdownMenu;
-
 	@FindBy(xpath = "//h4[@class='bg-secondary text-white']")
 	WebElement title;
-
 	@FindBy(xpath = "//a[@href='introduction']")
 	WebElement introduction;
-
 	@FindBy(xpath = "//a[@class='btn btn-info']")
 	WebElement tryHereBtn;
-
 	@FindBy(xpath = "//div[@class='CodeMirror cm-s-default']\r\n")
 	WebElement tryEditor;
 	@FindBy(xpath = "//button[text()='Run']")
@@ -72,16 +57,14 @@ public class LinkedList {
 	public WebElement tryEditorConsole;
 	@FindBy(xpath = "//a[text()='Creating Linked LIst']")
 	WebElement creatingLinkedLIstLink;
-
 	@FindBy(xpath = "//title[text()='Linked List']")
 	WebElement titleLink;
 	@FindBy(xpath = "//p[text()='Creating Linked LIst']")
 	WebElement titleCreateLinkList;
-	@FindBy(xpath = "	//a[text()='Types of Linked List']")
+	@FindBy(xpath = "//a[text()='Types of Linked List']")
 	WebElement typeOfLinkListink;
 	@FindBy(xpath = "//p[text()='Types of Linked List']")
 	WebElement titleTypeOfLinkList;
-//	private WebDriver driver;
 	@FindBy(xpath = "//a[text()='Implement Linked List in Python']")
 	WebElement implimentLink;
 	@FindBy(xpath = "//p[text()='Implement Linked List in Python']")
@@ -107,9 +90,10 @@ public class LinkedList {
 		signIn.click();
 	}
 
-	public void password(String password ) {
+	public void password(String password) {
 		passWord.sendKeys(password);
 	}
+
 	public void username(String username) {
 		userName.sendKeys(username);
 	}
@@ -119,7 +103,7 @@ public class LinkedList {
 		wait.until(ExpectedConditions.visibilityOf(login)).click();
 	}
 
-	public void clickIntrodcution( ) {
+	public void clickIntrodcution() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(introduction)).click();
 	}
@@ -128,10 +112,12 @@ public class LinkedList {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(getStartedLinkedListBtn)).click();
 	}
+
 	public void dropdownMenuClick() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(dropdownMenu)).click();
 	}
+
 	public void clickLinkedListFromDropdown() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(selectLinkedListFromDropdownMenu)).click();
@@ -158,7 +144,7 @@ public class LinkedList {
 		return driver.switchTo().alert().getText();
 	}
 
-	public void inputEditor(String code ) {
+	public void inputEditor(String code) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
 	}
@@ -218,17 +204,5 @@ public class LinkedList {
 	public String getTitleDeletionLink() {
 		return titleDeletion.getText();
 	}
-	public void currentURL() {
-		driver.getCurrentUrl();
-	}
-	public void getUrl() {
-		driver.get("https://dsportalapp.herokuapp.com/");
-	}
-	public void tryEditorPage() {
-		driver.get("https://dsportalapp.herokuapp.com/tryEditor");
-	}
-	public void openHomeScreen() {
-	driver.get("https://dsportalapp.herokuapp.com/home");
 
-}
 }

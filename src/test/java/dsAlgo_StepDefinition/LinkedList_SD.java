@@ -70,7 +70,7 @@ public class LinkedList_SD {
 	@Given("User is on the Linked List page after signing in")
 	public void user_is_on_the_linked_list_page_after_signing_in() {
 		linkedList.clcikGetStartedLinkedListBtn();
-
+    
 	}
 
 	@When("Userr clicks the {string} button for LinkedList")
@@ -196,7 +196,7 @@ public class LinkedList_SD {
 		}
 
 		linkedList.tryHereBtnClick();
-		linkedList.tryEditorPage();
+//		linkedList.tryEditorPage();
 	}
 
 	@When("User clicks the Run Button by entering invalid data from {string} and {int} for LinkedList")
@@ -213,6 +213,7 @@ public class LinkedList_SD {
 	@Then("User should be able to see the error for LinkedList")
 	public void user_should_be_able_to_see_the_error_for_linked_list() throws IOException {
 		Assert.assertEquals(expectedOutput, linkedList.alertMessage());
+		logger.info("User enter invalid python code");
 	}
 
 	@When("User clicks the Run Button by entering valid data from {string} and {int} for LinkedList")
@@ -229,6 +230,7 @@ public class LinkedList_SD {
 	@Then("User should be able to see the result for LinkedList")
 	public void user_should_be_able_to_see_the_result_for_linked_list() {
 		Assert.assertEquals(expectedOutput, linkedList.console());
+		logger.info("User enter valid python code");
 	}
 
 }
