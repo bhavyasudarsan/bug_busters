@@ -36,6 +36,7 @@ Examples:
    |  Editor  |1|
    |  Editor  |3|
 
+
 Scenario Outline: Verify that user is able to see output for valid python code for tryEditor page
 Given The user is in the tryEditor page
 When The user clicks the Run button by entering valid code from "<SheetName>" and <RowNumber> for tryEditor page
