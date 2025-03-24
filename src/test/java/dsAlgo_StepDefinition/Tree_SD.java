@@ -1,6 +1,8 @@
 package dsAlgo_StepDefinition;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import dsAlgo_PageObjects.Tree_PF;
@@ -11,10 +13,12 @@ import io.cucumber.java.en.When;
 public class Tree_SD {
 	 
 	Tree_PF tree=  new Tree_PF();
+	private static final Logger logger = LoggerFactory.getLogger(Tree_SD.class);
 	
 	@Given("The user is in the Tree page after Sign in")
 	public void the_user_is_in_the_tree_page_after_sign_in() {
 		 tree.treeGetStarted();
+		 logger.info("Tree page started");
 		
 	}
 
@@ -26,6 +30,7 @@ public class Tree_SD {
 	@Then("The user be redirected to the Overview of Trees Page")
 	public void the_user_be_redirected_to_the_overview_of_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Overview of Trees");
+		logger.info(tree.getTitle());
 	}
 	
 	@Given("The user is in the Overview of Trees page")
@@ -66,6 +71,7 @@ public class Tree_SD {
 	@Then("The user should able to see output in the console as per {string} and {int} for Tree")
 	public void the_user_should_able_to_see_output_in_the_console_as_per_and_for_tree(String sheetname, Integer row) {
 		Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(sheetname,row));
+		System.out.println(tree.output());
 	}
 	
 	@When("The user clicks the Terminologies button")
@@ -76,6 +82,8 @@ public class Tree_SD {
 	@Then("The user be redirected to the {string} page")
 	public void the_user_be_redirected_to_the_terminologies_page(String pagename) {
 		Assert.assertEquals(tree.getTitle(), pagename);
+		logger.info(tree.getTitle());
+	
 	}
 
 	@Given("The user is in Terminologies page")
@@ -104,6 +112,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the {string} page")
 	public void the_user_should_be_redirected_to_the_types_of_trees_page(String pagetitle) {
 		Assert.assertEquals(tree.getTitle(), pagetitle);
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in Types of Trees page")
@@ -132,6 +141,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Tree Traversals page")
 	public void the_user_should_be_redirected_to_the_tree_traversals_page() {
 		Assert.assertEquals(tree.getTitle(), "Tree Traversals");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Tree Traversals page")
@@ -158,6 +168,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Traversals-Illustration page")
 	public void the_user_should_be_redirected_to_the_traversals_illustration_page() {
 		Assert.assertEquals(tree.getTitle(), "Traversals-Illustration");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Traversals-Illustration page")
@@ -186,6 +197,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Binary Trees page")
 	public void the_user_should_be_redirected_to_the_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Trees page")
@@ -213,6 +225,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Types of Binary Trees page")
 	public void the_user_should_be_redirected_to_the_types_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Types of Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Types of Binary Trees page")
@@ -240,6 +253,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation in Python page")
 	public void the_user_should_be_redirected_to_implementation_in_python_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation in Python");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation in Python page")
@@ -267,6 +281,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Binary Tree Traversals page")
 	public void the_user_should_be_redirected_to_binary_tree_traversals_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Tree Traversals");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Tree Traversals page")
@@ -294,6 +309,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation of Binary Trees page")
 	public void the_user_should_be_redirected_to_implementation_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation of Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation of Binary Trees page")
@@ -321,6 +337,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Applications of Binary trees page")
 	public void the_user_should_be_redirected_to_applications_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Applications of Binary trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Applications of Binary trees page")
@@ -348,6 +365,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Binary Search Trees page")
 	public void the_user_should_be_redirected_to_binary_search_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Search Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Search Trees page")
@@ -375,6 +393,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation of BST page")
 	public void the_user_should_be_redirected_to_implementation_of_bst_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation Of BST");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation of BST page")

@@ -28,6 +28,7 @@ public class Array_SD {
 	@Then("The user should be redirected to Arrays in Python page")
 	public void the_user_should_be_redirected_to_arrays_in_python_page() {
 		Assert.assertEquals(array.getTitle(), "Arrays in Python");
+		logger.info(array.getTitle());
 	}
 	
 	@Given("The user is on the Arrays in Python page")
@@ -177,6 +178,7 @@ public class Array_SD {
 	@Then("The user should be redirected to Arrays Using List page")
 	public void the_user_should_be_redirected_to_arrays_using_list_page() {
 		Assert.assertEquals(array.getTitle(), "Arrays Using List");
+		logger.info(array.getTitle());
 	}
 	@Given("The user is on the Arrays Using List page")
 	public void the_user_is_on_the_arrays_using_list_page() {
@@ -199,6 +201,7 @@ public class Array_SD {
 	@Then("The user should be redirected to Basic Operations in Lists page")
 	public void the_user_should_be_redirected_to_basic_operations_in_lists_page() {
 		Assert.assertEquals(array.getTitle(), "Basic Operations in Lists");
+		logger.info(array.getTitle());
 	}
 	@Given("The user is in Basic Operations in Lists page")
 	public void the_user_is_in_basic_operations_in_lists_page() {
@@ -221,6 +224,7 @@ public class Array_SD {
 	@Then("The user should be redirected to Applications of Array page")
 	public void the_user_should_be_redirected_to_applications_of_array_page() {
 		Assert.assertEquals(array.getTitle(), "Applications of Array");
+		logger.info(array.getTitle());
 	}
 	@Given("The user is in Applications of Array page")
 	public void the_user_is_in_applications_of_array_page() {

@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -82,9 +83,13 @@ public class Array_PF {
 	}
 
 	public String alertMessage() {
-		String alertMessage = driver.switchTo().alert().getText();
-		driver.switchTo().alert().accept();
-		return alertMessage;
+		try {
+		    String alertMessage = driver.switchTo().alert().getText();
+		    driver.switchTo().alert().accept();
+		    return alertMessage;
+		} catch (NoAlertPresentException e) {
+			 return "No alert found.";
+		}
 	}
 
 	public void invalidPythonCode(String sheetname,int row) {
