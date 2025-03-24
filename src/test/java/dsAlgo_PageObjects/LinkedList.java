@@ -1,6 +1,8 @@
 package dsAlgo_PageObjects;
 
 import java.time.Duration;
+
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -139,10 +141,18 @@ public class LinkedList {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(runBtn)).click();
 	}
-
 	public String alertMessage() {
-		return driver.switchTo().alert().getText();
+		try {
+		    String alertMessage = driver.switchTo().alert().getText();
+		    driver.switchTo().alert().accept();
+		    return alertMessage;
+		} catch (NoAlertPresentException e) {
+			 return "No alert found.";
+		}
 	}
+//	public String alertMessage() {
+//		return driver.switchTo().alert().getText();
+//	}
 
 	public void inputEditor(String code) {
 		Actions actions = new Actions(driver);
