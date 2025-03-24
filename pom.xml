@@ -11,17 +11,24 @@
 	<url>http://maven.apache.org</url>
 
 	<build>
-	    <pluginManagement>
-	      <plugins>
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-surefire-plugin</artifactId>
-	          <version>3.5.2</version>
-	        </plugin>
-	      </plugins>
-	    </pluginManagement>
-	  </build>
-	  
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.2</version>
+					<configuration>
+					<properties>
+					<dataproviderthreadcount>20</dataproviderthreadcount>
+					<parallel>tests</parallel>
+        			<threadcount>5</threadcount>
+					</properties>
+   			 </configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 	<dependencies>
 
 		<dependency>
@@ -50,7 +57,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.29.0</version>
+			<version>4.30.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
@@ -101,12 +108,19 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.32</version> 
+			<version>1.7.32</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.6</version> 
+			<version>1.2.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.10.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
