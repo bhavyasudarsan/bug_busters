@@ -76,9 +76,8 @@ Scenario Outline: Verify that user is able to see output for valid python code f
 Given The user is in the tryEditor page in Graph Representations page
 When User enters data from Excel "<SheetName>" and <RowNumber> for Graph
 Then The user should able to see output in the console for Graph
-    
+
 Examples:       		
 | SheetName | RowNumber |  
 | Editor    | 2         |
-    
     

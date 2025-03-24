@@ -1,6 +1,8 @@
 package dsAlgo_StepDefinition;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import dsAlgo_PageObjects.Tree_PF;
@@ -10,38 +12,14 @@ import io.cucumber.java.en.When;
 
 public class Tree_SD {
 	 
-	Tree_PF tree;
+	Tree_PF tree=  new Tree_PF();
+	private static final Logger logger = LoggerFactory.getLogger(Tree_SD.class);
 	
-	@Given("Tree user is in login page")
-	public void tree_user_is_in_login_page() {
-		tree =  new Tree_PF(); 
-		tree.getStart();
-		tree.signIn();
-	}
-
-	@When("Tree user enters Username as {string} and Password as {string}")
-	public void tree_user_enters_username_as_and_password_as(String username, String password) {
-		System.out.println("User Name: "+ username);
-		System.out.println("Password: "+ password);
-		
-		tree.enterCredentials(username, password);
-	}
-
-	@When("Tree user clicks on Login button")
-	public void tree_user_clicks_on_login_button() {
-		 tree.clickLogin();
-	}
-
-	@Then("Tree user should see the Home page on successful login status {string}")
-	public void tree_user_should_see_the_home_page_on_successful_login_status(String expectedStatus) {
-		Assert.assertEquals(tree.getStatus(), expectedStatus);
-	    System.out.println("Login passed");
-	}
-
 	@Given("The user is in the Tree page after Sign in")
 	public void the_user_is_in_the_tree_page_after_sign_in() {
 		 tree.treeGetStarted();
-		System.out.println("User is in Tree page");
+		 logger.info("Tree page started");
+		
 	}
 
 	@When("The user clicks the Overview of Trees button")
@@ -52,6 +30,7 @@ public class Tree_SD {
 	@Then("The user be redirected to the Overview of Trees Page")
 	public void the_user_be_redirected_to_the_overview_of_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Overview of Trees");
+		logger.info(tree.getTitle());
 	}
 	
 	@Given("The user is in the Overview of Trees page")
@@ -77,30 +56,22 @@ public class Tree_SD {
 	    tree.tryHere();
 	}
 
-	@When("The tree user clicks the Run button without entering the code in the Editor")
-	public void the_tree_user_clicks_the_run_button_without_entering_the_code_in_the_editor() {
-	    tree.run();
+	@When("The user writes invalid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_writes_invalid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-
-	@Then("The tree user should able to see an error message in the alert window")
-	public void the_tree_user_should_able_to_see_an_error_message_in_the_alert_window() {
-		String alertText= tree.alertMessage();
-		Assert.assertNotNull(alertText);
+	@Then("The user see an error message in alert window as per {string} and {int} for Tree")
+	public void the_user_see_an_error_message_in_alert_window_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.alertMessage(),tree.expectedOutputFromExcel(sheetname,row));
 	}
-
-	@When("The tree user write invalid python code in the Editor and click Run button")
-	public void the_tree_user_write_invalid_python_code_in_the_editor_and_click_run_button() {
-	    tree.invalidPythonCode();  
+	@When("The user write the valid code from {string} and {int} and clicks the Run in the Editor for Tree")
+	public void the_user_write_the_valid_code_from_and_and_clicks_the_run_in_the_editor_for_tree(String sheetname, Integer row) {
+		tree.pythonCodeFromExcel(sheetname,row);
 	}
-
-	@When("The tree user write valid python code in the Editor and click Run button")
-	public void the_tree_user_write_valid_python_code_in_the_editor_and_click_run_button() {
-		tree.validPythonCode();	
-	}
-
-	@Then("The tree user should able to see output in the console")
-	public void the_tree_user_should_able_to_see_output_in_the_console() {
-	   Assert.assertNotNull(tree.output());
+	@Then("The user should able to see output in the console as per {string} and {int} for Tree")
+	public void the_user_should_able_to_see_output_in_the_console_as_per_and_for_tree(String sheetname, Integer row) {
+		Assert.assertEquals(tree.output(),tree.expectedOutputFromExcel(sheetname,row));
+		System.out.println(tree.output());
 	}
 	
 	@When("The user clicks the Terminologies button")
@@ -111,6 +82,8 @@ public class Tree_SD {
 	@Then("The user be redirected to the {string} page")
 	public void the_user_be_redirected_to_the_terminologies_page(String pagename) {
 		Assert.assertEquals(tree.getTitle(), pagename);
+		logger.info(tree.getTitle());
+	
 	}
 
 	@Given("The user is in Terminologies page")
@@ -139,6 +112,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the {string} page")
 	public void the_user_should_be_redirected_to_the_types_of_trees_page(String pagetitle) {
 		Assert.assertEquals(tree.getTitle(), pagetitle);
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in Types of Trees page")
@@ -167,6 +141,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Tree Traversals page")
 	public void the_user_should_be_redirected_to_the_tree_traversals_page() {
 		Assert.assertEquals(tree.getTitle(), "Tree Traversals");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Tree Traversals page")
@@ -193,6 +168,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Traversals-Illustration page")
 	public void the_user_should_be_redirected_to_the_traversals_illustration_page() {
 		Assert.assertEquals(tree.getTitle(), "Traversals-Illustration");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Traversals-Illustration page")
@@ -221,6 +197,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Binary Trees page")
 	public void the_user_should_be_redirected_to_the_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Trees page")
@@ -248,6 +225,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to the Types of Binary Trees page")
 	public void the_user_should_be_redirected_to_the_types_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Types of Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Types of Binary Trees page")
@@ -275,6 +253,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation in Python page")
 	public void the_user_should_be_redirected_to_implementation_in_python_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation in Python");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation in Python page")
@@ -302,6 +281,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Binary Tree Traversals page")
 	public void the_user_should_be_redirected_to_binary_tree_traversals_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Tree Traversals");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Tree Traversals page")
@@ -329,6 +309,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation of Binary Trees page")
 	public void the_user_should_be_redirected_to_implementation_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation of Binary Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation of Binary Trees page")
@@ -356,6 +337,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Applications of Binary trees page")
 	public void the_user_should_be_redirected_to_applications_of_binary_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Applications of Binary trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Applications of Binary trees page")
@@ -383,6 +365,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Binary Search Trees page")
 	public void the_user_should_be_redirected_to_binary_search_trees_page() {
 		Assert.assertEquals(tree.getTitle(), "Binary Search Trees");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Binary Search Trees page")
@@ -410,6 +393,7 @@ public class Tree_SD {
 	@Then("The user should be redirected to Implementation of BST page")
 	public void the_user_should_be_redirected_to_implementation_of_bst_page() {
 		Assert.assertEquals(tree.getTitle(), "Implementation Of BST");
+		logger.info(tree.getTitle());
 	}
 
 	@Given("The user is in the Implementation of BST page")
