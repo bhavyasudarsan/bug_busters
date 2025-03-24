@@ -3,7 +3,7 @@ package dsAlgo_StepDefinition;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
