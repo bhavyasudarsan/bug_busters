@@ -12,10 +12,10 @@ import dsAlgo_PageObjects.DataStructure_PF;
 import dsAlgo_Utilities.ExcelReader;
 
 public class DataStructure_SD {
-	
-	DataStructure_PF data_strcture_PF = new DataStructure_PF();
+
 	private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
 	
+	DataStructure_PF data_strcture_PF = new DataStructure_PF();
 	String expectedResult;
 	String inputText;
 	
@@ -109,7 +109,6 @@ public class DataStructure_SD {
 	    	    Object[] row = registerData.get(RowNo-1); // Access the desired row directly
 	    	    inputText = (String) row[0];
 	    	    expectedResult = (String) row[1];  
-	    	    
 	    	    data_strcture_PF.inputEditor(inputText);
 	            data_strcture_PF.runBtnClick();
 	     }  
