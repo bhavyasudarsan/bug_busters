@@ -3,6 +3,7 @@ package dsAlgo_PageObjects;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -112,14 +113,25 @@ public class Graph {
 	 }
 	 
 	 public String AlertMsg() {
-		 return driver.switchTo().alert().getText();
+		 try {
+			 return driver.switchTo().alert().getText();
+		 }
+		 catch (NoAlertPresentException e) {
+			 return "No alert found.";
+		 }
 	 }
 	 
 	 public void Alertaccept() {
-		 driver.switchTo().alert().accept();
+		 try {
+			 driver.switchTo().alert().accept();
+		 }
+		 catch (NoAlertPresentException e) {
+			 //No alert found.
+		 }
 	 }
 	 
-	 public void ClickText(String string) {		 
+	 
+	  public void ClickText(String string) {		 
 		 String dynamicPath = String.format("//a[text()='%s']", string);
 		 dynamicLink = driver.findElement(By.xpath(dynamicPath));
 		 wait.until(ExpectedConditions.visibilityOf(dynamicLink)).click();
