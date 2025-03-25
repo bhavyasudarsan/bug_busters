@@ -42,7 +42,7 @@
 			<artifactId>cucumber-testng</artifactId>
 			<version>7.21.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
