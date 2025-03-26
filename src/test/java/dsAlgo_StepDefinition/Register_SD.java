@@ -14,6 +14,7 @@ import dsAlgo_Utilities.ExcelReader;
 public class Register_SD {
 		
 		private static final Logger logger = LoggerFactory.getLogger(DataStructure_SD.class);
+		
 		Register_PF register_PF ;
 		String expectedResult;
 		String username;

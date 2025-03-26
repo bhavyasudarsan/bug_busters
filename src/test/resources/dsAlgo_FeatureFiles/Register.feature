@@ -62,6 +62,7 @@ Then The error or validation message appears after register button clicked
    |Register|6|
    |Register|7|
 
+
 Scenario Outline: Verify that user able to land on Home page after entering valid Username and Password fields
 When The user register with data from Excel "<SheetName1>" and <RowNumber1> for Register
 Then The user should be redirected to "home" page with success message 
