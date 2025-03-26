@@ -43,8 +43,6 @@ public class LinkedList {
 	WebElement selectLinkedListFromDropdownMenu;
 	@FindBy(xpath = "//h4[@class='bg-secondary text-white']")
 	WebElement title;
-	@FindBy(xpath = "//a[@href='introduction']")
-	WebElement introduction;
 	@FindBy(xpath = "//a[@class='btn btn-info']")
 	WebElement tryHereBtn;
 	@FindBy(xpath = "//div[@class='CodeMirror cm-s-default']\r\n")
@@ -57,10 +55,14 @@ public class LinkedList {
 	WebElement tryEditorInput;
 	@FindBy(xpath = "//pre[@id='output']")
 	public WebElement tryEditorConsole;
+	@FindBy(xpath = "//a[@href='introduction']")
+	WebElement introductionLink;
+	@FindBy(xpath = "//p[text()='Introduction']")
+	WebElement titleIntroduction;
 	@FindBy(xpath = "//a[text()='Creating Linked LIst']")
 	WebElement creatingLinkedLIstLink;
 	@FindBy(xpath = "//title[text()='Linked List']")
-	WebElement titleLink;
+	WebElement titleLink;	
 	@FindBy(xpath = "//p[text()='Creating Linked LIst']")
 	WebElement titleCreateLinkList;
 	@FindBy(xpath = "//a[text()='Types of Linked List']")
@@ -107,8 +109,14 @@ public class LinkedList {
 
 	public void clickIntrodcution() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(introduction)).click();
+		wait.until(ExpectedConditions.visibilityOf(introductionLink)).click();
 	}
+	
+	public String getTitleIntroduction() {
+		return titleIntroduction.getText();
+	}
+
+	
 
 	public void clcikGetStartedLinkedListBtn() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -150,9 +158,6 @@ public class LinkedList {
 			 return "No alert found.";
 		}
 	}
-//	public String alertMessage() {
-//		return driver.switchTo().alert().getText();
-//	}
 
 	public void inputEditor(String code) {
 		Actions actions = new Actions(driver);
@@ -166,6 +171,9 @@ public class LinkedList {
 	public void creatingLinkedListClick() {
 		creatingLinkedLIstLink.click();
 	}
+//	public void introductionLinkClick() {
+//		introductionLink.click();
+//	}
 
 	public void getTitleLinked() {
 		titleLink.getText();
