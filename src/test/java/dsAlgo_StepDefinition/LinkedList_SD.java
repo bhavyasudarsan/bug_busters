@@ -70,7 +70,7 @@ public class LinkedList_SD {
 	@Given("User is on the Linked List page after signing in")
 	public void user_is_on_the_linked_list_page_after_signing_in() {
 		linkedList.clcikGetStartedLinkedListBtn();
-    
+
 	}
 
 	@When("Userr clicks the {string} button for LinkedList")
@@ -112,31 +112,44 @@ public class LinkedList_SD {
 		switch (pageName) {
 		case "Introduction":
 			linkedList.clickIntrodcution();
+			Assert.assertEquals("Introduction", linkedList.getTitleIntroduction());
 			break;
 
 		case "Creating Linked List":
+			linkedList.creatingLinkedListClick();
 			Assert.assertEquals("Creating Linked LIst", linkedList.getTitleCreatingLinkedList());
 			break;
 
 		case "Types of Linked List":
 			linkedList.typeOfLinkListinkClick();
+			Assert.assertEquals("Types of Linked List", linkedList.getTitleTypeOfLinked());
+
 			break;
 
 		case "Implement Linked List in Python":
+			linkedList.implimentLinkedListClick();
+
 			Assert.assertEquals("Implement Linked List in Python", linkedList.getTitleImplimentLinked());
 			break;
 
 		case "Traversal":
+			linkedList.traversalClick();
+
 			Assert.assertEquals("Traversal", linkedList.getTitleTraversal());
 
 			break;
 
 		case "Insertion":
+
+			linkedList.insertionClick();
+
 			Assert.assertEquals("Insertion", linkedList.getTitleInsertionLink());
 
 			break;
 
 		case "Deletion":
+			linkedList.deletionClick();
+
 			Assert.assertEquals("Deletion", linkedList.getTitleDeletionLink());
 			break;
 		}
@@ -196,7 +209,6 @@ public class LinkedList_SD {
 		}
 
 		linkedList.tryHereBtnClick();
-//		linkedList.tryEditorPage();
 	}
 
 	@When("User clicks the Run Button by entering invalid data from {string} and {int} for LinkedList")
