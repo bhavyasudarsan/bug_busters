@@ -130,7 +130,7 @@ public class DataStructure_PF {
 		runButton.click();
 	}
 	public String console() {
-		// to get console output
+	
 		return console.getText();
 	}
 
