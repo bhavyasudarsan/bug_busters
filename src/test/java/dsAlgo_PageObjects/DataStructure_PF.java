@@ -121,7 +121,7 @@ public class DataStructure_PF {
 		return driver.getTitle();	
 	}
 	public void inputEditor(String code) { 
-		// try editor code
+		
 		Actions actions = new Actions(driver);
 		actions.moveToElement(textEditor).click().sendKeys(code).build().perform();
 	}
